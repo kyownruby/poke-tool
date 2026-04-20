@@ -1,4 +1,4 @@
-export default function Timeline({ patterns }) {
+export default function Timeline({ patterns, onHide }) {
   if (patterns.length === 0) {
     return (
       <div className="text-center text-gray-400 py-8 text-sm">
@@ -31,9 +31,16 @@ export default function Timeline({ patterns }) {
               <img src={p.sprite} alt="" className="w-8 h-8 -my-1" />
               <span className={`font-bold text-sm min-w-[5rem] ${textColor}`}>{p.pokemonName}</span>
               <span className="text-xs text-gray-500 min-w-[10rem]">{p.label}</span>
-              <span className="ml-auto text-right">
-                <span className="text-xs text-gray-400">実数値: </span>
-                <span className={`font-mono font-bold text-lg ${textColor}`}>{p.finalStat}</span>
+              <span className="ml-auto flex items-center gap-2">
+                <span className="text-right">
+                  <span className="text-xs text-gray-400">実数値: </span>
+                  <span className={`font-mono font-bold text-lg ${textColor}`}>{p.finalStat}</span>
+                </span>
+                <button
+                  onClick={() => onHide(`${p.side}-${p.pokemonName}-${p.label}`)}
+                  className="text-gray-300 hover:text-gray-500 text-sm leading-none"
+                  title="この行を非表示"
+                >✕</button>
               </span>
             </div>
           </div>
