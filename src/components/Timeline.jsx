@@ -29,7 +29,10 @@ export default function Timeline({ patterns, onHide }) {
             <div className={`flex items-center gap-3 px-4 py-2 rounded-lg border-l-4 ${bg}`}>
               <span className="text-base">{icon}</span>
               <img src={p.sprite} alt="" className="w-8 h-8 -my-1" />
-              <span className={`font-bold text-sm min-w-[5rem] ${textColor}`}>{p.pokemonName}</span>
+              <span className={`font-bold text-sm min-w-[5rem] ${textColor}`}>
+                {p.pokemonName}
+                <span className="text-[10px] text-gray-400 font-normal ml-1">({p.baseSpeed})</span>
+              </span>
               <div className="flex flex-wrap items-center gap-1 min-w-[14rem]">
                 <span className="text-xs text-gray-500">{p.label}</span>
                 {p.natureMod != null && (
