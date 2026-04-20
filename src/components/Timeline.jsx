@@ -1,4 +1,20 @@
+import { useState } from 'react';
+
 export default function Timeline({ patterns, onHide, onRankChange, onToggleParalysis }) {
+  const [hiding, setHiding] = useState(new Set());
+
+  function handleHide(patternId) {
+    setHiding(prev => new Set(prev).add(patternId));
+    setTimeout(() => {
+      onHide(patternId);
+      setHiding(prev => {
+        const next = new Set(prev);
+        next.delete(patternId);
+        return next;
+      });
+    }, 200);
+  }
+
   if (patterns.length === 0) {
     return (
       <div className="text-center text-gray-400 py-8 text-sm">
@@ -19,10 +35,14 @@ export default function Timeline({ patterns, onHide, onRankChange, onToggleParal
         const samePrev = prevStat === p.finalStat;
         prevStat = p.finalStat;
         const rank = p.rank ?? 0;
+        const isHiding = hiding.has(p.patternId);
 
         return (
-          <div key={`${p.patternId}-${i}`}>
-            {samePrev && (
+          <div
+            key={`${p.patternId}-${i}`}
+            className={`transition-all duration-200 overflow-hidden ${isHiding ? 'max-h-0 opacity-0' : 'max-h-16'}`}
+          >
+            {samePrev && !isHiding && (
               <div className="text-center text-xs text-yellow-600 font-bold py-0.5">
                 ⚡ 同速 ⚡
               </div>
@@ -77,7 +97,7 @@ export default function Timeline({ patterns, onHide, onRankChange, onToggleParal
                   <span className={`font-mono font-bold text-lg ${textColor}`}>{p.finalStat}</span>
                 </span>
                 <button
-                  onClick={() => onHide(p.patternId)}
+                  onClick={() => handleHide(p.patternId)}
                   className="text-gray-300 hover:text-gray-500 text-sm leading-none"
                   title="この行を非表示"
                 >✕</button>
