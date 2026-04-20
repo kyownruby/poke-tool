@@ -1,6 +1,6 @@
 // Auto-generated Pokemon data (speed stats, abilities, IDs)
-// Source: PokeAPI - 2026-04-15T05:34:47.361Z
-// Total: 1025 Pokemon
+// Source: PokeAPI - 2026-04-20T02:36:39.688Z
+// Total: 1085 Pokemon (including Mega forms)
 
 const pokemonData = {
   "bulbasaur": {
@@ -8562,6 +8562,426 @@ const pokemonData = {
     "speed": 88,
     "abilities": [
       "poison-puppeteer"
+    ]
+  },
+  "venusaur-mega": {
+    "id": 10033,
+    "speed": 80,
+    "abilities": [
+      "thick-fat"
+    ]
+  },
+  "charizard-mega-x": {
+    "id": 10034,
+    "speed": 100,
+    "abilities": [
+      "tough-claws"
+    ]
+  },
+  "charizard-mega-y": {
+    "id": 10035,
+    "speed": 100,
+    "abilities": [
+      "drought"
+    ]
+  },
+  "blastoise-mega": {
+    "id": 10036,
+    "speed": 78,
+    "abilities": [
+      "mega-launcher"
+    ]
+  },
+  "beedrill-mega": {
+    "id": 10090,
+    "speed": 145,
+    "abilities": [
+      "adaptability"
+    ]
+  },
+  "pidgeot-mega": {
+    "id": 10073,
+    "speed": 121,
+    "abilities": [
+      "no-guard"
+    ]
+  },
+  "clefable-mega": {
+    "id": 10278,
+    "speed": 70,
+    "abilities": [
+      "magic-bounce"
+    ]
+  },
+  "alakazam-mega": {
+    "id": 10037,
+    "speed": 150,
+    "abilities": [
+      "trace"
+    ]
+  },
+  "victreebel-mega": {
+    "id": 10279,
+    "speed": 70,
+    "abilities": [
+      "innards-out"
+    ]
+  },
+  "slowbro-mega": {
+    "id": 10071,
+    "speed": 30,
+    "abilities": [
+      "shell-armor"
+    ]
+  },
+  "gengar-mega": {
+    "id": 10038,
+    "speed": 130,
+    "abilities": [
+      "shadow-tag"
+    ]
+  },
+  "kangaskhan-mega": {
+    "id": 10039,
+    "speed": 100,
+    "abilities": [
+      "parental-bond"
+    ]
+  },
+  "pinsir-mega": {
+    "id": 10040,
+    "speed": 105,
+    "abilities": [
+      "aerilate"
+    ]
+  },
+  "gyarados-mega": {
+    "id": 10041,
+    "speed": 81,
+    "abilities": [
+      "mold-breaker"
+    ]
+  },
+  "aerodactyl-mega": {
+    "id": 10042,
+    "speed": 150,
+    "abilities": [
+      "tough-claws"
+    ]
+  },
+  "starmie-mega": {
+    "id": 10280,
+    "speed": 120,
+    "abilities": [
+      "huge-power"
+    ]
+  },
+  "dragonite-mega": {
+    "id": 10281,
+    "speed": 100,
+    "abilities": [
+      "multiscale"
+    ]
+  },
+  "meganium-mega": {
+    "id": 10282,
+    "speed": 80,
+    "abilities": [
+      "mega-sol"
+    ]
+  },
+  "feraligatr-mega": {
+    "id": 10283,
+    "speed": 78,
+    "abilities": [
+      "dragonize"
+    ]
+  },
+  "ampharos-mega": {
+    "id": 10045,
+    "speed": 45,
+    "abilities": [
+      "mold-breaker"
+    ]
+  },
+  "scizor-mega": {
+    "id": 10046,
+    "speed": 75,
+    "abilities": [
+      "technician"
+    ]
+  },
+  "heracross-mega": {
+    "id": 10047,
+    "speed": 75,
+    "abilities": [
+      "skill-link"
+    ]
+  },
+  "houndoom-mega": {
+    "id": 10048,
+    "speed": 115,
+    "abilities": [
+      "solar-power"
+    ]
+  },
+  "tyranitar-mega": {
+    "id": 10049,
+    "speed": 71,
+    "abilities": [
+      "sand-stream"
+    ]
+  },
+  "steelix-mega": {
+    "id": 10072,
+    "speed": 30,
+    "abilities": [
+      "sand-force"
+    ]
+  },
+  "skarmory-mega": {
+    "id": 10284,
+    "speed": 110,
+    "abilities": [
+      "stalwart"
+    ]
+  },
+  "sableye-mega": {
+    "id": 10066,
+    "speed": 20,
+    "abilities": [
+      "magic-bounce"
+    ]
+  },
+  "gardevoir-mega": {
+    "id": 10051,
+    "speed": 100,
+    "abilities": [
+      "pixilate"
+    ]
+  },
+  "aggron-mega": {
+    "id": 10053,
+    "speed": 50,
+    "abilities": [
+      "filter"
+    ]
+  },
+  "medicham-mega": {
+    "id": 10054,
+    "speed": 100,
+    "abilities": [
+      "pure-power"
+    ]
+  },
+  "manectric-mega": {
+    "id": 10055,
+    "speed": 135,
+    "abilities": [
+      "intimidate"
+    ]
+  },
+  "sharpedo-mega": {
+    "id": 10070,
+    "speed": 105,
+    "abilities": [
+      "strong-jaw"
+    ]
+  },
+  "camerupt-mega": {
+    "id": 10087,
+    "speed": 20,
+    "abilities": [
+      "sheer-force"
+    ]
+  },
+  "altaria-mega": {
+    "id": 10067,
+    "speed": 80,
+    "abilities": [
+      "pixilate"
+    ]
+  },
+  "banette-mega": {
+    "id": 10056,
+    "speed": 75,
+    "abilities": [
+      "prankster"
+    ]
+  },
+  "absol-mega": {
+    "id": 10057,
+    "speed": 115,
+    "abilities": [
+      "magic-bounce"
+    ]
+  },
+  "glalie-mega": {
+    "id": 10074,
+    "speed": 100,
+    "abilities": [
+      "refrigerate"
+    ]
+  },
+  "salamence-mega": {
+    "id": 10089,
+    "speed": 120,
+    "abilities": [
+      "aerilate"
+    ]
+  },
+  "garchomp-mega": {
+    "id": 10058,
+    "speed": 92,
+    "abilities": [
+      "sand-force"
+    ]
+  },
+  "lucario-mega": {
+    "id": 10059,
+    "speed": 112,
+    "abilities": [
+      "adaptability"
+    ]
+  },
+  "abomasnow-mega": {
+    "id": 10060,
+    "speed": 30,
+    "abilities": [
+      "snow-warning"
+    ]
+  },
+  "gallade-mega": {
+    "id": 10068,
+    "speed": 110,
+    "abilities": [
+      "inner-focus"
+    ]
+  },
+  "audino-mega": {
+    "id": 10069,
+    "speed": 50,
+    "abilities": [
+      "healer"
+    ]
+  },
+  "lopunny-mega": {
+    "id": 10088,
+    "speed": 135,
+    "abilities": [
+      "scrappy"
+    ]
+  },
+  "froslass-mega": {
+    "id": 10285,
+    "speed": 120,
+    "abilities": [
+      "snow-warning"
+    ]
+  },
+  "emboar-mega": {
+    "id": 10286,
+    "speed": 75,
+    "abilities": [
+      "mold-breaker"
+    ]
+  },
+  "excadrill-mega": {
+    "id": 10287,
+    "speed": 103,
+    "abilities": [
+      "piercing-drill"
+    ]
+  },
+  "chandelure-mega": {
+    "id": 10291,
+    "speed": 90,
+    "abilities": [
+      "infiltrator"
+    ]
+  },
+  "chesnaught-mega": {
+    "id": 10292,
+    "speed": 44,
+    "abilities": [
+      "bulletproof"
+    ]
+  },
+  "delphox-mega": {
+    "id": 10293,
+    "speed": 134,
+    "abilities": [
+      "levitate"
+    ]
+  },
+  "greninja-mega": {
+    "id": 10294,
+    "speed": 142,
+    "abilities": [
+      "protean"
+    ]
+  },
+  "floette-mega": {
+    "id": 10296,
+    "speed": 102,
+    "abilities": [
+      "fairy-aura"
+    ]
+  },
+  "hawlucha-mega": {
+    "id": 10300,
+    "speed": 118,
+    "abilities": [
+      "no-guard"
+    ]
+  },
+  "crabominable-mega": {
+    "id": 10315,
+    "speed": 33,
+    "abilities": [
+      "iron-fist"
+    ]
+  },
+  "drampa-mega": {
+    "id": 10302,
+    "speed": 36,
+    "abilities": [
+      "berserk"
+    ]
+  },
+  "chimecho-mega": {
+    "id": 10306,
+    "speed": 65,
+    "abilities": [
+      "levitate"
+    ]
+  },
+  "golurk-mega": {
+    "id": 10313,
+    "speed": 55,
+    "abilities": [
+      "unseen-fist"
+    ]
+  },
+  "meowstic-mega": {
+    "id": 10314,
+    "speed": 124,
+    "abilities": [
+      "trace"
+    ]
+  },
+  "glimmora-mega": {
+    "id": 10321,
+    "speed": 101,
+    "abilities": [
+      "adaptability"
+    ]
+  },
+  "scovillain-mega": {
+    "id": 10320,
+    "speed": 75,
+    "abilities": [
+      "spicy-spray"
     ]
   }
 };
