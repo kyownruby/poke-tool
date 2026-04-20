@@ -75,7 +75,6 @@ export default function PokemonSearch({ side, onAdd }) {
       onAdd({ pokemon, params: { nature, abilityPoints, scarf } });
     } else {
       onAdd({ pokemon, params: { abilityPoints } });
-      setQuery('');
     }
   }
 

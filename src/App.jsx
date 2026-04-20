@@ -22,7 +22,11 @@ function App() {
   }
 
   function addOpponentPokemon(entry) {
-    if (opponentPokemon.some(e => e.pokemon.displayName === entry.pokemon.displayName)) return;
+    const dup = opponentPokemon.some(e =>
+      e.pokemon.displayName === entry.pokemon.displayName &&
+      e.params.abilityPoints === entry.params.abilityPoints
+    );
+    if (dup) return;
     setOpponentPokemon(prev => [...prev, entry]);
   }
 

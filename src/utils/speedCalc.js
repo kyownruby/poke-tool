@@ -47,17 +47,20 @@ export function generateMyPatterns(pokemon, params) {
 
 export function generateOpponentPatterns(pokemon, abilityPoints = 32) {
   const isMega = pokemon.englishName?.includes('-mega');
-  const basePositive = calcSpeedStat(pokemon.speed, abilityPoints, 1.1);
-  const baseNeutral = calcSpeedStat(pokemon.speed, abilityPoints, 1.0);
+  const natures = [
+    { mod: 1.1 },
+    { mod: 1.0 },
+    { mod: 0.9 },
+  ];
+  const baseStats = natures.map(n => ({ ...n, stat: calcSpeedStat(pokemon.speed, abilityPoints, n.mod) }));
   const patterns = [];
-
   const base = { abilityPoints, abilityMult: null };
-  patterns.push({ ...base, label: '通常', stat: basePositive, scarf: false, natureMod: 1.1 });
-  patterns.push({ ...base, label: '通常', stat: baseNeutral, scarf: false, natureMod: 1.0 });
 
-  if (!isMega) {
-    patterns.push({ ...base, label: '通常', stat: applyScarf(basePositive), scarf: true, natureMod: 1.1 });
-    patterns.push({ ...base, label: '通常', stat: applyScarf(baseNeutral), scarf: true, natureMod: 1.0 });
+  for (const { mod, stat } of baseStats) {
+    patterns.push({ ...base, label: '通常', stat, scarf: false, natureMod: mod });
+    if (!isMega) {
+      patterns.push({ ...base, label: '通常', stat: applyScarf(stat), scarf: true, natureMod: mod });
+    }
   }
 
   const speedAbilities = pokemon.abilities
@@ -65,27 +68,19 @@ export function generateOpponentPatterns(pokemon, abilityPoints = 32) {
     .map(a => ({ name: a, ...SPEED_ABILITIES[a] }));
 
   for (const ab of speedAbilities) {
-    patterns.push({
-      ...base, label: `${ab.label}発動`, natureMod: 1.1,
-      stat: applyAbilityMultiplier(basePositive, ab.multiplier),
-      scarf: false, abilityMult: ab.multiplier,
-    });
-    patterns.push({
-      ...base, label: `${ab.label}発動`, natureMod: 1.0,
-      stat: applyAbilityMultiplier(baseNeutral, ab.multiplier),
-      scarf: false, abilityMult: ab.multiplier,
-    });
-    if (!isMega) {
+    for (const { mod, stat } of baseStats) {
       patterns.push({
-        ...base, label: `${ab.label}発動`, natureMod: 1.1,
-        stat: applyAbilityMultiplier(applyScarf(basePositive), ab.multiplier),
-        scarf: true, abilityMult: ab.multiplier,
+        ...base, label: `${ab.label}発動`, natureMod: mod,
+        stat: applyAbilityMultiplier(stat, ab.multiplier),
+        scarf: false, abilityMult: ab.multiplier,
       });
-      patterns.push({
-        ...base, label: `${ab.label}発動`, natureMod: 1.0,
-        stat: applyAbilityMultiplier(applyScarf(baseNeutral), ab.multiplier),
-        scarf: true, abilityMult: ab.multiplier,
-      });
+      if (!isMega) {
+        patterns.push({
+          ...base, label: `${ab.label}発動`, natureMod: mod,
+          stat: applyAbilityMultiplier(applyScarf(stat), ab.multiplier),
+          scarf: true, abilityMult: ab.multiplier,
+        });
+      }
     }
   }
 
