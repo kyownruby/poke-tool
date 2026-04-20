@@ -98,14 +98,14 @@ export function generateOpponentPatterns(pokemon) {
   }));
 }
 
-export function buildTimeline(myPokemonList, opponentPokemonList, myRank, opponentRank) {
+export function buildTimeline(myPokemonList, opponentPokemonList) {
   const allPatterns = [];
 
   for (const entry of myPokemonList) {
     const patterns = generateMyPatterns(entry.pokemon, entry.params);
     for (const p of patterns) {
       const patternId = `mine-${p.pokemonName}-${p.natureMod}-${p.abilityPoints}-${p.scarf}`;
-      allPatterns.push({ ...p, finalStat: applyRank(p.stat, myRank), patternId });
+      allPatterns.push({ ...p, patternId });
     }
   }
 
@@ -113,10 +113,9 @@ export function buildTimeline(myPokemonList, opponentPokemonList, myRank, oppone
     const patterns = generateOpponentPatterns(entry.pokemon);
     for (const p of patterns) {
       const patternId = `opp-${p.pokemonName}-${p.label}-${p.natureMod}-${p.scarf}`;
-      allPatterns.push({ ...p, finalStat: applyRank(p.stat, opponentRank), patternId });
+      allPatterns.push({ ...p, patternId });
     }
   }
 
-  allPatterns.sort((a, b) => b.finalStat - a.finalStat);
   return allPatterns;
 }

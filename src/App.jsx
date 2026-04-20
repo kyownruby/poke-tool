@@ -1,15 +1,13 @@
 import { useState, useMemo } from 'react';
 import PokemonSearch from './components/PokemonSearch';
 import Timeline from './components/Timeline';
-import RankControl from './components/RankControl';
-import { buildTimeline } from './utils/speedCalc';
+import { buildTimeline, applyRank } from './utils/speedCalc';
 
 function App() {
   const [myPokemon, setMyPokemon] = useState([]);
   const [opponentPokemon, setOpponentPokemon] = useState([]);
-  const [myRank, setMyRank] = useState(0);
-  const [opponentRank, setOpponentRank] = useState(0);
   const [hiddenPatterns, setHiddenPatterns] = useState(new Set());
+  const [rankOverrides, setRankOverrides] = useState({});
 
   function addMyPokemon(entry) {
     const dup = myPokemon.some(e =>
@@ -34,6 +32,11 @@ function App() {
       for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
       return next;
     });
+    setRankOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(`mine-${name}-`)) delete next[key]; }
+      return next;
+    });
   }
 
   function removeOpponentPokemonByName(name) {
@@ -41,6 +44,11 @@ function App() {
     setHiddenPatterns(prev => {
       const next = new Set(prev);
       for (const key of next) { if (key.startsWith(`opp-${name}-`)) next.delete(key); }
+      return next;
+    });
+    setRankOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
       return next;
     });
   }
@@ -53,10 +61,19 @@ function App() {
     setHiddenPatterns(new Set());
   }
 
+  function setPatternRank(patternId, rank) {
+    setRankOverrides(prev => ({ ...prev, [patternId]: rank }));
+  }
+
   const timeline = useMemo(() => {
-    const all = buildTimeline(myPokemon, opponentPokemon, myRank, opponentRank);
-    return all.filter(p => !hiddenPatterns.has(p.patternId));
-  }, [myPokemon, opponentPokemon, myRank, opponentRank, hiddenPatterns]);
+    const all = buildTimeline(myPokemon, opponentPokemon);
+    const withRank = all.map(p => {
+      const rank = rankOverrides[p.patternId] ?? 0;
+      return { ...p, rank, finalStat: applyRank(p.stat, rank) };
+    });
+    withRank.sort((a, b) => b.finalStat - a.finalStat);
+    return withRank.filter(p => !hiddenPatterns.has(p.patternId));
+  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -100,11 +117,6 @@ function App() {
               })}
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <RankControl label="🔵 自分" rank={myRank} onRankChange={setMyRank} color="blue" />
-              <RankControl label="🔴 相手" rank={opponentRank} onRankChange={setOpponentRank} color="red" />
-            </div>
-
             <div className="bg-white rounded-xl border border-gray-200 p-4">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="font-bold text-sm text-gray-700">素早さタイムライン（速い順）</h2>
@@ -114,7 +126,7 @@ function App() {
                   </button>
                 )}
               </div>
-              <Timeline patterns={timeline} onHide={hidePattern} />
+              <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} />
             </div>
           </div>
         )}
