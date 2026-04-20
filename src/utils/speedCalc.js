@@ -36,8 +36,12 @@ export function generateMyPatterns(pokemon, params) {
   const isMega = pokemon.englishName?.includes('-mega');
   const base = calcSpeedStat(pokemon.speed, abilityPoints, nature);
   const useScarf = scarf && !isMega;
-  const label = useScarf ? 'スカーフ' : '通常';
-  return [{ pokemonName: pokemon.displayName, sprite: pokemon.sprite, stat: useScarf ? applyScarf(base) : base, label, side: 'mine', scarf: useScarf }];
+  return [{
+    pokemonName: pokemon.displayName, sprite: pokemon.sprite,
+    stat: useScarf ? applyScarf(base) : base,
+    label: '通常', side: 'mine', scarf: useScarf,
+    natureMod: nature, abilityPoints,
+  }];
 }
 
 export function generateOpponentPatterns(pokemon) {
@@ -46,12 +50,13 @@ export function generateOpponentPatterns(pokemon) {
   const baseNeutral = calcSpeedStat(pokemon.speed, 32, 1.0);
   const patterns = [];
 
-  patterns.push({ label: '補正あり', stat: basePositive, scarf: false, abilityMult: null });
-  patterns.push({ label: '補正なし', stat: baseNeutral, scarf: false, abilityMult: null });
+  const base = { abilityPoints: 32, abilityMult: null };
+  patterns.push({ ...base, label: '通常', stat: basePositive, scarf: false, natureMod: 1.1 });
+  patterns.push({ ...base, label: '通常', stat: baseNeutral, scarf: false, natureMod: 1.0 });
 
   if (!isMega) {
-    patterns.push({ label: 'スカーフ(補正あり)', stat: applyScarf(basePositive), scarf: true, abilityMult: null });
-    patterns.push({ label: 'スカーフ(補正なし)', stat: applyScarf(baseNeutral), scarf: true, abilityMult: null });
+    patterns.push({ ...base, label: '通常', stat: applyScarf(basePositive), scarf: true, natureMod: 1.1 });
+    patterns.push({ ...base, label: '通常', stat: applyScarf(baseNeutral), scarf: true, natureMod: 1.0 });
   }
 
   const speedAbilities = pokemon.abilities
@@ -60,29 +65,25 @@ export function generateOpponentPatterns(pokemon) {
 
   for (const ab of speedAbilities) {
     patterns.push({
-      label: `${ab.label}発動(補正あり)`,
+      ...base, label: `${ab.label}発動`, natureMod: 1.1,
       stat: applyAbilityMultiplier(basePositive, ab.multiplier),
-      scarf: false,
-      abilityMult: ab.multiplier,
+      scarf: false, abilityMult: ab.multiplier,
     });
     patterns.push({
-      label: `${ab.label}発動(補正なし)`,
+      ...base, label: `${ab.label}発動`, natureMod: 1.0,
       stat: applyAbilityMultiplier(baseNeutral, ab.multiplier),
-      scarf: false,
-      abilityMult: ab.multiplier,
+      scarf: false, abilityMult: ab.multiplier,
     });
     if (!isMega) {
       patterns.push({
-        label: `スカーフ＋${ab.label}(補正あり)`,
+        ...base, label: `${ab.label}発動`, natureMod: 1.1,
         stat: applyAbilityMultiplier(applyScarf(basePositive), ab.multiplier),
-        scarf: true,
-        abilityMult: ab.multiplier,
+        scarf: true, abilityMult: ab.multiplier,
       });
       patterns.push({
-        label: `スカーフ＋${ab.label}(補正なし)`,
+        ...base, label: `${ab.label}発動`, natureMod: 1.0,
         stat: applyAbilityMultiplier(applyScarf(baseNeutral), ab.multiplier),
-        scarf: true,
-        abilityMult: ab.multiplier,
+        scarf: true, abilityMult: ab.multiplier,
       });
     }
   }

@@ -30,7 +30,24 @@ export default function Timeline({ patterns, onHide }) {
               <span className="text-base">{icon}</span>
               <img src={p.sprite} alt="" className="w-8 h-8 -my-1" />
               <span className={`font-bold text-sm min-w-[5rem] ${textColor}`}>{p.pokemonName}</span>
-              <span className="text-xs text-gray-500 min-w-[10rem]">{p.label}</span>
+              <div className="flex flex-wrap items-center gap-1 min-w-[14rem]">
+                <span className="text-xs text-gray-500">{p.label}</span>
+                {p.natureMod != null && (
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${p.natureMod > 1 ? 'bg-red-100 text-red-600' : p.natureMod < 1 ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>
+                    {p.natureMod > 1 ? '↑補正' : p.natureMod < 1 ? '↓補正' : '補正なし'}
+                  </span>
+                )}
+                {p.abilityPoints != null && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-600">
+                    P:{p.abilityPoints}
+                  </span>
+                )}
+                {p.scarf && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-600">
+                    スカーフ
+                  </span>
+                )}
+              </div>
               <span className="ml-auto flex items-center gap-2">
                 <span className="text-right">
                   <span className="text-xs text-gray-400">実数値: </span>
