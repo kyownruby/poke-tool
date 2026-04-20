@@ -10,38 +10,49 @@ function App() {
   const [rankOverrides, setRankOverrides] = useState({});
   const [paralysisOverrides, setParalysisOverrides] = useState({});
 
+  function clearOverrides(prefix) {
+    setHiddenPatterns(prev => {
+      const next = new Set(prev);
+      for (const key of next) { if (key.startsWith(prefix)) next.delete(key); }
+      return next;
+    });
+    setRankOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(prefix)) delete next[key]; }
+      return next;
+    });
+    setParalysisOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(prefix)) delete next[key]; }
+      return next;
+    });
+  }
+
   function addMyPokemon(entry) {
+    const name = entry.pokemon.displayName;
     const dup = myPokemon.some(e =>
-      e.pokemon.displayName === entry.pokemon.displayName &&
+      e.pokemon.displayName === name &&
       e.params.nature === entry.params.nature &&
       e.params.abilityPoints === entry.params.abilityPoints &&
       e.params.scarf === entry.params.scarf
     );
-    if (dup) return;
+    if (dup) {
+      clearOverrides(`mine-${name}-${entry.params.nature}-${entry.params.abilityPoints}-${entry.params.scarf}`);
+      return;
+    }
     setMyPokemon(prev => [...prev, entry]);
   }
 
   function addOpponentPokemon(entry) {
     const name = entry.pokemon.displayName;
     const existing = opponentPokemon.find(e => e.pokemon.displayName === name);
-    if (existing && existing.params.abilityPoints === entry.params.abilityPoints) return;
+    if (existing && existing.params.abilityPoints === entry.params.abilityPoints) {
+      clearOverrides(`opp-${name}-`);
+      return;
+    }
     if (existing) {
       setOpponentPokemon(prev => prev.map(e => e.pokemon.displayName === name ? entry : e));
-      setHiddenPatterns(prev => {
-        const next = new Set(prev);
-        for (const key of next) { if (key.startsWith(`opp-${name}-`)) next.delete(key); }
-        return next;
-      });
-      setRankOverrides(prev => {
-        const next = { ...prev };
-        for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
-        return next;
-      });
-      setParalysisOverrides(prev => {
-        const next = { ...prev };
-        for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
-        return next;
-      });
+      clearOverrides(`opp-${name}-`);
       return;
     }
     setOpponentPokemon(prev => [...prev, entry]);
@@ -49,40 +60,12 @@ function App() {
 
   function removeMyPokemonByName(name) {
     setMyPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(prev => {
-      const next = new Set(prev);
-      for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
-      return next;
-    });
-    setRankOverrides(prev => {
-      const next = { ...prev };
-      for (const key of Object.keys(next)) { if (key.startsWith(`mine-${name}-`)) delete next[key]; }
-      return next;
-    });
-    setParalysisOverrides(prev => {
-      const next = { ...prev };
-      for (const key of Object.keys(next)) { if (key.startsWith(`mine-${name}-`)) delete next[key]; }
-      return next;
-    });
+    clearOverrides(`mine-${name}-`);
   }
 
   function removeOpponentPokemonByName(name) {
     setOpponentPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(prev => {
-      const next = new Set(prev);
-      for (const key of next) { if (key.startsWith(`opp-${name}-`)) next.delete(key); }
-      return next;
-    });
-    setRankOverrides(prev => {
-      const next = { ...prev };
-      for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
-      return next;
-    });
-    setParalysisOverrides(prev => {
-      const next = { ...prev };
-      for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
-      return next;
-    });
+    clearOverrides(`opp-${name}-`);
   }
 
   function hidePattern(key) {
