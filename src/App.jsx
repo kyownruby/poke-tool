@@ -72,24 +72,20 @@ function App() {
             <div className="flex flex-wrap gap-2">
               {[...new Map(myPokemon.map(e => [e.pokemon.displayName, e])).values()].map(entry => {
                 const name = entry.pokemon.displayName;
-                const count = myPokemon.filter(e => e.pokemon.displayName === name).length;
                 return (
                   <div key={`my-${name}`} className="flex items-center gap-1 bg-[#E6F1FB] border border-[#378ADD] rounded-full px-3 py-1 text-sm">
                     <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
                     <span className="text-[#2563EB] font-medium">{name}</span>
-                    {count > 1 && <span className="text-[#378ADD] text-xs font-bold">×{count}</span>}
                     <button onClick={() => removeMyPokemonByName(name)} className="text-blue-400 hover:text-blue-600 ml-1">✕</button>
                   </div>
                 );
               })}
               {[...new Map(opponentPokemon.map(e => [e.pokemon.displayName, e])).values()].map(entry => {
                 const name = entry.pokemon.displayName;
-                const count = opponentPokemon.filter(e => e.pokemon.displayName === name).length;
                 return (
                   <div key={`opp-${name}`} className="flex items-center gap-1 bg-[#FCEBEB] border border-[#E24B4A] rounded-full px-3 py-1 text-sm">
                     <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
                     <span className="text-[#DC2626] font-medium">{name}</span>
-                    {count > 1 && <span className="text-[#E24B4A] text-xs font-bold">×{count}</span>}
                     <button onClick={() => removeOpponentPokemonByName(name)} className="text-red-400 hover:text-red-600 ml-1">✕</button>
                   </div>
                 );
