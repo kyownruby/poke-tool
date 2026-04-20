@@ -12,10 +12,18 @@ function App() {
   const [hiddenPatterns, setHiddenPatterns] = useState(new Set());
 
   function addMyPokemon(entry) {
+    const dup = myPokemon.some(e =>
+      e.pokemon.displayName === entry.pokemon.displayName &&
+      e.params.nature === entry.params.nature &&
+      e.params.abilityPoints === entry.params.abilityPoints &&
+      e.params.scarf === entry.params.scarf
+    );
+    if (dup) return;
     setMyPokemon(prev => [...prev, entry]);
   }
 
   function addOpponentPokemon(entry) {
+    if (opponentPokemon.some(e => e.pokemon.displayName === entry.pokemon.displayName)) return;
     setOpponentPokemon(prev => [...prev, entry]);
   }
 
