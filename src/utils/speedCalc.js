@@ -98,19 +98,20 @@ export function generateOpponentPatterns(pokemon) {
 
 export function buildTimeline(myPokemonList, opponentPokemonList, myRank, opponentRank) {
   const allPatterns = [];
-  let idCounter = 0;
 
-  for (const [ei, entry] of myPokemonList.entries()) {
+  for (const entry of myPokemonList) {
     const patterns = generateMyPatterns(entry.pokemon, entry.params);
-    for (const [pi, p] of patterns.entries()) {
-      allPatterns.push({ ...p, finalStat: applyRank(p.stat, myRank), patternId: `m${ei}-${pi}` });
+    for (const p of patterns) {
+      const patternId = `mine-${p.pokemonName}-${p.natureMod}-${p.abilityPoints}-${p.scarf}`;
+      allPatterns.push({ ...p, finalStat: applyRank(p.stat, myRank), patternId });
     }
   }
 
-  for (const [ei, entry] of opponentPokemonList.entries()) {
+  for (const entry of opponentPokemonList) {
     const patterns = generateOpponentPatterns(entry.pokemon);
-    for (const [pi, p] of patterns.entries()) {
-      allPatterns.push({ ...p, finalStat: applyRank(p.stat, opponentRank), patternId: `o${ei}-${pi}` });
+    for (const p of patterns) {
+      const patternId = `opp-${p.pokemonName}-${p.label}-${p.natureMod}-${p.scarf}`;
+      allPatterns.push({ ...p, finalStat: applyRank(p.stat, opponentRank), patternId });
     }
   }
 

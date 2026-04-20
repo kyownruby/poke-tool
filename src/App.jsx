@@ -29,12 +29,20 @@ function App() {
 
   function removeMyPokemonByName(name) {
     setMyPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(new Set());
+    setHiddenPatterns(prev => {
+      const next = new Set(prev);
+      for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
+      return next;
+    });
   }
 
   function removeOpponentPokemonByName(name) {
     setOpponentPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(new Set());
+    setHiddenPatterns(prev => {
+      const next = new Set(prev);
+      for (const key of next) { if (key.startsWith(`opp-${name}-`)) next.delete(key); }
+      return next;
+    });
   }
 
   function hidePattern(key) {
