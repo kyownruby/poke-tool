@@ -75,11 +75,8 @@ export default function PokemonSearch({ side, onAdd }) {
       onAdd({ pokemon, params: { nature, abilityPoints, scarf } });
     } else {
       onAdd({ pokemon });
+      setQuery('');
     }
-    setQuery('');
-    setNature(1.1);
-    setAbilityPoints(32);
-    setScarf(false);
   }
 
   const isMine = side === 'mine';
