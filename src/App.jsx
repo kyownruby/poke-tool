@@ -19,28 +19,22 @@ function App() {
     setOpponentPokemon(prev => [...prev, entry]);
   }
 
-  function removeMyPokemon(index) {
-    const name = myPokemon[index]?.pokemon.displayName;
-    setMyPokemon(prev => prev.filter((_, i) => i !== index));
-    if (name) {
-      setHiddenPatterns(prev => {
-        const next = new Set(prev);
-        for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
-        return next;
-      });
-    }
+  function removeMyPokemonByName(name) {
+    setMyPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
+    setHiddenPatterns(prev => {
+      const next = new Set(prev);
+      for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
+      return next;
+    });
   }
 
-  function removeOpponentPokemon(index) {
-    const name = opponentPokemon[index]?.pokemon.displayName;
-    setOpponentPokemon(prev => prev.filter((_, i) => i !== index));
-    if (name) {
-      setHiddenPatterns(prev => {
-        const next = new Set(prev);
-        for (const key of next) { if (key.startsWith(`opponent-${name}-`)) next.delete(key); }
-        return next;
-      });
-    }
+  function removeOpponentPokemonByName(name) {
+    setOpponentPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
+    setHiddenPatterns(prev => {
+      const next = new Set(prev);
+      for (const key of next) { if (key.startsWith(`opponent-${name}-`)) next.delete(key); }
+      return next;
+    });
   }
 
   function hidePattern(key) {
@@ -76,20 +70,30 @@ function App() {
         {(myPokemon.length > 0 || opponentPokemon.length > 0) && (
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
-              {myPokemon.map((entry, i) => (
-                <div key={`my-${i}`} className="flex items-center gap-1 bg-[#E6F1FB] border border-[#378ADD] rounded-full px-3 py-1 text-sm">
-                  <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
-                  <span className="text-[#2563EB] font-medium">{entry.pokemon.displayName}</span>
-                  <button onClick={() => removeMyPokemon(i)} className="text-blue-400 hover:text-blue-600 ml-1">✕</button>
-                </div>
-              ))}
-              {opponentPokemon.map((entry, i) => (
-                <div key={`opp-${i}`} className="flex items-center gap-1 bg-[#FCEBEB] border border-[#E24B4A] rounded-full px-3 py-1 text-sm">
-                  <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
-                  <span className="text-[#DC2626] font-medium">{entry.pokemon.displayName}</span>
-                  <button onClick={() => removeOpponentPokemon(i)} className="text-red-400 hover:text-red-600 ml-1">✕</button>
-                </div>
-              ))}
+              {[...new Map(myPokemon.map(e => [e.pokemon.displayName, e])).values()].map(entry => {
+                const name = entry.pokemon.displayName;
+                const count = myPokemon.filter(e => e.pokemon.displayName === name).length;
+                return (
+                  <div key={`my-${name}`} className="flex items-center gap-1 bg-[#E6F1FB] border border-[#378ADD] rounded-full px-3 py-1 text-sm">
+                    <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
+                    <span className="text-[#2563EB] font-medium">{name}</span>
+                    {count > 1 && <span className="text-[#378ADD] text-xs font-bold">×{count}</span>}
+                    <button onClick={() => removeMyPokemonByName(name)} className="text-blue-400 hover:text-blue-600 ml-1">✕</button>
+                  </div>
+                );
+              })}
+              {[...new Map(opponentPokemon.map(e => [e.pokemon.displayName, e])).values()].map(entry => {
+                const name = entry.pokemon.displayName;
+                const count = opponentPokemon.filter(e => e.pokemon.displayName === name).length;
+                return (
+                  <div key={`opp-${name}`} className="flex items-center gap-1 bg-[#FCEBEB] border border-[#E24B4A] rounded-full px-3 py-1 text-sm">
+                    <img src={entry.pokemon.sprite} alt="" className="w-5 h-5" />
+                    <span className="text-[#DC2626] font-medium">{name}</span>
+                    {count > 1 && <span className="text-[#E24B4A] text-xs font-bold">×{count}</span>}
+                    <button onClick={() => removeOpponentPokemonByName(name)} className="text-red-400 hover:text-red-600 ml-1">✕</button>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex flex-wrap gap-3">
