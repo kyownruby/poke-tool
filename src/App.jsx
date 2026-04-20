@@ -89,10 +89,6 @@ function App() {
     setHiddenPatterns(prev => new Set(prev).add(key));
   }
 
-  function restoreAllPatterns() {
-    setHiddenPatterns(new Set());
-  }
-
   function setPatternRank(patternId, rank) {
     setRankOverrides(prev => ({ ...prev, [patternId]: rank }));
   }
@@ -157,14 +153,7 @@ function App() {
             </div>
 
             <div className="bg-white rounded-xl border border-gray-200 p-4">
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="font-bold text-sm text-gray-700">素早さタイムライン（速い順）</h2>
-                {hiddenPatterns.size > 0 && (
-                  <button onClick={restoreAllPatterns} className="text-xs text-gray-500 hover:text-gray-700 underline">
-                    非表示を全て復元 ({hiddenPatterns.size}件)
-                  </button>
-                )}
-              </div>
+              <h2 className="font-bold text-sm text-gray-700 mb-3">素早さタイムライン（速い順）</h2>
               <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} onToggleParalysis={toggleParalysis} />
             </div>
           </div>
