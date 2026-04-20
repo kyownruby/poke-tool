@@ -45,13 +45,13 @@ export function generateMyPatterns(pokemon, params) {
   }];
 }
 
-export function generateOpponentPatterns(pokemon) {
+export function generateOpponentPatterns(pokemon, abilityPoints = 32) {
   const isMega = pokemon.englishName?.includes('-mega');
-  const basePositive = calcSpeedStat(pokemon.speed, 32, 1.1);
-  const baseNeutral = calcSpeedStat(pokemon.speed, 32, 1.0);
+  const basePositive = calcSpeedStat(pokemon.speed, abilityPoints, 1.1);
+  const baseNeutral = calcSpeedStat(pokemon.speed, abilityPoints, 1.0);
   const patterns = [];
 
-  const base = { abilityPoints: 32, abilityMult: null };
+  const base = { abilityPoints, abilityMult: null };
   patterns.push({ ...base, label: '通常', stat: basePositive, scarf: false, natureMod: 1.1 });
   patterns.push({ ...base, label: '通常', stat: baseNeutral, scarf: false, natureMod: 1.0 });
 
@@ -110,7 +110,7 @@ export function buildTimeline(myPokemonList, opponentPokemonList) {
   }
 
   for (const entry of opponentPokemonList) {
-    const patterns = generateOpponentPatterns(entry.pokemon);
+    const patterns = generateOpponentPatterns(entry.pokemon, entry.params?.abilityPoints ?? 32);
     for (const p of patterns) {
       const patternId = `opp-${p.pokemonName}-${p.label}-${p.natureMod}-${p.scarf}`;
       allPatterns.push({ ...p, patternId });

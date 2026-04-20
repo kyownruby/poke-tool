@@ -74,7 +74,7 @@ export default function PokemonSearch({ side, onAdd }) {
     if (side === 'mine') {
       onAdd({ pokemon, params: { nature, abilityPoints, scarf } });
     } else {
-      onAdd({ pokemon });
+      onAdd({ pokemon, params: { abilityPoints } });
       setQuery('');
     }
   }
@@ -113,8 +113,8 @@ export default function PokemonSearch({ side, onAdd }) {
         )}
       </div>
 
-      {isMine && (
-        <div className="flex flex-wrap gap-3 items-center text-sm">
+      <div className="flex flex-wrap gap-3 items-center text-sm">
+        {isMine && (
           <label className="flex items-center gap-1">
             性格:
             <select value={nature} onChange={e => setNature(Number(e.target.value))} className="border rounded px-2 py-1">
@@ -123,20 +123,22 @@ export default function PokemonSearch({ side, onAdd }) {
               <option value={0.9}>マイナス (×0.9)</option>
             </select>
           </label>
-          <label className="flex items-center gap-1">
-            能力P:
-            <input
-              type="number" min={0} max={32} value={abilityPoints}
-              onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
-              className="border rounded px-2 py-1 w-16 text-center"
-            />
-          </label>
+        )}
+        <label className="flex items-center gap-1">
+          能力P:
+          <input
+            type="number" min={0} max={32} value={abilityPoints}
+            onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
+            className="border rounded px-2 py-1 w-16 text-center"
+          />
+        </label>
+        {isMine && (
           <label className="flex items-center gap-1.5">
             <input type="checkbox" checked={scarf} onChange={e => setScarf(e.target.checked)} />
             こだわりスカーフ
           </label>
-        </div>
-      )}
+        )}
+      </div>
 
       <button onClick={handleAdd} className={`${btnColor} text-white font-bold px-4 py-2 rounded-lg text-sm w-full`}>
         追加
