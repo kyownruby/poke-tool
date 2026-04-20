@@ -37,7 +37,7 @@ export default function Timeline({ patterns, onHide }) {
                   <span className={`font-mono font-bold text-lg ${textColor}`}>{p.finalStat}</span>
                 </span>
                 <button
-                  onClick={() => onHide(`${p.side}-${p.pokemonName}-${p.label}`)}
+                  onClick={() => onHide(p.patternId)}
                   className="text-gray-300 hover:text-gray-500 text-sm leading-none"
                   title="この行を非表示"
                 >✕</button>
