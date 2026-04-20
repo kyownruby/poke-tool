@@ -29,20 +29,12 @@ function App() {
 
   function removeMyPokemonByName(name) {
     setMyPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(prev => {
-      const next = new Set(prev);
-      for (const key of next) { if (key.startsWith(`mine-${name}-`)) next.delete(key); }
-      return next;
-    });
+    setHiddenPatterns(new Set());
   }
 
   function removeOpponentPokemonByName(name) {
     setOpponentPokemon(prev => prev.filter(e => e.pokemon.displayName !== name));
-    setHiddenPatterns(prev => {
-      const next = new Set(prev);
-      for (const key of next) { if (key.startsWith(`opponent-${name}-`)) next.delete(key); }
-      return next;
-    });
+    setHiddenPatterns(new Set());
   }
 
   function hidePattern(key) {
@@ -55,7 +47,7 @@ function App() {
 
   const timeline = useMemo(() => {
     const all = buildTimeline(myPokemon, opponentPokemon, myRank, opponentRank);
-    return all.filter(p => !hiddenPatterns.has(`${p.side}-${p.pokemonName}-${p.label}`));
+    return all.filter(p => !hiddenPatterns.has(p.patternId));
   }, [myPokemon, opponentPokemon, myRank, opponentRank, hiddenPatterns]);
 
   return (
