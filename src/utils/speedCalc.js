@@ -38,6 +38,7 @@ export function generateMyPatterns(pokemon, params) {
   const useScarf = scarf && !isMega;
   return [{
     pokemonName: pokemon.displayName, sprite: pokemon.sprite,
+    baseSpeed: pokemon.speed,
     stat: useScarf ? applyScarf(base) : base,
     label: '通常', side: 'mine', scarf: useScarf,
     natureMod: nature, abilityPoints,
@@ -91,6 +92,7 @@ export function generateOpponentPatterns(pokemon) {
   return patterns.map(p => ({
     pokemonName: pokemon.displayName,
     sprite: pokemon.sprite,
+    baseSpeed: pokemon.speed,
     side: 'opponent',
     ...p,
   }));
