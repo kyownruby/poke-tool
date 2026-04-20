@@ -33,37 +33,58 @@ export function applyRank(stat, rank) {
 
 export function generateMyPatterns(pokemon, params) {
   const { nature, abilityPoints, scarf } = params;
+  const isMega = pokemon.englishName?.includes('-mega');
   const base = calcSpeedStat(pokemon.speed, abilityPoints, nature);
-  const stat = scarf ? applyScarf(base) : base;
-  const label = scarf ? 'スカーフ' : '通常';
-  return [{ pokemonName: pokemon.displayName, sprite: pokemon.sprite, stat: base, scarfStat: scarf ? applyScarf(base) : null, label, side: 'mine', scarf }];
+  const useScarf = scarf && !isMega;
+  const label = useScarf ? 'スカーフ' : '通常';
+  return [{ pokemonName: pokemon.displayName, sprite: pokemon.sprite, stat: useScarf ? applyScarf(base) : base, label, side: 'mine', scarf: useScarf }];
 }
 
 export function generateOpponentPatterns(pokemon) {
-  const base = calcSpeedStat(pokemon.speed, 32, 1.1);
+  const isMega = pokemon.englishName?.includes('-mega');
+  const basePositive = calcSpeedStat(pokemon.speed, 32, 1.1);
+  const baseNeutral = calcSpeedStat(pokemon.speed, 32, 1.0);
   const patterns = [];
 
-  patterns.push({ label: '通常', stat: base, scarf: false, abilityMult: null });
-  patterns.push({ label: 'スカーフ', stat: applyScarf(base), scarf: true, abilityMult: null });
+  patterns.push({ label: '補正あり', stat: basePositive, scarf: false, abilityMult: null });
+  patterns.push({ label: '補正なし', stat: baseNeutral, scarf: false, abilityMult: null });
+
+  if (!isMega) {
+    patterns.push({ label: 'スカーフ(補正あり)', stat: applyScarf(basePositive), scarf: true, abilityMult: null });
+    patterns.push({ label: 'スカーフ(補正なし)', stat: applyScarf(baseNeutral), scarf: true, abilityMult: null });
+  }
 
   const speedAbilities = pokemon.abilities
     .filter(a => SPEED_ABILITIES[a])
     .map(a => ({ name: a, ...SPEED_ABILITIES[a] }));
 
   for (const ab of speedAbilities) {
-    const abStat = applyAbilityMultiplier(base, ab.multiplier);
     patterns.push({
-      label: `${ab.label}発動`,
-      stat: abStat,
+      label: `${ab.label}発動(補正あり)`,
+      stat: applyAbilityMultiplier(basePositive, ab.multiplier),
       scarf: false,
       abilityMult: ab.multiplier,
     });
     patterns.push({
-      label: `スカーフ＋${ab.label}発動`,
-      stat: applyAbilityMultiplier(applyScarf(base), ab.multiplier),
-      scarf: true,
+      label: `${ab.label}発動(補正なし)`,
+      stat: applyAbilityMultiplier(baseNeutral, ab.multiplier),
+      scarf: false,
       abilityMult: ab.multiplier,
     });
+    if (!isMega) {
+      patterns.push({
+        label: `スカーフ＋${ab.label}(補正あり)`,
+        stat: applyAbilityMultiplier(applyScarf(basePositive), ab.multiplier),
+        scarf: true,
+        abilityMult: ab.multiplier,
+      });
+      patterns.push({
+        label: `スカーフ＋${ab.label}(補正なし)`,
+        stat: applyAbilityMultiplier(applyScarf(baseNeutral), ab.multiplier),
+        scarf: true,
+        abilityMult: ab.multiplier,
+      });
+    }
   }
 
   return patterns.map(p => ({
