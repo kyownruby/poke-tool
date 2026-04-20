@@ -22,11 +22,28 @@ function App() {
   }
 
   function addOpponentPokemon(entry) {
-    const dup = opponentPokemon.some(e =>
-      e.pokemon.displayName === entry.pokemon.displayName &&
-      e.params.abilityPoints === entry.params.abilityPoints
-    );
-    if (dup) return;
+    const name = entry.pokemon.displayName;
+    const existing = opponentPokemon.find(e => e.pokemon.displayName === name);
+    if (existing && existing.params.abilityPoints === entry.params.abilityPoints) return;
+    if (existing) {
+      setOpponentPokemon(prev => prev.map(e => e.pokemon.displayName === name ? entry : e));
+      setHiddenPatterns(prev => {
+        const next = new Set(prev);
+        for (const key of next) { if (key.startsWith(`opp-${name}-`)) next.delete(key); }
+        return next;
+      });
+      setRankOverrides(prev => {
+        const next = { ...prev };
+        for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
+        return next;
+      });
+      setParalysisOverrides(prev => {
+        const next = { ...prev };
+        for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
+        return next;
+      });
+      return;
+    }
     setOpponentPokemon(prev => [...prev, entry]);
   }
 
