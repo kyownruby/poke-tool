@@ -1,4 +1,4 @@
-export default function Timeline({ patterns, onHide, onRankChange }) {
+export default function Timeline({ patterns, onHide, onRankChange, onToggleParalysis }) {
   if (patterns.length === 0) {
     return (
       <div className="text-center text-gray-400 py-8 text-sm">
@@ -53,6 +53,10 @@ export default function Timeline({ patterns, onHide, onRankChange }) {
                 )}
               </div>
               <span className="ml-auto flex items-center gap-2">
+                <button
+                  onClick={() => onToggleParalysis(p.patternId)}
+                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${p.paralysis ? 'bg-yellow-400 text-yellow-900' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}`}
+                >麻痺</button>
                 <div className="flex items-center gap-0.5">
                   <button
                     onClick={() => onRankChange(p.patternId, Math.max(-6, rank - 1))}

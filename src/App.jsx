@@ -8,6 +8,7 @@ function App() {
   const [opponentPokemon, setOpponentPokemon] = useState([]);
   const [hiddenPatterns, setHiddenPatterns] = useState(new Set());
   const [rankOverrides, setRankOverrides] = useState({});
+  const [paralysisOverrides, setParalysisOverrides] = useState({});
 
   function addMyPokemon(entry) {
     const dup = myPokemon.some(e =>
@@ -37,6 +38,11 @@ function App() {
       for (const key of Object.keys(next)) { if (key.startsWith(`mine-${name}-`)) delete next[key]; }
       return next;
     });
+    setParalysisOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(`mine-${name}-`)) delete next[key]; }
+      return next;
+    });
   }
 
   function removeOpponentPokemonByName(name) {
@@ -47,6 +53,11 @@ function App() {
       return next;
     });
     setRankOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
+      return next;
+    });
+    setParalysisOverrides(prev => {
       const next = { ...prev };
       for (const key of Object.keys(next)) { if (key.startsWith(`opp-${name}-`)) delete next[key]; }
       return next;
@@ -65,15 +76,22 @@ function App() {
     setRankOverrides(prev => ({ ...prev, [patternId]: rank }));
   }
 
+  function toggleParalysis(patternId) {
+    setParalysisOverrides(prev => ({ ...prev, [patternId]: !prev[patternId] }));
+  }
+
   const timeline = useMemo(() => {
     const all = buildTimeline(myPokemon, opponentPokemon);
-    const withRank = all.map(p => {
+    const withMods = all.map(p => {
       const rank = rankOverrides[p.patternId] ?? 0;
-      return { ...p, rank, finalStat: applyRank(p.stat, rank) };
+      const paralysis = paralysisOverrides[p.patternId] ?? false;
+      let finalStat = applyRank(p.stat, rank);
+      if (paralysis) finalStat = Math.floor(finalStat * 0.5);
+      return { ...p, rank, paralysis, finalStat };
     });
-    withRank.sort((a, b) => b.finalStat - a.finalStat);
-    return withRank.filter(p => !hiddenPatterns.has(p.patternId));
-  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides]);
+    withMods.sort((a, b) => b.finalStat - a.finalStat);
+    return withMods.filter(p => !hiddenPatterns.has(p.patternId));
+  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -126,7 +144,7 @@ function App() {
                   </button>
                 )}
               </div>
-              <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} />
+              <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} onToggleParalysis={toggleParalysis} />
             </div>
           </div>
         )}
