@@ -80,8 +80,7 @@ export default function PokemonSearch({ side, onAdd }) {
     if (side === 'mine') {
       onAdd({ pokemon, params: { nature, abilityPoints, scarf } });
     } else {
-      const ap = speedMode === 'fast' ? 32 : 0;
-      onAdd({ pokemon, params: { abilityPoints: ap, speedMode, showScarf } });
+      onAdd({ pokemon, params: { abilityPoints, speedMode, showScarf } });
     }
   }
 
@@ -146,17 +145,25 @@ export default function PokemonSearch({ side, onAdd }) {
         <div className="flex flex-wrap gap-3 items-center text-sm">
           <div className="flex items-center">
             {[
-              { key: 'fast', label: '最速/準速', color: 'bg-red-500 border-red-500' },
-              { key: 'neutral', label: '補正なし', color: 'bg-gray-500 border-gray-500' },
-              { key: 'slow', label: '最遅', color: 'bg-blue-500 border-blue-500' },
+              { key: 'fast', label: '最速/準速', color: 'bg-red-500 border-red-500', ap: 32 },
+              { key: 'neutral', label: '補正なし', color: 'bg-gray-500 border-gray-500', ap: 0 },
+              { key: 'slow', label: '最遅', color: 'bg-blue-500 border-blue-500', ap: 0 },
             ].map((m, i) => (
               <button
                 key={m.key}
-                onClick={() => setSpeedMode(m.key)}
+                onClick={() => { setSpeedMode(m.key); setAbilityPoints(m.ap); }}
                 className={`px-2 py-1 border text-xs font-bold ${i === 0 ? 'rounded-l' : i === 2 ? 'rounded-r' : ''} ${speedMode === m.key ? `${m.color} text-white` : 'bg-white text-gray-500 border-gray-300'}`}
               >{m.label}</button>
             ))}
           </div>
+          <label className="flex items-center gap-1">
+            能力P:
+            <input
+              type="number" min={0} max={32} value={abilityPoints}
+              onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
+              className="border rounded px-2 py-1 w-16 text-center"
+            />
+          </label>
           <label className="flex items-center gap-1.5">
             <input type="checkbox" checked={showScarf} onChange={e => setShowScarf(e.target.checked)} />
             こだわりスカーフ
