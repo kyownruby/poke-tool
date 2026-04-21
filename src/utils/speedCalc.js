@@ -49,7 +49,9 @@ export function generateOpponentPatterns(pokemon, { abilityPoints = 32, speedMod
   const isMega = pokemon.englishName?.includes('-mega');
   const natures = speedMode === 'fast'
     ? [{ mod: 1.1 }, { mod: 1.0 }]
-    : [{ mod: 0.9 }, { mod: 1.0 }];
+    : speedMode === 'slow'
+    ? [{ mod: 0.9 }]
+    : [{ mod: 1.0 }];
   const baseStats = natures.map(n => ({ ...n, stat: calcSpeedStat(pokemon.speed, abilityPoints, n.mod) }));
   const patterns = [];
   const base = { abilityPoints, abilityMult: null };

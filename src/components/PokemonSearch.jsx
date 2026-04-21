@@ -144,15 +144,18 @@ export default function PokemonSearch({ side, onAdd }) {
         </div>
       ) : (
         <div className="flex flex-wrap gap-3 items-center text-sm">
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setSpeedMode('fast')}
-              className={`px-2 py-1 rounded-l border text-xs font-bold ${speedMode === 'fast' ? 'bg-red-500 text-white border-red-500' : 'bg-white text-gray-500 border-gray-300'}`}
-            >最速/準速</button>
-            <button
-              onClick={() => setSpeedMode('slow')}
-              className={`px-2 py-1 rounded-r border text-xs font-bold ${speedMode === 'slow' ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-gray-500 border-gray-300'}`}
-            >最遅/準遅</button>
+          <div className="flex items-center">
+            {[
+              { key: 'fast', label: '最速/準速', color: 'bg-red-500 border-red-500' },
+              { key: 'neutral', label: '補正なし', color: 'bg-gray-500 border-gray-500' },
+              { key: 'slow', label: '最遅', color: 'bg-blue-500 border-blue-500' },
+            ].map((m, i) => (
+              <button
+                key={m.key}
+                onClick={() => setSpeedMode(m.key)}
+                className={`px-2 py-1 border text-xs font-bold ${i === 0 ? 'rounded-l' : i === 2 ? 'rounded-r' : ''} ${speedMode === m.key ? `${m.color} text-white` : 'bg-white text-gray-500 border-gray-300'}`}
+              >{m.label}</button>
+            ))}
           </div>
           <label className="flex items-center gap-1.5">
             <input type="checkbox" checked={showScarf} onChange={e => setShowScarf(e.target.checked)} />
