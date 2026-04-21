@@ -5,6 +5,7 @@ import pokemonMovesList from '../data/pokemonMoves';
 import moveDataMap from '../data/moveData';
 import items from '../data/items';
 import { attackerAbilities, defenderAbilities } from '../data/damageAbilities';
+import { getTypeName, getTypeColor, TypeBadge } from '../data/typeInfo.jsx';
 import { calculateDamage } from '../utils/damageCalc';
 
 const allEntries = Object.entries(pokemonNames);
@@ -83,7 +84,7 @@ function PokemonSelector({ label, color, pokemon, onChange }) {
         <div className="flex items-center gap-2 text-xs text-gray-600">
           <img src={pokemon.sprite} alt="" className="w-8 h-8" />
           <span className="font-bold">{pokemon.displayName}</span>
-          <span className="text-gray-400">{pokemon.types?.join('/')}</span>
+          <span className="flex gap-1">{pokemon.types?.map(t => <TypeBadge key={t} type={t} />)}</span>
         </div>
       )}
     </div>
@@ -309,18 +310,18 @@ export default function DamageCalc() {
                   <li key={m.en} onClick={() => selectMove(m)}
                     className={`flex items-center justify-between px-3 py-1 cursor-pointer text-sm ${idx === moveSelectedIndex ? 'bg-blue-100' : 'hover:bg-gray-100'}`}>
                     <span className="font-medium">{m.name}</span>
-                    <span className="text-gray-400 text-xs">{m.type} / 威力{m.power ?? '—'} / {m.damageClass === 'physical' ? '物理' : '特殊'}</span>
+                    <span className="flex items-center gap-1 text-xs"><TypeBadge type={m.type} /><span className="text-gray-400">威力{m.power ?? '—'} / {m.damageClass === 'physical' ? '物理' : '特殊'}</span></span>
                   </li>
                 ))}
               </ul>
             )}
           </div>
           {moveData && (
-            <div className="flex items-center gap-3 text-xs text-gray-600 mt-1">
+            <div className="flex items-center gap-2 text-xs text-gray-600 mt-1">
               <span className="font-bold">{moveData.name}</span>
-              <span>タイプ: {moveData.type}</span>
+              <TypeBadge type={moveData.type} />
               <span>威力: {moveData.power ?? '—'}</span>
-              <span>分類: {moveData.damage_class === 'physical' ? '物理' : moveData.damage_class === 'special' ? '特殊' : '変化'}</span>
+              <span>{moveData.damage_class === 'physical' ? '物理' : moveData.damage_class === 'special' ? '特殊' : '変化'}</span>
             </div>
           )}
 
@@ -357,7 +358,7 @@ export default function DamageCalc() {
             {attacker.displayName} の {moveData.name} → {defender.displayName}
           </h3>
           <div className="text-xs text-gray-500">
-            タイプ相性: ×{result.typeEff} {result.stab > 1 ? '/ タイプ一致' : ''}
+            <span className="flex items-center gap-1">タイプ相性: ×{result.typeEff} <TypeBadge type={result.moveType} /> {result.stab > 1 ? '/ タイプ一致' : ''}</span>
           </div>
           <div className="text-lg font-bold text-gray-800">
             ダメージ: {result.minDmg}〜{result.maxDmg}
