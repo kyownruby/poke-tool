@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import PokemonSearch from './components/PokemonSearch';
 import Timeline from './components/Timeline';
 import { buildTimeline, applyRank } from './utils/speedCalc';
@@ -92,6 +92,28 @@ function App() {
     withMods.sort((a, b) => b.finalStat - a.finalStat);
     return withMods.filter(p => !hiddenPatterns.has(p.patternId));
   }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides]);
+
+  useEffect(() => {
+    if (hiddenPatterns.size === 0) return;
+    const allPatterns = buildTimeline(myPokemon, opponentPokemon);
+    const groups = new Map();
+    for (const p of allPatterns) {
+      const key = `${p.side}-${p.pokemonName}`;
+      if (!groups.has(key)) groups.set(key, { side: p.side, name: p.pokemonName, ids: [] });
+      groups.get(key).ids.push(p.patternId);
+    }
+    for (const g of groups.values()) {
+      if (g.ids.every(id => hiddenPatterns.has(id))) {
+        const prefix = `${g.side === 'mine' ? 'mine' : 'opp'}-${g.name}-`;
+        if (g.side === 'mine') {
+          setMyPokemon(prev => prev.filter(e => e.pokemon.displayName !== g.name));
+        } else {
+          setOpponentPokemon(prev => prev.filter(e => e.pokemon.displayName !== g.name));
+        }
+        clearOverrides(prefix);
+      }
+    }
+  }, [hiddenPatterns, myPokemon, opponentPokemon]);
 
   return (
     <div className="min-h-screen bg-gray-50">
