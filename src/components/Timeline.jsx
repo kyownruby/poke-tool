@@ -63,7 +63,7 @@ export default function Timeline({ patterns, onHide, onRankChange, onToggleParal
                 )}
                 {p.abilityPoints != null && (
                   <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-600">
-                    P:{p.abilityPoints}
+                    {p.abilityPoints}
                   </span>
                 )}
                 {p.scarf && (
