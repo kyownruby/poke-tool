@@ -34,11 +34,11 @@ export function applyRank(stat, rank) {
 export function generateMyPatterns(pokemon, params) {
   const { nature, abilityPoints, scarf } = params;
   const isMega = pokemon.englishName?.includes('-mega');
-  const base = calcSpeedStat(pokemon.speed, abilityPoints, nature);
+  const base = calcSpeedStat(pokemon.stats.speed, abilityPoints, nature);
   const useScarf = scarf && !isMega;
   return [{
     pokemonName: pokemon.displayName, sprite: pokemon.sprite,
-    baseSpeed: pokemon.speed,
+    baseSpeed: pokemon.stats.speed,
     stat: useScarf ? applyScarf(base) : base,
     label: '通常', side: 'mine', scarf: useScarf,
     natureMod: nature, abilityPoints,
@@ -52,7 +52,7 @@ export function generateOpponentPatterns(pokemon, { abilityPoints = 32, speedMod
     : speedMode === 'slow'
     ? [{ mod: 0.9 }]
     : [{ mod: 1.0 }];
-  const baseStats = natures.map(n => ({ ...n, stat: calcSpeedStat(pokemon.speed, abilityPoints, n.mod) }));
+  const baseStats = natures.map(n => ({ ...n, stat: calcSpeedStat(pokemon.stats.speed, abilityPoints, n.mod) }));
   const patterns = [];
   const base = { abilityPoints, abilityMult: null };
   const canScarf = showScarf && !isMega;
@@ -88,7 +88,7 @@ export function generateOpponentPatterns(pokemon, { abilityPoints = 32, speedMod
   return patterns.map(p => ({
     pokemonName: pokemon.displayName,
     sprite: pokemon.sprite,
-    baseSpeed: pokemon.speed,
+    baseSpeed: pokemon.stats.speed,
     side: 'opponent',
     ...p,
   }));

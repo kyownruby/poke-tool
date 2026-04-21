@@ -67,7 +67,8 @@ export default function PokemonSearch({ side, onAdd }) {
     return {
       displayName: jaName,
       englishName: enName,
-      speed: data.speed,
+      stats: data.stats,
+      types: data.types,
       abilities: data.abilities,
       sprite: getSpriteUrl(data.id),
     };
