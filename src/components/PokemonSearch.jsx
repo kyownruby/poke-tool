@@ -15,6 +15,8 @@ export default function PokemonSearch({ side, onAdd }) {
   const [nature, setNature] = useState(1.1);
   const [abilityPoints, setAbilityPoints] = useState(32);
   const [scarf, setScarf] = useState(false);
+  const [speedMode, setSpeedMode] = useState('fast');
+  const [showScarf, setShowScarf] = useState(true);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -78,7 +80,8 @@ export default function PokemonSearch({ side, onAdd }) {
     if (side === 'mine') {
       onAdd({ pokemon, params: { nature, abilityPoints, scarf } });
     } else {
-      onAdd({ pokemon, params: { abilityPoints } });
+      const ap = speedMode === 'fast' ? 32 : 0;
+      onAdd({ pokemon, params: { abilityPoints: ap, speedMode, showScarf } });
     }
   }
 
@@ -116,8 +119,8 @@ export default function PokemonSearch({ side, onAdd }) {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-3 items-center text-sm">
-        {isMine && (
+      {isMine ? (
+        <div className="flex flex-wrap gap-3 items-center text-sm">
           <label className="flex items-center gap-1">
             性格:
             <select value={nature} onChange={e => setNature(Number(e.target.value))} className="border rounded px-2 py-1">
@@ -126,22 +129,37 @@ export default function PokemonSearch({ side, onAdd }) {
               <option value={0.9}>マイナス (×0.9)</option>
             </select>
           </label>
-        )}
-        <label className="flex items-center gap-1">
-          能力P:
-          <input
-            type="number" min={0} max={32} value={abilityPoints}
-            onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
-            className="border rounded px-2 py-1 w-16 text-center"
-          />
-        </label>
-        {isMine && (
+          <label className="flex items-center gap-1">
+            能力P:
+            <input
+              type="number" min={0} max={32} value={abilityPoints}
+              onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
+              className="border rounded px-2 py-1 w-16 text-center"
+            />
+          </label>
           <label className="flex items-center gap-1.5">
             <input type="checkbox" checked={scarf} onChange={e => setScarf(e.target.checked)} />
             こだわりスカーフ
           </label>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-3 items-center text-sm">
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setSpeedMode('fast')}
+              className={`px-2 py-1 rounded-l border text-xs font-bold ${speedMode === 'fast' ? 'bg-red-500 text-white border-red-500' : 'bg-white text-gray-500 border-gray-300'}`}
+            >最速/準速</button>
+            <button
+              onClick={() => setSpeedMode('slow')}
+              className={`px-2 py-1 rounded-r border text-xs font-bold ${speedMode === 'slow' ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-gray-500 border-gray-300'}`}
+            >最遅/準遅</button>
+          </div>
+          <label className="flex items-center gap-1.5">
+            <input type="checkbox" checked={showScarf} onChange={e => setShowScarf(e.target.checked)} />
+            スカーフ
+          </label>
+        </div>
+      )}
 
       <button onClick={handleAdd} className={`${btnColor} text-white font-bold px-4 py-2 rounded-lg text-sm w-full`}>
         追加
