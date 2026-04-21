@@ -11,6 +11,9 @@ export const attackerAbilities = {
   'refrigerate': { label: 'フリーズスキン', effect: { typeChange: 'ice', power: 1.2 } },
   'normalize':   { label: 'ノーマルスキン', effect: { typeChangeAll: 'normal' } },
   'flare-boost': { label: 'ねつぼうそう', effect: { condition: 'burned', stat: 'spAtk', mult: 1.5 } },
+  'mold-breaker': { label: 'かたやぶり', effect: { moldBreaker: true } },
+  'turboblaze':  { label: 'ターボブレイズ', effect: { moldBreaker: true } },
+  'teravolt':    { label: 'テラボルテージ', effect: { moldBreaker: true } },
 };
 
 export const defenderAbilities = {
@@ -21,4 +24,17 @@ export const defenderAbilities = {
   'solid-rock':   { label: 'ハードロック', effect: { superEffectiveReduce: 0.75 } },
   'multiscale':   { label: 'マルチスケイル', effect: { fullHpHalf: true } },
   'ice-scales':   { label: 'こおりのりんぷん', effect: { specialHalf: true } },
+  // 免疫特性
+  'levitate':     { label: 'ふゆう', effect: { immune: 'ground' } },
+  'volt-absorb':  { label: 'ちくでん', effect: { immune: 'electric' } },
+  'water-absorb': { label: 'ちょすい', effect: { immune: 'water' } },
+  'flash-fire':   { label: 'もらいび', effect: { immune: 'fire' } },
+  'lightning-rod': { label: 'ひらいしん', effect: { immune: 'electric' } },
+  'storm-drain':  { label: 'よびみず', effect: { immune: 'water' } },
+  'sap-sipper':   { label: 'そうしょく', effect: { immune: 'grass' } },
+  'motor-drive':  { label: 'でんきエンジン', effect: { immune: 'electric' } },
+  'dry-skin':     { label: 'かんそうはだ', effect: { immune: 'water', fireWeakness: 1.25 } },
+  'thick-fat':    { label: 'あついしぼう', effect: { resistType: ['fire', 'ice'], mult: 0.5 } },
+  'heatproof':    { label: 'たいねつ', effect: { resistType: ['fire'], mult: 0.5 } },
+  'wonder-guard': { label: 'ふしぎなまもり', effect: { wonderGuard: true } },
 };
