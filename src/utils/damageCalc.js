@@ -87,6 +87,9 @@ export function calculateDamage({
   if (atkItem?.effect?.stat === 'spAtk' && !isPhysical) {
     atkStat = Math.floor(atkStat * atkItem.effect.mult);
   }
+  if (atkItem?.effect?.stat === 'both') {
+    atkStat = Math.floor(atkStat * atkItem.effect.mult);
+  }
 
   // Burn
   if (isPhysical && options.atkBurned && atkAbilityKey !== 'guts') {

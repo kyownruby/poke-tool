@@ -1,12 +1,6 @@
 const items = [
   { key: 'none', label: 'なし', effect: null },
-  { key: 'choice-band', label: 'こだわりハチマキ', effect: { stat: 'attack', mult: 1.5 } },
-  { key: 'choice-specs', label: 'こだわりメガネ', effect: { stat: 'spAtk', mult: 1.5 } },
-  { key: 'life-orb', label: 'いのちのたま', effect: { damage: 1.3 } },
-  { key: 'expert-belt', label: '達人の帯', effect: { superEffective: 1.2 } },
-  { key: 'punch-gloves', label: 'パンチグローブ', effect: { punchMove: 1.1 } },
-  { key: 'metronome', label: 'メトロノーム', effect: { metronome: true } },
-  // Type-boosting items
+  // タイプ強化アイテム (×1.2)
   { key: 'silk-scarf', label: 'シルクのスカーフ', effect: { typeBoost: 'normal', mult: 1.2 } },
   { key: 'charcoal', label: 'もくたん', effect: { typeBoost: 'fire', mult: 1.2 } },
   { key: 'mystic-water', label: 'しんぴのしずく', effect: { typeBoost: 'water', mult: 1.2 } },
@@ -25,7 +19,22 @@ const items = [
   { key: 'black-glasses', label: 'くろいメガネ', effect: { typeBoost: 'dark', mult: 1.2 } },
   { key: 'metal-coat', label: 'メタルコート', effect: { typeBoost: 'steel', mult: 1.2 } },
   { key: 'fairy-feather', label: 'ようせいのハネ', effect: { typeBoost: 'fairy', mult: 1.2 } },
-  // Defensive berries
+  // 特殊アイテム
+  { key: 'light-ball', label: 'でんきだま', effect: { pokemon: 'pikachu', stat: 'both', mult: 2.0 } },
+  // 防御系
+  { key: 'focus-sash', label: 'きあいのタスキ', effect: null },
+  { key: 'focus-band', label: 'きあいのハチマキ', effect: null },
+  { key: 'leftovers', label: 'たべのこし', effect: null },
+  { key: 'shell-bell', label: 'かいがらのすず', effect: null },
+  { key: 'mental-herb', label: 'メンタルハーブ', effect: null },
+  { key: 'white-herb', label: 'しろいハーブ', effect: null },
+  // その他
+  { key: 'kings-rock', label: 'おうじゃのしるし', effect: null },
+  { key: 'quick-claw', label: 'せんせいのツメ', effect: null },
+  { key: 'bright-powder', label: 'ひかりのこな', effect: null },
+  { key: 'scope-lens', label: 'ピントレンズ', effect: null },
+  { key: 'choice-scarf', label: 'こだわりスカーフ', effect: null },
+  // 半減きのみ
   { key: 'occa-berry', label: 'オッカのみ', effect: { resistBerry: 'fire' } },
   { key: 'passho-berry', label: 'イトケのみ', effect: { resistBerry: 'water' } },
   { key: 'wacan-berry', label: 'ソクノのみ', effect: { resistBerry: 'electric' } },
@@ -44,6 +53,17 @@ const items = [
   { key: 'babiri-berry', label: 'リリバのみ', effect: { resistBerry: 'steel' } },
   { key: 'roseli-berry', label: 'ロゼルのみ', effect: { resistBerry: 'fairy' } },
   { key: 'chilan-berry', label: 'ホズのみ', effect: { resistBerry: 'normal' } },
+  // 回復きのみ
+  { key: 'oran-berry', label: 'オレンのみ', effect: null },
+  { key: 'sitrus-berry', label: 'オボンのみ', effect: null },
+  { key: 'lum-berry', label: 'ラムのみ', effect: null },
+  { key: 'chesto-berry', label: 'カゴのみ', effect: null },
+  { key: 'pecha-berry', label: 'モモンのみ', effect: null },
+  { key: 'rawst-berry', label: 'チーゴのみ', effect: null },
+  { key: 'aspear-berry', label: 'ナナシのみ', effect: null },
+  { key: 'leppa-berry', label: 'ヒメリのみ', effect: null },
+  { key: 'persim-berry', label: 'キーのみ', effect: null },
+  { key: 'cheri-berry', label: 'クラボのみ', effect: null },
 ];
 
 export default items;
