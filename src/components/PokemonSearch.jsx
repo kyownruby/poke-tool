@@ -16,7 +16,7 @@ export default function PokemonSearch({ side, onAdd }) {
   const [abilityPoints, setAbilityPoints] = useState(32);
   const [scarf, setScarf] = useState(false);
   const [speedMode, setSpeedMode] = useState('fast');
-  const [showScarf, setShowScarf] = useState(true);
+  const [showScarf, setShowScarf] = useState(false);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -156,7 +156,7 @@ export default function PokemonSearch({ side, onAdd }) {
           </div>
           <label className="flex items-center gap-1.5">
             <input type="checkbox" checked={showScarf} onChange={e => setShowScarf(e.target.checked)} />
-            スカーフ
+            こだわりスカーフ
           </label>
         </div>
       )}
