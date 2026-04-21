@@ -133,6 +133,9 @@ export default function DamageCalc() {
   const [atkNature, setAtkNature] = useState(saved?.atkNature ?? 1.1);
   const [atkAP, setAtkAP] = useState(saved?.atkAP ?? 32);
   const [atkRank, setAtkRank] = useState(saved?.atkRank ?? 0);
+  const [spAtkNature, setSpAtkNature] = useState(saved?.spAtkNature ?? 1.1);
+  const [spAtkAP, setSpAtkAP] = useState(saved?.spAtkAP ?? 32);
+  const [spAtkRank, setSpAtkRank] = useState(saved?.spAtkRank ?? 0);
   const [defNature, setDefNature] = useState(saved?.defNature ?? 1.0);
   const [defAP, setDefAP] = useState(saved?.defAP ?? 32);
   const [spDefNature, setSpDefNature] = useState(saved?.spDefNature ?? 1.0);
@@ -163,11 +166,11 @@ export default function DamageCalc() {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
+        attacker, defender, atkNature, atkAP, atkRank, spAtkNature, spAtkAP, spAtkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, spAtkNature, spAtkAP, spAtkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData]);
 
   const availableMoves = useMemo(() => {
     if (!attacker?.englishName) return [];
@@ -212,7 +215,9 @@ export default function DamageCalc() {
     if (!attacker || !defender || !moveData?.power) return null;
     return calculateDamage({
       attacker, defender, move: moveData,
-      atkNature, atkAP, atkRank,
+      atkNature: moveData?.damage_class === 'special' ? spAtkNature : atkNature,
+      atkAP: moveData?.damage_class === 'special' ? spAtkAP : atkAP,
+      atkRank: moveData?.damage_class === 'special' ? spAtkRank : atkRank,
       defNature: moveData?.damage_class === 'special' ? spDefNature : defNature,
       defAP: moveData?.damage_class === 'special' ? spDefAP : defAP,
       hpAP,
@@ -223,7 +228,7 @@ export default function DamageCalc() {
       defAbilities: defenderAbilities,
       options: { defRank: moveData?.damage_class === 'special' ? spDefRank : defRank },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, spAtkNature, spAtkAP, spAtkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -236,9 +241,12 @@ export default function DamageCalc() {
           <PokemonSelector label="🔵 攻撃側" color="blue" pokemon={attacker} onChange={p => { setAttacker(p); setAtkAbilityKey(''); setMoveData(null); setMoveQuery(''); }} />
           {attacker && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
-              <StatInput label={moveData?.damage_class === 'special' ? '特攻' : '攻撃'}
+              <StatInput label="攻撃"
                 value={atkAP} onChange={setAtkAP} nature={atkNature} onNatureChange={setAtkNature}
                 rank={atkRank} onRankChange={setAtkRank} />
+              <StatInput label="特攻"
+                value={spAtkAP} onChange={setSpAtkAP} nature={spAtkNature} onNatureChange={setSpAtkNature}
+                rank={spAtkRank} onRankChange={setSpAtkRank} />
               <div className="flex flex-wrap gap-2 text-xs">
                 <label className="flex items-center gap-1">
                   持ち物:
