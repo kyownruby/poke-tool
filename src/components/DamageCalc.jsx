@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import pokemonNames from '../data/pokemonNames';
 import pokemonData from '../data/pokemonData';
+import pokemonMovesList from '../data/pokemonMoves';
+import moveDataMap from '../data/moveData';
 import items from '../data/items';
 import { attackerAbilities, defenderAbilities } from '../data/damageAbilities';
 import { calculateDamage } from '../utils/damageCalc';
@@ -141,8 +143,17 @@ export default function DamageCalc() {
   const [field, setField] = useState(saved?.field ?? 'none');
   const [moveQuery, setMoveQuery] = useState('');
   const [moveData, setMoveData] = useState(saved?.moveData ?? null);
-  const [moveLoading, setMoveLoading] = useState(false);
+  const [moveSuggestions, setMoveSuggestions] = useState([]);
+  const [showMoveSuggestions, setShowMoveSuggestions] = useState(false);
+  const [moveSelectedIndex, setMoveSelectedIndex] = useState(-1);
   const [showDamages, setShowDamages] = useState(false);
+  const moveRef = useRef(null);
+
+  useEffect(() => {
+    function handleClick(e) { if (moveRef.current && !moveRef.current.contains(e.target)) setShowMoveSuggestions(false); }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   useEffect(() => {
     try {
@@ -153,25 +164,38 @@ export default function DamageCalc() {
     } catch {}
   }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, hpAP, defRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData]);
 
-  async function fetchMove(name) {
-    setMoveLoading(true);
-    try {
-      const res = await fetch(`https://pokeapi.co/api/v2/move/${name.toLowerCase().replace(/\s/g, '-')}`);
-      if (!res.ok) throw new Error('not found');
-      const data = await res.json();
-      const jaName = data.names?.find(n => n.language.name === 'ja')?.name || data.name;
-      setMoveData({
-        name: jaName,
-        englishName: data.name,
-        power: data.power,
-        type: data.type.name,
-        damage_class: data.damage_class.name,
-      });
-      setMoveQuery(jaName);
-    } catch {
-      setMoveData(null);
-    }
-    setMoveLoading(false);
+  const availableMoves = useMemo(() => {
+    if (!attacker?.englishName) return [];
+    const moveNames = pokemonMovesList[attacker.englishName] ?? [];
+    return moveNames
+      .filter(m => moveDataMap[m])
+      .map(m => ({ en: m, ...moveDataMap[m] }))
+      .filter(m => m.damageClass !== 'status' && m.power);
+  }, [attacker]);
+
+  function handleMoveInput(value) {
+    setMoveQuery(value);
+    if (!value.trim()) { setMoveSuggestions([]); return; }
+    const kata = toKatakana(value);
+    const lower = value.toLowerCase();
+    const matches = availableMoves.filter(m => m.name.includes(kata) || m.en.includes(lower));
+    setMoveSuggestions(matches);
+    setMoveSelectedIndex(-1);
+    setShowMoveSuggestions(true);
+  }
+
+  function selectMove(move) {
+    setMoveData({ name: move.name, englishName: move.en, power: move.power, type: move.type, damage_class: move.damageClass });
+    setMoveQuery(move.name);
+    setShowMoveSuggestions(false);
+    setMoveSuggestions([]);
+  }
+
+  function handleMoveKeyDown(e) {
+    if (!showMoveSuggestions || moveSuggestions.length === 0) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); setMoveSelectedIndex(prev => Math.min(prev + 1, moveSuggestions.length - 1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setMoveSelectedIndex(prev => Math.max(prev - 1, 0)); }
+    else if (e.key === 'Enter' && moveSelectedIndex >= 0) { e.preventDefault(); selectMove(moveSuggestions[moveSelectedIndex]); }
   }
 
   const atkItem = items.find(i => i.key === atkItemKey) ?? null;
@@ -260,19 +284,29 @@ export default function DamageCalc() {
 
       {/* Move Input */}
       {attacker && defender && (
-        <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
+        <div ref={moveRef} className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
           <h3 className="font-bold text-sm">技</h3>
-          <div className="flex gap-2 items-center">
-            <input type="text" value={moveQuery} onChange={e => setMoveQuery(e.target.value)}
-              placeholder="技名（英語）"
-              className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
-            <button onClick={() => fetchMove(moveQuery)} disabled={!moveQuery.trim() || moveLoading}
-              className="bg-gray-700 hover:bg-gray-800 text-white font-bold px-4 py-1.5 rounded-lg text-sm disabled:opacity-50">
-              {moveLoading ? '...' : '検索'}
-            </button>
+          <div className="relative">
+            <input type="text" value={moveQuery}
+              onChange={e => handleMoveInput(e.target.value)}
+              onKeyDown={handleMoveKeyDown}
+              onFocus={() => moveSuggestions.length > 0 && setShowMoveSuggestions(true)}
+              placeholder="技名を入力（日本語 or 英語）"
+              className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            {showMoveSuggestions && moveSuggestions.length > 0 && (
+              <ul className="absolute z-10 w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg max-h-48 overflow-y-auto">
+                {moveSuggestions.map((m, idx) => (
+                  <li key={m.en} onClick={() => selectMove(m)}
+                    className={`flex items-center justify-between px-3 py-1 cursor-pointer text-sm ${idx === moveSelectedIndex ? 'bg-blue-100' : 'hover:bg-gray-100'}`}>
+                    <span className="font-medium">{m.name}</span>
+                    <span className="text-gray-400 text-xs">{m.type} / 威力{m.power ?? '—'} / {m.damageClass === 'physical' ? '物理' : '特殊'}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           {moveData && (
-            <div className="flex items-center gap-3 text-xs text-gray-600">
+            <div className="flex items-center gap-3 text-xs text-gray-600 mt-1">
               <span className="font-bold">{moveData.name}</span>
               <span>タイプ: {moveData.type}</span>
               <span>威力: {moveData.power ?? '—'}</span>
