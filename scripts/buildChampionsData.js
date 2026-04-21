@@ -93,7 +93,7 @@ const CHAMPIONS_POKEMON = {
   "ブリガロン":"chesnaught","マフォクシー":"delphox","ゲッコウガ":"greninja",
   "ホルード":"diggersby","ファイアロー":"talonflame","ビビヨン":"vivillon",
   "フラエッテ":"floette","フラージェス":"florges","ゴロンダ":"pangoro",
-  "トリミアン":"furfrou","ニャオニクス":"meowstic-male","ギルガルド":"aegislash-shield",
+  "トリミアン":"furfrou","ニャオニクス♂":"meowstic-male","ニャオニクス♀":"meowstic-female","ギルガルド":"aegislash-shield",
   "フレフワン":"aromatisse","ペロリーム":"slurpuff","ブロスター":"clawitzer",
   "エレザード":"heliolisk","ガチゴラス":"tyrantrum","アマルルガ":"aurorus",
   "ニンフィア":"sylveon","ルチャブル":"hawlucha","デデンネ":"dedenne",
@@ -138,7 +138,7 @@ const CHAMPIONS_POKEMON = {
   // Gen 9 Mega
   "メガキラフロル":"glimmora-mega",
   // === Legends Arceus ===
-  "アヤシシ":"wyrdeer","バサギリ":"kleavor","イダイトウ":"basculegion-male",
+  "アヤシシ":"wyrdeer","バサギリ":"kleavor","イダイトウ♂":"basculegion-male","イダイトウ♀":"basculegion-female",
   "オオニューラ":"sneasler",
 };
 
