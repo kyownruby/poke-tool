@@ -3,12 +3,34 @@ import PokemonSearch from './components/PokemonSearch';
 import Timeline from './components/Timeline';
 import { buildTimeline, applyRank } from './utils/speedCalc';
 
+const STORAGE_KEY = 'poke-tool-state';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    s.hiddenPatterns = new Set(s.hiddenPatterns || []);
+    return s;
+  } catch { return null; }
+}
+
+function saveState(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      ...state,
+      hiddenPatterns: [...state.hiddenPatterns],
+    }));
+  } catch {}
+}
+
 function App() {
-  const [myPokemon, setMyPokemon] = useState([]);
-  const [opponentPokemon, setOpponentPokemon] = useState([]);
-  const [hiddenPatterns, setHiddenPatterns] = useState(new Set());
-  const [rankOverrides, setRankOverrides] = useState({});
-  const [paralysisOverrides, setParalysisOverrides] = useState({});
+  const saved = loadState();
+  const [myPokemon, setMyPokemon] = useState(saved?.myPokemon ?? []);
+  const [opponentPokemon, setOpponentPokemon] = useState(saved?.opponentPokemon ?? []);
+  const [hiddenPatterns, setHiddenPatterns] = useState(saved?.hiddenPatterns ?? new Set());
+  const [rankOverrides, setRankOverrides] = useState(saved?.rankOverrides ?? {});
+  const [paralysisOverrides, setParalysisOverrides] = useState(saved?.paralysisOverrides ?? {});
 
   function clearOverrides(prefix) {
     setHiddenPatterns(prev => {
@@ -72,6 +94,14 @@ function App() {
     clearOverrides(`opp-${name}-`);
   }
 
+  function clearAll() {
+    setMyPokemon([]);
+    setOpponentPokemon([]);
+    setHiddenPatterns(new Set());
+    setRankOverrides({});
+    setParalysisOverrides({});
+  }
+
   function hidePattern(key) {
     setHiddenPatterns(prev => new Set(prev).add(key));
   }
@@ -119,6 +149,10 @@ function App() {
     }
   }, [hiddenPatterns, myPokemon, opponentPokemon]);
 
+  useEffect(() => {
+    saveState({ myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides });
+  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 py-4 px-4">
@@ -162,7 +196,12 @@ function App() {
             </div>
 
             <div className="bg-white rounded-xl border border-gray-200 p-4">
-              <h2 className="font-bold text-sm text-gray-700 mb-3">素早さタイムライン（速い順）</h2>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="font-bold text-sm text-gray-700">素早さタイムライン（速い順）</h2>
+                <button onClick={clearAll} className="text-xs text-red-400 hover:text-red-600 underline">
+                  すべて削除
+                </button>
+              </div>
               <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} onToggleParalysis={toggleParalysis} />
             </div>
           </div>
