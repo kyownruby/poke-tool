@@ -1314,8 +1314,8 @@ const pokemonData = {
     ]
   },
   "floette": {
-    "id": 670,
-    "speed": 52,
+    "id": 10061,
+    "speed": 92,
     "abilities": [
       "flower-veil",
       "symbiosis"
@@ -1352,6 +1352,15 @@ const pokemonData = {
       "keen-eye",
       "infiltrator",
       "prankster"
+    ]
+  },
+  "meowstic-female": {
+    "id": 10025,
+    "speed": 104,
+    "abilities": [
+      "keen-eye",
+      "infiltrator",
+      "competitive"
     ]
   },
   "aegislash-shield": {
@@ -1968,6 +1977,15 @@ const pokemonData = {
   },
   "basculegion-male": {
     "id": 902,
+    "speed": 78,
+    "abilities": [
+      "swift-swim",
+      "adaptability",
+      "mold-breaker"
+    ]
+  },
+  "basculegion-female": {
+    "id": 10248,
     "speed": 78,
     "abilities": [
       "swift-swim",
