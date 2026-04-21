@@ -181,7 +181,9 @@ export default function DamageCalc() {
     if (!value.trim()) { setMoveSuggestions([]); return; }
     const kata = toKatakana(value);
     const lower = value.toLowerCase();
-    const matches = availableMoves.filter(m => m.name.includes(kata) || m.en.includes(lower));
+    const matches = availableMoves.filter(m =>
+      m.name.includes(value) || toKatakana(m.name).includes(kata) || m.en.includes(lower)
+    );
     setMoveSuggestions(matches);
     setMoveSelectedIndex(-1);
     setShowMoveSuggestions(true);
