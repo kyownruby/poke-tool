@@ -1,7 +1,18 @@
 const pokemonData = {
   "venusaur": {
     "id": 3,
-    "speed": 80,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 83,
+      "spAtk": 100,
+      "spDef": 100,
+      "speed": 80
+    },
     "abilities": [
       "overgrow",
       "chlorophyll"
@@ -9,7 +20,18 @@ const pokemonData = {
   },
   "charizard": {
     "id": 6,
-    "speed": 100,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "speed": 100
+    },
     "abilities": [
       "blaze",
       "solar-power"
@@ -17,7 +39,17 @@ const pokemonData = {
   },
   "blastoise": {
     "id": 9,
-    "speed": 78,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 79,
+      "attack": 83,
+      "defense": 100,
+      "spAtk": 85,
+      "spDef": 105,
+      "speed": 78
+    },
     "abilities": [
       "torrent",
       "rain-dish"
@@ -25,7 +57,18 @@ const pokemonData = {
   },
   "beedrill": {
     "id": 15,
-    "speed": 75,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 40,
+      "spAtk": 45,
+      "spDef": 80,
+      "speed": 75
+    },
     "abilities": [
       "swarm",
       "sniper"
@@ -33,7 +76,18 @@ const pokemonData = {
   },
   "pidgeot": {
     "id": 18,
-    "speed": 101,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 75,
+      "spAtk": 70,
+      "spDef": 70,
+      "speed": 101
+    },
     "abilities": [
       "keen-eye",
       "tangled-feet",
@@ -42,7 +96,17 @@ const pokemonData = {
   },
   "arbok": {
     "id": 24,
-    "speed": 80,
+    "types": [
+      "poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 95,
+      "defense": 69,
+      "spAtk": 65,
+      "spDef": 79,
+      "speed": 80
+    },
     "abilities": [
       "intimidate",
       "shed-skin",
@@ -51,7 +115,17 @@ const pokemonData = {
   },
   "pikachu": {
     "id": 25,
-    "speed": 90,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "spAtk": 50,
+      "spDef": 50,
+      "speed": 90
+    },
     "abilities": [
       "static",
       "lightning-rod"
@@ -59,7 +133,17 @@ const pokemonData = {
   },
   "raichu": {
     "id": 26,
-    "speed": 110,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 90,
+      "defense": 55,
+      "spAtk": 90,
+      "spDef": 80,
+      "speed": 110
+    },
     "abilities": [
       "static",
       "lightning-rod"
@@ -67,7 +151,17 @@ const pokemonData = {
   },
   "clefable": {
     "id": 36,
-    "speed": 60,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 70,
+      "defense": 73,
+      "spAtk": 95,
+      "spDef": 90,
+      "speed": 60
+    },
     "abilities": [
       "cute-charm",
       "magic-guard",
@@ -76,7 +170,17 @@ const pokemonData = {
   },
   "ninetales": {
     "id": 38,
-    "speed": 100,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 76,
+      "defense": 75,
+      "spAtk": 81,
+      "spDef": 100,
+      "speed": 100
+    },
     "abilities": [
       "flash-fire",
       "drought"
@@ -84,7 +188,17 @@ const pokemonData = {
   },
   "arcanine": {
     "id": 59,
-    "speed": 95,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 110,
+      "defense": 80,
+      "spAtk": 100,
+      "spDef": 80,
+      "speed": 95
+    },
     "abilities": [
       "intimidate",
       "flash-fire",
@@ -93,7 +207,17 @@ const pokemonData = {
   },
   "alakazam": {
     "id": 65,
-    "speed": 120,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 45,
+      "spAtk": 135,
+      "spDef": 95,
+      "speed": 120
+    },
     "abilities": [
       "synchronize",
       "inner-focus",
@@ -102,7 +226,17 @@ const pokemonData = {
   },
   "machamp": {
     "id": 68,
-    "speed": 55,
+    "types": [
+      "fighting"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 130,
+      "defense": 80,
+      "spAtk": 65,
+      "spDef": 85,
+      "speed": 55
+    },
     "abilities": [
       "guts",
       "no-guard",
@@ -111,7 +245,18 @@ const pokemonData = {
   },
   "victreebel": {
     "id": 71,
-    "speed": 70,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "spAtk": 100,
+      "spDef": 70,
+      "speed": 70
+    },
     "abilities": [
       "chlorophyll",
       "gluttony"
@@ -119,7 +264,18 @@ const pokemonData = {
   },
   "slowbro": {
     "id": 80,
-    "speed": 30,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 110,
+      "spAtk": 100,
+      "spDef": 80,
+      "speed": 30
+    },
     "abilities": [
       "oblivious",
       "own-tempo",
@@ -128,14 +284,35 @@ const pokemonData = {
   },
   "gengar": {
     "id": 94,
-    "speed": 110,
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 60,
+      "spAtk": 130,
+      "spDef": 75,
+      "speed": 110
+    },
     "abilities": [
       "cursed-body"
     ]
   },
   "kangaskhan": {
     "id": 115,
-    "speed": 90,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 95,
+      "defense": 80,
+      "spAtk": 40,
+      "spDef": 80,
+      "speed": 90
+    },
     "abilities": [
       "early-bird",
       "scrappy",
@@ -144,7 +321,18 @@ const pokemonData = {
   },
   "starmie": {
     "id": 121,
-    "speed": 115,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 85,
+      "spAtk": 100,
+      "spDef": 85,
+      "speed": 115
+    },
     "abilities": [
       "illuminate",
       "natural-cure",
@@ -153,7 +341,17 @@ const pokemonData = {
   },
   "pinsir": {
     "id": 127,
-    "speed": 85,
+    "types": [
+      "bug"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 125,
+      "defense": 100,
+      "spAtk": 55,
+      "spDef": 70,
+      "speed": 85
+    },
     "abilities": [
       "hyper-cutter",
       "mold-breaker",
@@ -162,7 +360,17 @@ const pokemonData = {
   },
   "tauros": {
     "id": 128,
-    "speed": 110,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 100,
+      "defense": 95,
+      "spAtk": 40,
+      "spDef": 70,
+      "speed": 110
+    },
     "abilities": [
       "intimidate",
       "anger-point",
@@ -171,7 +379,18 @@ const pokemonData = {
   },
   "gyarados": {
     "id": 130,
-    "speed": 81,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 125,
+      "defense": 79,
+      "spAtk": 60,
+      "spDef": 100,
+      "speed": 81
+    },
     "abilities": [
       "intimidate",
       "moxie"
@@ -179,7 +398,17 @@ const pokemonData = {
   },
   "ditto": {
     "id": 132,
-    "speed": 48,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 48,
+      "attack": 48,
+      "defense": 48,
+      "spAtk": 48,
+      "spDef": 48,
+      "speed": 48
+    },
     "abilities": [
       "limber",
       "imposter"
@@ -187,7 +416,17 @@ const pokemonData = {
   },
   "vaporeon": {
     "id": 134,
-    "speed": 65,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 130,
+      "attack": 65,
+      "defense": 60,
+      "spAtk": 110,
+      "spDef": 95,
+      "speed": 65
+    },
     "abilities": [
       "water-absorb",
       "hydration"
@@ -195,7 +434,17 @@ const pokemonData = {
   },
   "jolteon": {
     "id": 135,
-    "speed": 130,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "spAtk": 110,
+      "spDef": 95,
+      "speed": 130
+    },
     "abilities": [
       "volt-absorb",
       "quick-feet"
@@ -203,7 +452,17 @@ const pokemonData = {
   },
   "flareon": {
     "id": 136,
-    "speed": 65,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "spAtk": 95,
+      "spDef": 110,
+      "speed": 65
+    },
     "abilities": [
       "flash-fire",
       "guts"
@@ -211,7 +470,18 @@ const pokemonData = {
   },
   "aerodactyl": {
     "id": 142,
-    "speed": 130,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "spAtk": 60,
+      "spDef": 75,
+      "speed": 130
+    },
     "abilities": [
       "rock-head",
       "pressure",
@@ -220,7 +490,17 @@ const pokemonData = {
   },
   "snorlax": {
     "id": 143,
-    "speed": 30,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "spAtk": 65,
+      "spDef": 110,
+      "speed": 30
+    },
     "abilities": [
       "immunity",
       "thick-fat",
@@ -229,7 +509,18 @@ const pokemonData = {
   },
   "dragonite": {
     "id": 149,
-    "speed": 80,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "stats": {
+      "hp": 91,
+      "attack": 134,
+      "defense": 95,
+      "spAtk": 100,
+      "spDef": 100,
+      "speed": 80
+    },
     "abilities": [
       "inner-focus",
       "multiscale"
@@ -237,126 +528,320 @@ const pokemonData = {
   },
   "venusaur-mega": {
     "id": 10033,
-    "speed": 80,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 123,
+      "spAtk": 122,
+      "spDef": 120,
+      "speed": 80
+    },
     "abilities": [
       "thick-fat"
     ]
   },
   "charizard-mega-x": {
     "id": 10034,
-    "speed": 100,
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 130,
+      "defense": 111,
+      "spAtk": 130,
+      "spDef": 85,
+      "speed": 100
+    },
     "abilities": [
       "tough-claws"
     ]
   },
   "charizard-mega-y": {
     "id": 10035,
-    "speed": 100,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 104,
+      "defense": 78,
+      "spAtk": 159,
+      "spDef": 115,
+      "speed": 100
+    },
     "abilities": [
       "drought"
     ]
   },
   "blastoise-mega": {
     "id": 10036,
-    "speed": 78,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 79,
+      "attack": 103,
+      "defense": 120,
+      "spAtk": 135,
+      "spDef": 115,
+      "speed": 78
+    },
     "abilities": [
       "mega-launcher"
     ]
   },
   "beedrill-mega": {
     "id": 10090,
-    "speed": 145,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 40,
+      "spAtk": 15,
+      "spDef": 80,
+      "speed": 145
+    },
     "abilities": [
       "adaptability"
     ]
   },
   "pidgeot-mega": {
     "id": 10073,
-    "speed": 121,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 80,
+      "spAtk": 135,
+      "spDef": 80,
+      "speed": 121
+    },
     "abilities": [
       "no-guard"
     ]
   },
   "clefable-mega": {
     "id": 10278,
-    "speed": 70,
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 80,
+      "defense": 93,
+      "spAtk": 135,
+      "spDef": 110,
+      "speed": 70
+    },
     "abilities": [
       "magic-bounce"
     ]
   },
   "alakazam-mega": {
     "id": 10037,
-    "speed": 150,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 65,
+      "spAtk": 175,
+      "spDef": 105,
+      "speed": 150
+    },
     "abilities": [
       "trace"
     ]
   },
   "victreebel-mega": {
     "id": 10279,
-    "speed": 70,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 125,
+      "defense": 85,
+      "spAtk": 135,
+      "spDef": 95,
+      "speed": 70
+    },
     "abilities": [
       "innards-out"
     ]
   },
   "slowbro-mega": {
     "id": 10071,
-    "speed": 30,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 180,
+      "spAtk": 130,
+      "spDef": 80,
+      "speed": 30
+    },
     "abilities": [
       "shell-armor"
     ]
   },
   "gengar-mega": {
     "id": 10038,
-    "speed": 130,
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 80,
+      "spAtk": 170,
+      "spDef": 95,
+      "speed": 130
+    },
     "abilities": [
       "shadow-tag"
     ]
   },
   "kangaskhan-mega": {
     "id": 10039,
-    "speed": 100,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 125,
+      "defense": 100,
+      "spAtk": 60,
+      "spDef": 100,
+      "speed": 100
+    },
     "abilities": [
       "parental-bond"
     ]
   },
   "starmie-mega": {
     "id": 10280,
-    "speed": 120,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 105,
+      "spAtk": 130,
+      "spDef": 105,
+      "speed": 120
+    },
     "abilities": [
       "huge-power"
     ]
   },
   "pinsir-mega": {
     "id": 10040,
-    "speed": 105,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 155,
+      "defense": 120,
+      "spAtk": 65,
+      "spDef": 90,
+      "speed": 105
+    },
     "abilities": [
       "aerilate"
     ]
   },
   "gyarados-mega": {
     "id": 10041,
-    "speed": 81,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 155,
+      "defense": 109,
+      "spAtk": 70,
+      "spDef": 130,
+      "speed": 81
+    },
     "abilities": [
       "mold-breaker"
     ]
   },
   "aerodactyl-mega": {
     "id": 10042,
-    "speed": 150,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 135,
+      "defense": 85,
+      "spAtk": 70,
+      "spDef": 95,
+      "speed": 150
+    },
     "abilities": [
       "tough-claws"
     ]
   },
   "dragonite-mega": {
     "id": 10281,
-    "speed": 100,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "stats": {
+      "hp": 91,
+      "attack": 124,
+      "defense": 115,
+      "spAtk": 145,
+      "spDef": 125,
+      "speed": 100
+    },
     "abilities": [
       "multiscale"
     ]
   },
   "meganium": {
     "id": 154,
-    "speed": 80,
+    "types": [
+      "grass"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 100,
+      "spAtk": 83,
+      "spDef": 100,
+      "speed": 80
+    },
     "abilities": [
       "overgrow",
       "leaf-guard"
@@ -364,7 +849,17 @@ const pokemonData = {
   },
   "typhlosion": {
     "id": 157,
-    "speed": 100,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "speed": 100
+    },
     "abilities": [
       "blaze",
       "flash-fire"
@@ -372,7 +867,17 @@ const pokemonData = {
   },
   "feraligatr": {
     "id": 160,
-    "speed": 78,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 105,
+      "defense": 100,
+      "spAtk": 79,
+      "spDef": 83,
+      "speed": 78
+    },
     "abilities": [
       "torrent",
       "sheer-force"
@@ -380,7 +885,18 @@ const pokemonData = {
   },
   "ariados": {
     "id": 168,
-    "speed": 40,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 90,
+      "defense": 70,
+      "spAtk": 60,
+      "spDef": 70,
+      "speed": 40
+    },
     "abilities": [
       "swarm",
       "insomnia",
@@ -389,7 +905,17 @@ const pokemonData = {
   },
   "ampharos": {
     "id": 181,
-    "speed": 55,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 85,
+      "spAtk": 115,
+      "spDef": 90,
+      "speed": 55
+    },
     "abilities": [
       "static",
       "plus"
@@ -397,7 +923,18 @@ const pokemonData = {
   },
   "azumarill": {
     "id": 184,
-    "speed": 50,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 50,
+      "defense": 80,
+      "spAtk": 60,
+      "spDef": 80,
+      "speed": 50
+    },
     "abilities": [
       "thick-fat",
       "huge-power",
@@ -406,7 +943,17 @@ const pokemonData = {
   },
   "politoed": {
     "id": 186,
-    "speed": 70,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 75,
+      "spAtk": 90,
+      "spDef": 100,
+      "speed": 70
+    },
     "abilities": [
       "water-absorb",
       "damp",
@@ -415,7 +962,17 @@ const pokemonData = {
   },
   "espeon": {
     "id": 196,
-    "speed": 110,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "spAtk": 130,
+      "spDef": 95,
+      "speed": 110
+    },
     "abilities": [
       "synchronize",
       "magic-bounce"
@@ -423,7 +980,17 @@ const pokemonData = {
   },
   "umbreon": {
     "id": 197,
-    "speed": 65,
+    "types": [
+      "dark"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 110,
+      "spAtk": 60,
+      "spDef": 130,
+      "speed": 65
+    },
     "abilities": [
       "synchronize",
       "inner-focus"
@@ -431,7 +998,18 @@ const pokemonData = {
   },
   "slowking": {
     "id": 199,
-    "speed": 30,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 80,
+      "spAtk": 100,
+      "spDef": 110,
+      "speed": 30
+    },
     "abilities": [
       "oblivious",
       "own-tempo",
@@ -440,7 +1018,18 @@ const pokemonData = {
   },
   "forretress": {
     "id": 205,
-    "speed": 40,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 140,
+      "spAtk": 60,
+      "spDef": 60,
+      "speed": 40
+    },
     "abilities": [
       "sturdy",
       "overcoat"
@@ -448,7 +1037,18 @@ const pokemonData = {
   },
   "steelix": {
     "id": 208,
-    "speed": 30,
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 85,
+      "defense": 200,
+      "spAtk": 55,
+      "spDef": 65,
+      "speed": 30
+    },
     "abilities": [
       "rock-head",
       "sturdy",
@@ -457,7 +1057,18 @@ const pokemonData = {
   },
   "scizor": {
     "id": 212,
-    "speed": 65,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 130,
+      "defense": 100,
+      "spAtk": 55,
+      "spDef": 80,
+      "speed": 65
+    },
     "abilities": [
       "swarm",
       "technician",
@@ -466,7 +1077,18 @@ const pokemonData = {
   },
   "heracross": {
     "id": 214,
-    "speed": 85,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 125,
+      "defense": 75,
+      "spAtk": 40,
+      "spDef": 95,
+      "speed": 85
+    },
     "abilities": [
       "swarm",
       "guts",
@@ -475,7 +1097,18 @@ const pokemonData = {
   },
   "skarmory": {
     "id": 227,
-    "speed": 70,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 80,
+      "defense": 140,
+      "spAtk": 40,
+      "spDef": 70,
+      "speed": 70
+    },
     "abilities": [
       "keen-eye",
       "sturdy",
@@ -484,7 +1117,18 @@ const pokemonData = {
   },
   "houndoom": {
     "id": 229,
-    "speed": 95,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 50,
+      "spAtk": 110,
+      "spDef": 80,
+      "speed": 95
+    },
     "abilities": [
       "early-bird",
       "flash-fire",
@@ -493,7 +1137,18 @@ const pokemonData = {
   },
   "tyranitar": {
     "id": 248,
-    "speed": 61,
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 134,
+      "defense": 110,
+      "spAtk": 95,
+      "spDef": 100,
+      "speed": 61
+    },
     "abilities": [
       "sand-stream",
       "unnerve"
@@ -501,70 +1156,180 @@ const pokemonData = {
   },
   "meganium-mega": {
     "id": 10282,
-    "speed": 80,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 92,
+      "defense": 115,
+      "spAtk": 143,
+      "spDef": 115,
+      "speed": 80
+    },
     "abilities": [
       "mega-sol"
     ]
   },
   "feraligatr-mega": {
     "id": 10283,
-    "speed": 78,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 160,
+      "defense": 125,
+      "spAtk": 89,
+      "spDef": 93,
+      "speed": 78
+    },
     "abilities": [
       "dragonize"
     ]
   },
   "ampharos-mega": {
     "id": 10045,
-    "speed": 45,
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 95,
+      "defense": 105,
+      "spAtk": 165,
+      "spDef": 110,
+      "speed": 45
+    },
     "abilities": [
       "mold-breaker"
     ]
   },
   "steelix-mega": {
     "id": 10072,
-    "speed": 30,
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 230,
+      "spAtk": 55,
+      "spDef": 95,
+      "speed": 30
+    },
     "abilities": [
       "sand-force"
     ]
   },
   "scizor-mega": {
     "id": 10046,
-    "speed": 75,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 150,
+      "defense": 140,
+      "spAtk": 65,
+      "spDef": 100,
+      "speed": 75
+    },
     "abilities": [
       "technician"
     ]
   },
   "heracross-mega": {
     "id": 10047,
-    "speed": 75,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 185,
+      "defense": 115,
+      "spAtk": 40,
+      "spDef": 105,
+      "speed": 75
+    },
     "abilities": [
       "skill-link"
     ]
   },
   "skarmory-mega": {
     "id": 10284,
-    "speed": 110,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 140,
+      "defense": 110,
+      "spAtk": 40,
+      "spDef": 100,
+      "speed": 110
+    },
     "abilities": [
       "stalwart"
     ]
   },
   "houndoom-mega": {
     "id": 10048,
-    "speed": 115,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 90,
+      "spAtk": 140,
+      "spDef": 90,
+      "speed": 115
+    },
     "abilities": [
       "solar-power"
     ]
   },
   "tyranitar-mega": {
     "id": 10049,
-    "speed": 71,
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 164,
+      "defense": 150,
+      "spAtk": 95,
+      "spDef": 120,
+      "speed": 71
+    },
     "abilities": [
       "sand-stream"
     ]
   },
   "pelipper": {
     "id": 279,
-    "speed": 65,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 100,
+      "spAtk": 95,
+      "spDef": 70,
+      "speed": 65
+    },
     "abilities": [
       "keen-eye",
       "drizzle",
@@ -573,7 +1338,18 @@ const pokemonData = {
   },
   "gardevoir": {
     "id": 282,
-    "speed": 80,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 65,
+      "defense": 65,
+      "spAtk": 125,
+      "spDef": 115,
+      "speed": 80
+    },
     "abilities": [
       "synchronize",
       "trace",
@@ -582,7 +1358,18 @@ const pokemonData = {
   },
   "sableye": {
     "id": 302,
-    "speed": 50,
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 75,
+      "spAtk": 65,
+      "spDef": 65,
+      "speed": 50
+    },
     "abilities": [
       "keen-eye",
       "stall",
@@ -591,7 +1378,18 @@ const pokemonData = {
   },
   "aggron": {
     "id": 306,
-    "speed": 50,
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 180,
+      "spAtk": 60,
+      "spDef": 60,
+      "speed": 50
+    },
     "abilities": [
       "sturdy",
       "rock-head",
@@ -600,7 +1398,18 @@ const pokemonData = {
   },
   "medicham": {
     "id": 308,
-    "speed": 80,
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 60,
+      "defense": 75,
+      "spAtk": 60,
+      "spDef": 75,
+      "speed": 80
+    },
     "abilities": [
       "pure-power",
       "telepathy"
@@ -608,7 +1417,17 @@ const pokemonData = {
   },
   "manectric": {
     "id": 310,
-    "speed": 105,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 60,
+      "spAtk": 105,
+      "spDef": 60,
+      "speed": 105
+    },
     "abilities": [
       "static",
       "lightning-rod",
@@ -617,7 +1436,18 @@ const pokemonData = {
   },
   "sharpedo": {
     "id": 319,
-    "speed": 95,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 40,
+      "spAtk": 95,
+      "spDef": 40,
+      "speed": 95
+    },
     "abilities": [
       "rough-skin",
       "speed-boost"
@@ -625,7 +1455,18 @@ const pokemonData = {
   },
   "camerupt": {
     "id": 323,
-    "speed": 40,
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 100,
+      "defense": 70,
+      "spAtk": 105,
+      "spDef": 75,
+      "speed": 40
+    },
     "abilities": [
       "magma-armor",
       "solid-rock",
@@ -634,7 +1475,17 @@ const pokemonData = {
   },
   "torkoal": {
     "id": 324,
-    "speed": 20,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 140,
+      "spAtk": 85,
+      "spDef": 70,
+      "speed": 20
+    },
     "abilities": [
       "white-smoke",
       "drought",
@@ -643,7 +1494,18 @@ const pokemonData = {
   },
   "altaria": {
     "id": 334,
-    "speed": 80,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 70,
+      "defense": 90,
+      "spAtk": 70,
+      "spDef": 105,
+      "speed": 80
+    },
     "abilities": [
       "natural-cure",
       "cloud-nine"
@@ -651,7 +1513,17 @@ const pokemonData = {
   },
   "milotic": {
     "id": 350,
-    "speed": 81,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 79,
+      "spAtk": 100,
+      "spDef": 125,
+      "speed": 81
+    },
     "abilities": [
       "marvel-scale",
       "competitive",
@@ -660,14 +1532,34 @@ const pokemonData = {
   },
   "castform": {
     "id": 351,
-    "speed": 70,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "spAtk": 70,
+      "spDef": 70,
+      "speed": 70
+    },
     "abilities": [
       "forecast"
     ]
   },
   "banette": {
     "id": 354,
-    "speed": 65,
+    "types": [
+      "ghost"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 115,
+      "defense": 65,
+      "spAtk": 83,
+      "spDef": 63,
+      "speed": 65
+    },
     "abilities": [
       "insomnia",
       "frisk",
@@ -676,14 +1568,34 @@ const pokemonData = {
   },
   "chimecho": {
     "id": 358,
-    "speed": 65,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 50,
+      "defense": 80,
+      "spAtk": 95,
+      "spDef": 90,
+      "speed": 65
+    },
     "abilities": [
       "levitate"
     ]
   },
   "absol": {
     "id": 359,
-    "speed": 75,
+    "types": [
+      "dark"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "spAtk": 75,
+      "spDef": 60,
+      "speed": 75
+    },
     "abilities": [
       "pressure",
       "super-luck",
@@ -692,7 +1604,17 @@ const pokemonData = {
   },
   "glalie": {
     "id": 362,
-    "speed": 80,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 80,
+      "defense": 80,
+      "spAtk": 80,
+      "spDef": 80,
+      "speed": 80
+    },
     "abilities": [
       "inner-focus",
       "ice-body",
@@ -701,91 +1623,229 @@ const pokemonData = {
   },
   "gardevoir-mega": {
     "id": 10051,
-    "speed": 100,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 85,
+      "defense": 65,
+      "spAtk": 165,
+      "spDef": 135,
+      "speed": 100
+    },
     "abilities": [
       "pixilate"
     ]
   },
   "sableye-mega": {
     "id": 10066,
-    "speed": 20,
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 85,
+      "defense": 125,
+      "spAtk": 85,
+      "spDef": 115,
+      "speed": 20
+    },
     "abilities": [
       "magic-bounce"
     ]
   },
   "aggron-mega": {
     "id": 10053,
-    "speed": 50,
+    "types": [
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 230,
+      "spAtk": 60,
+      "spDef": 80,
+      "speed": 50
+    },
     "abilities": [
       "filter"
     ]
   },
   "medicham-mega": {
     "id": 10054,
-    "speed": 100,
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 85,
+      "spAtk": 80,
+      "spDef": 85,
+      "speed": 100
+    },
     "abilities": [
       "pure-power"
     ]
   },
   "manectric-mega": {
     "id": 10055,
-    "speed": 135,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 80,
+      "spAtk": 135,
+      "spDef": 80,
+      "speed": 135
+    },
     "abilities": [
       "intimidate"
     ]
   },
   "sharpedo-mega": {
     "id": 10070,
-    "speed": 105,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 70,
+      "spAtk": 110,
+      "spDef": 65,
+      "speed": 105
+    },
     "abilities": [
       "strong-jaw"
     ]
   },
   "camerupt-mega": {
     "id": 10087,
-    "speed": 20,
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 100,
+      "spAtk": 145,
+      "spDef": 105,
+      "speed": 20
+    },
     "abilities": [
       "sheer-force"
     ]
   },
   "altaria-mega": {
     "id": 10067,
-    "speed": 80,
+    "types": [
+      "dragon",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 110,
+      "spAtk": 110,
+      "spDef": 105,
+      "speed": 80
+    },
     "abilities": [
       "pixilate"
     ]
   },
   "banette-mega": {
     "id": 10056,
-    "speed": 75,
+    "types": [
+      "ghost"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 165,
+      "defense": 75,
+      "spAtk": 93,
+      "spDef": 83,
+      "speed": 75
+    },
     "abilities": [
       "prankster"
     ]
   },
   "chimecho-mega": {
     "id": 10306,
-    "speed": 65,
+    "types": [
+      "psychic",
+      "steel"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 50,
+      "defense": 110,
+      "spAtk": 135,
+      "spDef": 120,
+      "speed": 65
+    },
     "abilities": [
       "levitate"
     ]
   },
   "absol-mega": {
     "id": 10057,
-    "speed": 115,
+    "types": [
+      "dark"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 60,
+      "spAtk": 115,
+      "spDef": 60,
+      "speed": 115
+    },
     "abilities": [
       "magic-bounce"
     ]
   },
   "glalie-mega": {
     "id": 10074,
-    "speed": 100,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 80,
+      "spAtk": 120,
+      "spDef": 80,
+      "speed": 100
+    },
     "abilities": [
       "refrigerate"
     ]
   },
   "torterra": {
     "id": 389,
-    "speed": 56,
+    "types": [
+      "grass",
+      "ground"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 109,
+      "defense": 105,
+      "spAtk": 75,
+      "spDef": 85,
+      "speed": 56
+    },
     "abilities": [
       "overgrow",
       "shell-armor"
@@ -793,7 +1853,18 @@ const pokemonData = {
   },
   "infernape": {
     "id": 392,
-    "speed": 108,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 76,
+      "attack": 104,
+      "defense": 71,
+      "spAtk": 104,
+      "spDef": 71,
+      "speed": 108
+    },
     "abilities": [
       "blaze",
       "iron-fist"
@@ -801,7 +1872,18 @@ const pokemonData = {
   },
   "empoleon": {
     "id": 395,
-    "speed": 60,
+    "types": [
+      "water",
+      "steel"
+    ],
+    "stats": {
+      "hp": 84,
+      "attack": 86,
+      "defense": 88,
+      "spAtk": 111,
+      "spDef": 101,
+      "speed": 60
+    },
     "abilities": [
       "torrent",
       "competitive"
@@ -809,7 +1891,17 @@ const pokemonData = {
   },
   "luxray": {
     "id": 405,
-    "speed": 70,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 79,
+      "spAtk": 95,
+      "spDef": 79,
+      "speed": 70
+    },
     "abilities": [
       "rivalry",
       "intimidate",
@@ -818,7 +1910,18 @@ const pokemonData = {
   },
   "roserade": {
     "id": 407,
-    "speed": 90,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 70,
+      "defense": 65,
+      "spAtk": 125,
+      "spDef": 105,
+      "speed": 90
+    },
     "abilities": [
       "natural-cure",
       "poison-point",
@@ -827,7 +1930,17 @@ const pokemonData = {
   },
   "rampardos": {
     "id": 409,
-    "speed": 58,
+    "types": [
+      "rock"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 165,
+      "defense": 60,
+      "spAtk": 65,
+      "spDef": 50,
+      "speed": 58
+    },
     "abilities": [
       "mold-breaker",
       "sheer-force"
@@ -835,7 +1948,18 @@ const pokemonData = {
   },
   "bastiodon": {
     "id": 411,
-    "speed": 30,
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 52,
+      "defense": 168,
+      "spAtk": 47,
+      "spDef": 138,
+      "speed": 30
+    },
     "abilities": [
       "sturdy",
       "soundproof"
@@ -843,7 +1967,17 @@ const pokemonData = {
   },
   "lopunny": {
     "id": 428,
-    "speed": 105,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 76,
+      "defense": 84,
+      "spAtk": 54,
+      "spDef": 96,
+      "speed": 105
+    },
     "abilities": [
       "cute-charm",
       "klutz",
@@ -852,7 +1986,18 @@ const pokemonData = {
   },
   "spiritomb": {
     "id": 442,
-    "speed": 35,
+    "types": [
+      "ghost",
+      "dark"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 92,
+      "defense": 108,
+      "spAtk": 92,
+      "spDef": 108,
+      "speed": 35
+    },
     "abilities": [
       "pressure",
       "infiltrator"
@@ -860,7 +2005,18 @@ const pokemonData = {
   },
   "garchomp": {
     "id": 445,
-    "speed": 102,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 130,
+      "defense": 95,
+      "spAtk": 80,
+      "spDef": 85,
+      "speed": 102
+    },
     "abilities": [
       "sand-veil",
       "rough-skin"
@@ -868,7 +2024,18 @@ const pokemonData = {
   },
   "lucario": {
     "id": 448,
-    "speed": 90,
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 70,
+      "spAtk": 115,
+      "spDef": 70,
+      "speed": 90
+    },
     "abilities": [
       "steadfast",
       "inner-focus",
@@ -877,7 +2044,17 @@ const pokemonData = {
   },
   "hippowdon": {
     "id": 450,
-    "speed": 47,
+    "types": [
+      "ground"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 112,
+      "defense": 118,
+      "spAtk": 68,
+      "spDef": 72,
+      "speed": 47
+    },
     "abilities": [
       "sand-stream",
       "sand-force"
@@ -885,7 +2062,18 @@ const pokemonData = {
   },
   "toxicroak": {
     "id": 454,
-    "speed": 85,
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 106,
+      "defense": 65,
+      "spAtk": 86,
+      "spDef": 65,
+      "speed": 85
+    },
     "abilities": [
       "anticipation",
       "dry-skin",
@@ -894,7 +2082,18 @@ const pokemonData = {
   },
   "abomasnow": {
     "id": 460,
-    "speed": 60,
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 92,
+      "defense": 75,
+      "spAtk": 92,
+      "spDef": 85,
+      "speed": 60
+    },
     "abilities": [
       "snow-warning",
       "soundproof"
@@ -902,7 +2101,18 @@ const pokemonData = {
   },
   "weavile": {
     "id": 461,
-    "speed": 125,
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 65,
+      "spAtk": 45,
+      "spDef": 85,
+      "speed": 125
+    },
     "abilities": [
       "pressure",
       "pickpocket"
@@ -910,7 +2120,18 @@ const pokemonData = {
   },
   "rhyperior": {
     "id": 464,
-    "speed": 40,
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "stats": {
+      "hp": 115,
+      "attack": 140,
+      "defense": 130,
+      "spAtk": 55,
+      "spDef": 55,
+      "speed": 40
+    },
     "abilities": [
       "lightning-rod",
       "solid-rock",
@@ -919,7 +2140,17 @@ const pokemonData = {
   },
   "leafeon": {
     "id": 470,
-    "speed": 95,
+    "types": [
+      "grass"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 110,
+      "defense": 130,
+      "spAtk": 60,
+      "spDef": 65,
+      "speed": 95
+    },
     "abilities": [
       "leaf-guard",
       "chlorophyll"
@@ -927,7 +2158,17 @@ const pokemonData = {
   },
   "glaceon": {
     "id": 471,
-    "speed": 65,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 110,
+      "spAtk": 130,
+      "spDef": 95,
+      "speed": 65
+    },
     "abilities": [
       "snow-cloak",
       "ice-body"
@@ -935,7 +2176,18 @@ const pokemonData = {
   },
   "gliscor": {
     "id": 472,
-    "speed": 95,
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 125,
+      "spAtk": 45,
+      "spDef": 75,
+      "speed": 95
+    },
     "abilities": [
       "hyper-cutter",
       "sand-veil",
@@ -944,7 +2196,18 @@ const pokemonData = {
   },
   "mamoswine": {
     "id": 473,
-    "speed": 80,
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 130,
+      "defense": 80,
+      "spAtk": 70,
+      "spDef": 60,
+      "speed": 80
+    },
     "abilities": [
       "oblivious",
       "snow-cloak",
@@ -953,7 +2216,18 @@ const pokemonData = {
   },
   "gallade": {
     "id": 475,
-    "speed": 80,
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 125,
+      "defense": 65,
+      "spAtk": 65,
+      "spDef": 115,
+      "speed": 80
+    },
     "abilities": [
       "steadfast",
       "sharpness",
@@ -962,7 +2236,18 @@ const pokemonData = {
   },
   "froslass": {
     "id": 478,
-    "speed": 110,
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 70,
+      "spAtk": 80,
+      "spDef": 70,
+      "speed": 110
+    },
     "abilities": [
       "snow-cloak",
       "cursed-body"
@@ -970,56 +2255,143 @@ const pokemonData = {
   },
   "rotom": {
     "id": 479,
-    "speed": 91,
+    "types": [
+      "electric",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 77,
+      "spAtk": 95,
+      "spDef": 77,
+      "speed": 91
+    },
     "abilities": [
       "levitate"
     ]
   },
   "lopunny-mega": {
     "id": 10088,
-    "speed": 135,
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 136,
+      "defense": 94,
+      "spAtk": 54,
+      "spDef": 96,
+      "speed": 135
+    },
     "abilities": [
       "scrappy"
     ]
   },
   "garchomp-mega": {
     "id": 10058,
-    "speed": 92,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 170,
+      "defense": 115,
+      "spAtk": 120,
+      "spDef": 95,
+      "speed": 92
+    },
     "abilities": [
       "sand-force"
     ]
   },
   "lucario-mega": {
     "id": 10059,
-    "speed": 112,
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 145,
+      "defense": 88,
+      "spAtk": 140,
+      "spDef": 70,
+      "speed": 112
+    },
     "abilities": [
       "adaptability"
     ]
   },
   "abomasnow-mega": {
     "id": 10060,
-    "speed": 30,
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 132,
+      "defense": 105,
+      "spAtk": 132,
+      "spDef": 105,
+      "speed": 30
+    },
     "abilities": [
       "snow-warning"
     ]
   },
   "gallade-mega": {
     "id": 10068,
-    "speed": 110,
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 165,
+      "defense": 95,
+      "spAtk": 65,
+      "spDef": 115,
+      "speed": 110
+    },
     "abilities": [
       "inner-focus"
     ]
   },
   "froslass-mega": {
     "id": 10285,
-    "speed": 120,
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 70,
+      "spAtk": 140,
+      "spDef": 100,
+      "speed": 120
+    },
     "abilities": [
       "snow-warning"
     ]
   },
   "serperior": {
     "id": 497,
-    "speed": 113,
+    "types": [
+      "grass"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 75,
+      "defense": 95,
+      "spAtk": 75,
+      "spDef": 95,
+      "speed": 113
+    },
     "abilities": [
       "overgrow",
       "contrary"
@@ -1027,7 +2399,18 @@ const pokemonData = {
   },
   "emboar": {
     "id": 500,
-    "speed": 65,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 123,
+      "defense": 65,
+      "spAtk": 100,
+      "spDef": 65,
+      "speed": 65
+    },
     "abilities": [
       "blaze",
       "reckless"
@@ -1035,7 +2418,17 @@ const pokemonData = {
   },
   "samurott": {
     "id": 503,
-    "speed": 70,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 85,
+      "spAtk": 108,
+      "spDef": 70,
+      "speed": 70
+    },
     "abilities": [
       "torrent",
       "shell-armor"
@@ -1043,7 +2436,17 @@ const pokemonData = {
   },
   "watchog": {
     "id": 505,
-    "speed": 77,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 69,
+      "spAtk": 60,
+      "spDef": 69,
+      "speed": 77
+    },
     "abilities": [
       "illuminate",
       "keen-eye",
@@ -1052,7 +2455,17 @@ const pokemonData = {
   },
   "liepard": {
     "id": 510,
-    "speed": 106,
+    "types": [
+      "dark"
+    ],
+    "stats": {
+      "hp": 64,
+      "attack": 88,
+      "defense": 50,
+      "spAtk": 88,
+      "spDef": 50,
+      "speed": 106
+    },
     "abilities": [
       "limber",
       "unburden",
@@ -1061,7 +2474,17 @@ const pokemonData = {
   },
   "simisage": {
     "id": 512,
-    "speed": 101,
+    "types": [
+      "grass"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "speed": 101
+    },
     "abilities": [
       "gluttony",
       "overgrow"
@@ -1069,7 +2492,17 @@ const pokemonData = {
   },
   "simisear": {
     "id": 514,
-    "speed": 101,
+    "types": [
+      "fire"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "speed": 101
+    },
     "abilities": [
       "gluttony",
       "blaze"
@@ -1077,7 +2510,17 @@ const pokemonData = {
   },
   "simipour": {
     "id": 516,
-    "speed": 101,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "speed": 101
+    },
     "abilities": [
       "gluttony",
       "torrent"
@@ -1085,7 +2528,18 @@ const pokemonData = {
   },
   "excadrill": {
     "id": 530,
-    "speed": 88,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 135,
+      "defense": 60,
+      "spAtk": 50,
+      "spDef": 65,
+      "speed": 88
+    },
     "abilities": [
       "sand-rush",
       "sand-force",
@@ -1094,7 +2548,17 @@ const pokemonData = {
   },
   "audino": {
     "id": 531,
-    "speed": 50,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 86,
+      "spAtk": 60,
+      "spDef": 86,
+      "speed": 50
+    },
     "abilities": [
       "healer",
       "regenerator",
@@ -1103,7 +2567,17 @@ const pokemonData = {
   },
   "conkeldurr": {
     "id": 534,
-    "speed": 45,
+    "types": [
+      "fighting"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 140,
+      "defense": 95,
+      "spAtk": 55,
+      "spDef": 65,
+      "speed": 45
+    },
     "abilities": [
       "guts",
       "sheer-force",
@@ -1112,7 +2586,18 @@ const pokemonData = {
   },
   "whimsicott": {
     "id": 547,
-    "speed": 116,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 67,
+      "defense": 85,
+      "spAtk": 77,
+      "spDef": 75,
+      "speed": 116
+    },
     "abilities": [
       "prankster",
       "infiltrator",
@@ -1121,7 +2606,18 @@ const pokemonData = {
   },
   "krookodile": {
     "id": 553,
-    "speed": 92,
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 80,
+      "spAtk": 65,
+      "spDef": 70,
+      "speed": 92
+    },
     "abilities": [
       "intimidate",
       "moxie",
@@ -1130,14 +2626,34 @@ const pokemonData = {
   },
   "cofagrigus": {
     "id": 563,
-    "speed": 30,
+    "types": [
+      "ghost"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 50,
+      "defense": 145,
+      "spAtk": 95,
+      "spDef": 105,
+      "speed": 30
+    },
     "abilities": [
       "mummy"
     ]
   },
   "garbodor": {
     "id": 569,
-    "speed": 75,
+    "types": [
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 95,
+      "defense": 82,
+      "spAtk": 60,
+      "spDef": 82,
+      "speed": 75
+    },
     "abilities": [
       "stench",
       "weak-armor",
@@ -1146,14 +2662,34 @@ const pokemonData = {
   },
   "zoroark": {
     "id": 571,
-    "speed": 105,
+    "types": [
+      "dark"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 105,
+      "defense": 60,
+      "spAtk": 120,
+      "spDef": 60,
+      "speed": 105
+    },
     "abilities": [
       "illusion"
     ]
   },
   "reuniclus": {
     "id": 579,
-    "speed": 30,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 65,
+      "defense": 75,
+      "spAtk": 125,
+      "spDef": 85,
+      "speed": 30
+    },
     "abilities": [
       "overcoat",
       "magic-guard",
@@ -1162,7 +2698,17 @@ const pokemonData = {
   },
   "vanilluxe": {
     "id": 584,
-    "speed": 79,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 95,
+      "defense": 85,
+      "spAtk": 110,
+      "spDef": 95,
+      "speed": 79
+    },
     "abilities": [
       "ice-body",
       "snow-warning",
@@ -1171,7 +2717,18 @@ const pokemonData = {
   },
   "emolga": {
     "id": 587,
-    "speed": 103,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 75,
+      "defense": 60,
+      "spAtk": 75,
+      "spDef": 60,
+      "speed": 103
+    },
     "abilities": [
       "static",
       "motor-drive"
@@ -1179,7 +2736,18 @@ const pokemonData = {
   },
   "chandelure": {
     "id": 609,
-    "speed": 80,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 55,
+      "defense": 90,
+      "spAtk": 145,
+      "spDef": 90,
+      "speed": 80
+    },
     "abilities": [
       "flash-fire",
       "flame-body",
@@ -1188,7 +2756,17 @@ const pokemonData = {
   },
   "beartic": {
     "id": 614,
-    "speed": 50,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 130,
+      "defense": 80,
+      "spAtk": 70,
+      "spDef": 80,
+      "speed": 50
+    },
     "abilities": [
       "snow-cloak",
       "slush-rush",
@@ -1197,7 +2775,18 @@ const pokemonData = {
   },
   "stunfisk": {
     "id": 618,
-    "speed": 32,
+    "types": [
+      "ground",
+      "electric"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 66,
+      "defense": 84,
+      "spAtk": 81,
+      "spDef": 99,
+      "speed": 32
+    },
     "abilities": [
       "static",
       "limber",
@@ -1206,7 +2795,18 @@ const pokemonData = {
   },
   "golurk": {
     "id": 623,
-    "speed": 55,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 89,
+      "attack": 124,
+      "defense": 80,
+      "spAtk": 55,
+      "spDef": 80,
+      "speed": 55
+    },
     "abilities": [
       "iron-fist",
       "klutz",
@@ -1215,14 +2815,36 @@ const pokemonData = {
   },
   "hydreigon": {
     "id": 635,
-    "speed": 98,
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 92,
+      "attack": 105,
+      "defense": 90,
+      "spAtk": 125,
+      "spDef": 90,
+      "speed": 98
+    },
     "abilities": [
       "levitate"
     ]
   },
   "volcarona": {
     "id": 637,
-    "speed": 100,
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 65,
+      "spAtk": 135,
+      "spDef": 105,
+      "speed": 100
+    },
     "abilities": [
       "flame-body",
       "swarm"
@@ -1230,42 +2852,108 @@ const pokemonData = {
   },
   "emboar-mega": {
     "id": 10286,
-    "speed": 75,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 148,
+      "defense": 75,
+      "spAtk": 110,
+      "spDef": 110,
+      "speed": 75
+    },
     "abilities": [
       "mold-breaker"
     ]
   },
   "excadrill-mega": {
     "id": 10287,
-    "speed": 103,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 165,
+      "defense": 100,
+      "spAtk": 65,
+      "spDef": 65,
+      "speed": 103
+    },
     "abilities": [
       "piercing-drill"
     ]
   },
   "audino-mega": {
     "id": 10069,
-    "speed": 50,
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 126,
+      "spAtk": 80,
+      "spDef": 126,
+      "speed": 50
+    },
     "abilities": [
       "healer"
     ]
   },
   "chandelure-mega": {
     "id": 10291,
-    "speed": 90,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 110,
+      "spAtk": 175,
+      "spDef": 110,
+      "speed": 90
+    },
     "abilities": [
       "infiltrator"
     ]
   },
   "golurk-mega": {
     "id": 10313,
-    "speed": 55,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 89,
+      "attack": 159,
+      "defense": 105,
+      "spAtk": 70,
+      "spDef": 105,
+      "speed": 55
+    },
     "abilities": [
       "unseen-fist"
     ]
   },
   "chesnaught": {
     "id": 652,
-    "speed": 64,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 107,
+      "defense": 122,
+      "spAtk": 74,
+      "spDef": 75,
+      "speed": 64
+    },
     "abilities": [
       "overgrow",
       "bulletproof"
@@ -1273,7 +2961,18 @@ const pokemonData = {
   },
   "delphox": {
     "id": 655,
-    "speed": 104,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "spAtk": 114,
+      "spDef": 100,
+      "speed": 104
+    },
     "abilities": [
       "blaze",
       "magician"
@@ -1281,7 +2980,18 @@ const pokemonData = {
   },
   "greninja": {
     "id": 658,
-    "speed": 122,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 95,
+      "defense": 67,
+      "spAtk": 103,
+      "spDef": 71,
+      "speed": 122
+    },
     "abilities": [
       "torrent",
       "protean"
@@ -1289,7 +2999,18 @@ const pokemonData = {
   },
   "diggersby": {
     "id": 660,
-    "speed": 78,
+    "types": [
+      "normal",
+      "ground"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 56,
+      "defense": 77,
+      "spAtk": 50,
+      "spDef": 77,
+      "speed": 78
+    },
     "abilities": [
       "pickup",
       "cheek-pouch",
@@ -1298,7 +3019,18 @@ const pokemonData = {
   },
   "talonflame": {
     "id": 663,
-    "speed": 126,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 81,
+      "defense": 71,
+      "spAtk": 74,
+      "spDef": 69,
+      "speed": 126
+    },
     "abilities": [
       "flame-body",
       "gale-wings"
@@ -1306,7 +3038,18 @@ const pokemonData = {
   },
   "vivillon": {
     "id": 666,
-    "speed": 89,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 52,
+      "defense": 50,
+      "spAtk": 90,
+      "spDef": 50,
+      "speed": 89
+    },
     "abilities": [
       "shield-dust",
       "compound-eyes",
@@ -1314,8 +3057,18 @@ const pokemonData = {
     ]
   },
   "floette": {
-    "id": 10061,
-    "speed": 92,
+    "id": 670,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 54,
+      "attack": 45,
+      "defense": 47,
+      "spAtk": 75,
+      "spDef": 98,
+      "speed": 52
+    },
     "abilities": [
       "flower-veil",
       "symbiosis"
@@ -1323,7 +3076,17 @@ const pokemonData = {
   },
   "florges": {
     "id": 671,
-    "speed": 75,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 65,
+      "defense": 68,
+      "spAtk": 112,
+      "spDef": 154,
+      "speed": 75
+    },
     "abilities": [
       "flower-veil",
       "symbiosis"
@@ -1331,7 +3094,18 @@ const pokemonData = {
   },
   "pangoro": {
     "id": 675,
-    "speed": 58,
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 124,
+      "defense": 78,
+      "spAtk": 69,
+      "spDef": 71,
+      "speed": 58
+    },
     "abilities": [
       "iron-fist",
       "mold-breaker",
@@ -1340,14 +3114,34 @@ const pokemonData = {
   },
   "furfrou": {
     "id": 676,
-    "speed": 102,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 60,
+      "spAtk": 65,
+      "spDef": 90,
+      "speed": 102
+    },
     "abilities": [
       "fur-coat"
     ]
   },
   "meowstic-male": {
     "id": 678,
-    "speed": 104,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAtk": 83,
+      "spDef": 81,
+      "speed": 104
+    },
     "abilities": [
       "keen-eye",
       "infiltrator",
@@ -1356,7 +3150,17 @@ const pokemonData = {
   },
   "meowstic-female": {
     "id": 10025,
-    "speed": 104,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAtk": 83,
+      "spDef": 81,
+      "speed": 104
+    },
     "abilities": [
       "keen-eye",
       "infiltrator",
@@ -1365,14 +3169,35 @@ const pokemonData = {
   },
   "aegislash-shield": {
     "id": 681,
-    "speed": 60,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 140,
+      "spAtk": 50,
+      "spDef": 140,
+      "speed": 60
+    },
     "abilities": [
       "stance-change"
     ]
   },
   "aromatisse": {
     "id": 683,
-    "speed": 29,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 101,
+      "attack": 72,
+      "defense": 72,
+      "spAtk": 99,
+      "spDef": 89,
+      "speed": 29
+    },
     "abilities": [
       "healer",
       "aroma-veil"
@@ -1380,7 +3205,17 @@ const pokemonData = {
   },
   "slurpuff": {
     "id": 685,
-    "speed": 72,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 80,
+      "defense": 86,
+      "spAtk": 85,
+      "spDef": 75,
+      "speed": 72
+    },
     "abilities": [
       "sweet-veil",
       "unburden"
@@ -1388,14 +3223,35 @@ const pokemonData = {
   },
   "clawitzer": {
     "id": 693,
-    "speed": 59,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 73,
+      "defense": 88,
+      "spAtk": 120,
+      "spDef": 89,
+      "speed": 59
+    },
     "abilities": [
       "mega-launcher"
     ]
   },
   "heliolisk": {
     "id": 695,
-    "speed": 109,
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 55,
+      "defense": 52,
+      "spAtk": 109,
+      "spDef": 94,
+      "speed": 109
+    },
     "abilities": [
       "dry-skin",
       "sand-veil",
@@ -1404,7 +3260,18 @@ const pokemonData = {
   },
   "tyrantrum": {
     "id": 697,
-    "speed": 71,
+    "types": [
+      "rock",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 121,
+      "defense": 119,
+      "spAtk": 69,
+      "spDef": 59,
+      "speed": 71
+    },
     "abilities": [
       "strong-jaw",
       "rock-head"
@@ -1412,7 +3279,18 @@ const pokemonData = {
   },
   "aurorus": {
     "id": 699,
-    "speed": 58,
+    "types": [
+      "rock",
+      "ice"
+    ],
+    "stats": {
+      "hp": 123,
+      "attack": 77,
+      "defense": 72,
+      "spAtk": 99,
+      "spDef": 92,
+      "speed": 58
+    },
     "abilities": [
       "refrigerate",
       "snow-warning"
@@ -1420,7 +3298,17 @@ const pokemonData = {
   },
   "sylveon": {
     "id": 700,
-    "speed": 60,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 65,
+      "spAtk": 110,
+      "spDef": 130,
+      "speed": 60
+    },
     "abilities": [
       "cute-charm",
       "pixilate"
@@ -1428,7 +3316,18 @@ const pokemonData = {
   },
   "hawlucha": {
     "id": 701,
-    "speed": 118,
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 92,
+      "defense": 75,
+      "spAtk": 74,
+      "spDef": 63,
+      "speed": 118
+    },
     "abilities": [
       "limber",
       "unburden",
@@ -1437,7 +3336,18 @@ const pokemonData = {
   },
   "dedenne": {
     "id": 702,
-    "speed": 101,
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 58,
+      "defense": 57,
+      "spAtk": 81,
+      "spDef": 67,
+      "speed": 101
+    },
     "abilities": [
       "cheek-pouch",
       "pickup",
@@ -1446,7 +3356,17 @@ const pokemonData = {
   },
   "goodra": {
     "id": 706,
-    "speed": 80,
+    "types": [
+      "dragon"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 70,
+      "spAtk": 110,
+      "spDef": 150,
+      "speed": 80
+    },
     "abilities": [
       "sap-sipper",
       "hydration",
@@ -1455,7 +3375,18 @@ const pokemonData = {
   },
   "klefki": {
     "id": 707,
-    "speed": 75,
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 57,
+      "attack": 80,
+      "defense": 91,
+      "spAtk": 80,
+      "spDef": 87,
+      "speed": 75
+    },
     "abilities": [
       "prankster",
       "magician"
@@ -1463,7 +3394,18 @@ const pokemonData = {
   },
   "trevenant": {
     "id": 709,
-    "speed": 56,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 110,
+      "defense": 76,
+      "spAtk": 65,
+      "spDef": 82,
+      "speed": 56
+    },
     "abilities": [
       "natural-cure",
       "frisk",
@@ -1472,7 +3414,18 @@ const pokemonData = {
   },
   "gourgeist-average": {
     "id": 711,
-    "speed": 84,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 122,
+      "spAtk": 58,
+      "spDef": 75,
+      "speed": 84
+    },
     "abilities": [
       "pickup",
       "frisk",
@@ -1481,7 +3434,17 @@ const pokemonData = {
   },
   "avalugg": {
     "id": 713,
-    "speed": 28,
+    "types": [
+      "ice"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 184,
+      "spAtk": 44,
+      "spDef": 46,
+      "speed": 28
+    },
     "abilities": [
       "own-tempo",
       "ice-body",
@@ -1490,7 +3453,18 @@ const pokemonData = {
   },
   "noivern": {
     "id": 715,
-    "speed": 123,
+    "types": [
+      "flying",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 70,
+      "defense": 80,
+      "spAtk": 97,
+      "spDef": 80,
+      "speed": 123
+    },
     "abilities": [
       "frisk",
       "infiltrator",
@@ -1499,49 +3473,124 @@ const pokemonData = {
   },
   "chesnaught-mega": {
     "id": 10292,
-    "speed": 44,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 137,
+      "defense": 172,
+      "spAtk": 74,
+      "spDef": 115,
+      "speed": 44
+    },
     "abilities": [
       "bulletproof"
     ]
   },
   "delphox-mega": {
     "id": 10293,
-    "speed": 134,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "spAtk": 159,
+      "spDef": 125,
+      "speed": 134
+    },
     "abilities": [
       "levitate"
     ]
   },
   "greninja-mega": {
     "id": 10294,
-    "speed": 142,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 125,
+      "defense": 77,
+      "spAtk": 133,
+      "spDef": 81,
+      "speed": 142
+    },
     "abilities": [
       "protean"
     ]
   },
   "floette-mega": {
     "id": 10296,
-    "speed": 102,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 85,
+      "defense": 87,
+      "spAtk": 155,
+      "spDef": 148,
+      "speed": 102
+    },
     "abilities": [
       "fairy-aura"
     ]
   },
   "meowstic-mega": {
     "id": 10314,
-    "speed": 124,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "spAtk": 143,
+      "spDef": 101,
+      "speed": 124
+    },
     "abilities": [
       "trace"
     ]
   },
   "hawlucha-mega": {
     "id": 10300,
-    "speed": 118,
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 137,
+      "defense": 100,
+      "spAtk": 74,
+      "spDef": 93,
+      "speed": 118
+    },
     "abilities": [
       "no-guard"
     ]
   },
   "decidueye": {
     "id": 724,
-    "speed": 70,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 107,
+      "defense": 75,
+      "spAtk": 100,
+      "spDef": 100,
+      "speed": 70
+    },
     "abilities": [
       "overgrow",
       "long-reach"
@@ -1549,7 +3598,18 @@ const pokemonData = {
   },
   "incineroar": {
     "id": 727,
-    "speed": 60,
+    "types": [
+      "fire",
+      "dark"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 90,
+      "spAtk": 80,
+      "spDef": 90,
+      "speed": 60
+    },
     "abilities": [
       "blaze",
       "intimidate"
@@ -1557,7 +3617,18 @@ const pokemonData = {
   },
   "primarina": {
     "id": 730,
-    "speed": 60,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 74,
+      "defense": 74,
+      "spAtk": 126,
+      "spDef": 116,
+      "speed": 60
+    },
     "abilities": [
       "torrent",
       "liquid-voice"
@@ -1565,7 +3636,18 @@ const pokemonData = {
   },
   "toucannon": {
     "id": 733,
-    "speed": 60,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 75,
+      "spAtk": 75,
+      "spDef": 75,
+      "speed": 60
+    },
     "abilities": [
       "keen-eye",
       "skill-link",
@@ -1574,7 +3656,18 @@ const pokemonData = {
   },
   "crabominable": {
     "id": 740,
-    "speed": 43,
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 132,
+      "defense": 77,
+      "spAtk": 62,
+      "spDef": 67,
+      "speed": 43
+    },
     "abilities": [
       "hyper-cutter",
       "iron-fist",
@@ -1583,7 +3676,18 @@ const pokemonData = {
   },
   "toxapex": {
     "id": 748,
-    "speed": 35,
+    "types": [
+      "poison",
+      "water"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 63,
+      "defense": 152,
+      "spAtk": 53,
+      "spDef": 142,
+      "speed": 35
+    },
     "abilities": [
       "merciless",
       "limber",
@@ -1592,7 +3696,17 @@ const pokemonData = {
   },
   "mudsdale": {
     "id": 750,
-    "speed": 35,
+    "types": [
+      "ground"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 125,
+      "defense": 100,
+      "spAtk": 55,
+      "spDef": 85,
+      "speed": 35
+    },
     "abilities": [
       "own-tempo",
       "stamina",
@@ -1601,7 +3715,18 @@ const pokemonData = {
   },
   "araquanid": {
     "id": 752,
-    "speed": 42,
+    "types": [
+      "water",
+      "bug"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 70,
+      "defense": 92,
+      "spAtk": 50,
+      "spDef": 132,
+      "speed": 42
+    },
     "abilities": [
       "water-bubble",
       "water-absorb"
@@ -1609,7 +3734,18 @@ const pokemonData = {
   },
   "salazzle": {
     "id": 758,
-    "speed": 117,
+    "types": [
+      "poison",
+      "fire"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 64,
+      "defense": 60,
+      "spAtk": 111,
+      "spDef": 60,
+      "speed": 117
+    },
     "abilities": [
       "corrosion",
       "oblivious"
@@ -1617,7 +3753,17 @@ const pokemonData = {
   },
   "tsareena": {
     "id": 763,
-    "speed": 72,
+    "types": [
+      "grass"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 120,
+      "defense": 98,
+      "spAtk": 50,
+      "spDef": 98,
+      "speed": 72
+    },
     "abilities": [
       "leaf-guard",
       "queenly-majesty",
@@ -1626,7 +3772,18 @@ const pokemonData = {
   },
   "oranguru": {
     "id": 765,
-    "speed": 60,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 60,
+      "defense": 80,
+      "spAtk": 90,
+      "spDef": 110,
+      "speed": 60
+    },
     "abilities": [
       "inner-focus",
       "telepathy",
@@ -1635,7 +3792,17 @@ const pokemonData = {
   },
   "passimian": {
     "id": 766,
-    "speed": 80,
+    "types": [
+      "fighting"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 120,
+      "defense": 90,
+      "spAtk": 40,
+      "spDef": 60,
+      "speed": 80
+    },
     "abilities": [
       "receiver",
       "defiant"
@@ -1643,14 +3810,36 @@ const pokemonData = {
   },
   "mimikyu-disguised": {
     "id": 778,
-    "speed": 96,
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 90,
+      "defense": 80,
+      "spAtk": 50,
+      "spDef": 105,
+      "speed": 96
+    },
     "abilities": [
       "disguise"
     ]
   },
   "drampa": {
     "id": 780,
-    "speed": 36,
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 60,
+      "defense": 85,
+      "spAtk": 135,
+      "spDef": 91,
+      "speed": 36
+    },
     "abilities": [
       "berserk",
       "sap-sipper",
@@ -1659,7 +3848,18 @@ const pokemonData = {
   },
   "kommo-o": {
     "id": 784,
-    "speed": 85,
+    "types": [
+      "dragon",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 125,
+      "spAtk": 100,
+      "spDef": 105,
+      "speed": 85
+    },
     "abilities": [
       "bulletproof",
       "soundproof",
@@ -1668,7 +3868,17 @@ const pokemonData = {
   },
   "lycanroc-midday": {
     "id": 745,
-    "speed": 112,
+    "types": [
+      "rock"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 115,
+      "defense": 65,
+      "spAtk": 55,
+      "spDef": 65,
+      "speed": 112
+    },
     "abilities": [
       "keen-eye",
       "sand-rush",
@@ -1677,28 +3887,72 @@ const pokemonData = {
   },
   "crabominable-mega": {
     "id": 10315,
-    "speed": 33,
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "stats": {
+      "hp": 97,
+      "attack": 157,
+      "defense": 122,
+      "spAtk": 62,
+      "spDef": 107,
+      "speed": 33
+    },
     "abilities": [
       "iron-fist"
     ]
   },
   "drampa-mega": {
     "id": 10302,
-    "speed": 36,
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 85,
+      "defense": 110,
+      "spAtk": 160,
+      "spDef": 116,
+      "speed": 36
+    },
     "abilities": [
       "berserk"
     ]
   },
   "scovillain-mega": {
     "id": 10320,
-    "speed": 75,
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 138,
+      "defense": 85,
+      "spAtk": 138,
+      "spDef": 85,
+      "speed": 75
+    },
     "abilities": [
       "spicy-spray"
     ]
   },
   "corviknight": {
     "id": 823,
-    "speed": 67,
+    "types": [
+      "flying",
+      "steel"
+    ],
+    "stats": {
+      "hp": 98,
+      "attack": 87,
+      "defense": 105,
+      "spAtk": 53,
+      "spDef": 85,
+      "speed": 67
+    },
     "abilities": [
       "pressure",
       "unnerve",
@@ -1707,7 +3961,18 @@ const pokemonData = {
   },
   "flapple": {
     "id": 841,
-    "speed": 70,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 80,
+      "spAtk": 95,
+      "spDef": 60,
+      "speed": 70
+    },
     "abilities": [
       "ripen",
       "gluttony",
@@ -1716,7 +3981,18 @@ const pokemonData = {
   },
   "appletun": {
     "id": 842,
-    "speed": 30,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 85,
+      "defense": 80,
+      "spAtk": 100,
+      "spDef": 80,
+      "speed": 30
+    },
     "abilities": [
       "ripen",
       "gluttony",
@@ -1725,7 +4001,17 @@ const pokemonData = {
   },
   "sandaconda": {
     "id": 844,
-    "speed": 71,
+    "types": [
+      "ground"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 107,
+      "defense": 125,
+      "spAtk": 65,
+      "spDef": 70,
+      "speed": 71
+    },
     "abilities": [
       "sand-spit",
       "shed-skin",
@@ -1734,7 +4020,17 @@ const pokemonData = {
   },
   "polteageist": {
     "id": 855,
-    "speed": 70,
+    "types": [
+      "ghost"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 65,
+      "spAtk": 134,
+      "spDef": 114,
+      "speed": 70
+    },
     "abilities": [
       "weak-armor",
       "cursed-body"
@@ -1742,7 +4038,18 @@ const pokemonData = {
   },
   "hatterene": {
     "id": 858,
-    "speed": 29,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 57,
+      "attack": 90,
+      "defense": 95,
+      "spAtk": 136,
+      "spDef": 103,
+      "speed": 29
+    },
     "abilities": [
       "healer",
       "anticipation",
@@ -1751,7 +4058,18 @@ const pokemonData = {
   },
   "mr-rime": {
     "id": 866,
-    "speed": 70,
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 85,
+      "defense": 75,
+      "spAtk": 110,
+      "spDef": 100,
+      "speed": 70
+    },
     "abilities": [
       "tangled-feet",
       "screen-cleaner",
@@ -1760,14 +4078,35 @@ const pokemonData = {
   },
   "runerigus": {
     "id": 867,
-    "speed": 30,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 145,
+      "spAtk": 50,
+      "spDef": 105,
+      "speed": 30
+    },
     "abilities": [
       "wandering-spirit"
     ]
   },
   "alcremie": {
     "id": 869,
-    "speed": 64,
+    "types": [
+      "fairy"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 75,
+      "spAtk": 110,
+      "spDef": 121,
+      "speed": 64
+    },
     "abilities": [
       "sweet-veil",
       "aroma-veil"
@@ -1775,14 +4114,36 @@ const pokemonData = {
   },
   "morpeko-full-belly": {
     "id": 877,
-    "speed": 97,
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 58,
+      "spAtk": 70,
+      "spDef": 58,
+      "speed": 97
+    },
     "abilities": [
       "hunger-switch"
     ]
   },
   "dragapult": {
     "id": 887,
-    "speed": 142,
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 120,
+      "defense": 75,
+      "spAtk": 100,
+      "spDef": 75,
+      "speed": 142
+    },
     "abilities": [
       "clear-body",
       "infiltrator",
@@ -1791,7 +4152,18 @@ const pokemonData = {
   },
   "meowscarada": {
     "id": 908,
-    "speed": 123,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "stats": {
+      "hp": 76,
+      "attack": 110,
+      "defense": 70,
+      "spAtk": 81,
+      "spDef": 70,
+      "speed": 123
+    },
     "abilities": [
       "overgrow",
       "protean"
@@ -1799,7 +4171,18 @@ const pokemonData = {
   },
   "skeledirge": {
     "id": 911,
-    "speed": 66,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 104,
+      "attack": 75,
+      "defense": 100,
+      "spAtk": 110,
+      "spDef": 75,
+      "speed": 66
+    },
     "abilities": [
       "blaze",
       "unaware"
@@ -1807,7 +4190,18 @@ const pokemonData = {
   },
   "quaquaval": {
     "id": 914,
-    "speed": 85,
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 120,
+      "defense": 80,
+      "spAtk": 85,
+      "spDef": 75,
+      "speed": 85
+    },
     "abilities": [
       "torrent",
       "moxie"
@@ -1815,7 +4209,17 @@ const pokemonData = {
   },
   "maushold-family-of-four": {
     "id": 925,
-    "speed": 111,
+    "types": [
+      "normal"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 75,
+      "defense": 70,
+      "spAtk": 65,
+      "spDef": 75,
+      "speed": 111
+    },
     "abilities": [
       "friend-guard",
       "cheek-pouch",
@@ -1824,7 +4228,17 @@ const pokemonData = {
   },
   "garganacl": {
     "id": 934,
-    "speed": 35,
+    "types": [
+      "rock"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 130,
+      "spAtk": 45,
+      "spDef": 90,
+      "speed": 35
+    },
     "abilities": [
       "purifying-salt",
       "sturdy",
@@ -1833,7 +4247,18 @@ const pokemonData = {
   },
   "armarouge": {
     "id": 936,
-    "speed": 75,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 100,
+      "spAtk": 125,
+      "spDef": 80,
+      "speed": 75
+    },
     "abilities": [
       "flash-fire",
       "weak-armor"
@@ -1841,7 +4266,18 @@ const pokemonData = {
   },
   "ceruledge": {
     "id": 937,
-    "speed": 85,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 80,
+      "spAtk": 60,
+      "spDef": 100,
+      "speed": 85
+    },
     "abilities": [
       "flash-fire",
       "weak-armor"
@@ -1849,7 +4285,17 @@ const pokemonData = {
   },
   "bellibolt": {
     "id": 939,
-    "speed": 45,
+    "types": [
+      "electric"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 64,
+      "defense": 91,
+      "spAtk": 103,
+      "spDef": 83,
+      "speed": 45
+    },
     "abilities": [
       "electromorphosis",
       "static",
@@ -1858,7 +4304,18 @@ const pokemonData = {
   },
   "scovillain": {
     "id": 952,
-    "speed": 75,
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 108,
+      "defense": 65,
+      "spAtk": 108,
+      "spDef": 65,
+      "speed": 75
+    },
     "abilities": [
       "chlorophyll",
       "insomnia",
@@ -1867,7 +4324,17 @@ const pokemonData = {
   },
   "espathra": {
     "id": 956,
-    "speed": 105,
+    "types": [
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 60,
+      "spAtk": 101,
+      "spDef": 60,
+      "speed": 105
+    },
     "abilities": [
       "opportunist",
       "frisk",
@@ -1876,7 +4343,18 @@ const pokemonData = {
   },
   "tinkaton": {
     "id": 959,
-    "speed": 94,
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 75,
+      "defense": 77,
+      "spAtk": 70,
+      "spDef": 105,
+      "speed": 94
+    },
     "abilities": [
       "mold-breaker",
       "own-tempo",
@@ -1885,14 +4363,34 @@ const pokemonData = {
   },
   "palafin-zero": {
     "id": 964,
-    "speed": 100,
+    "types": [
+      "water"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 70,
+      "defense": 72,
+      "spAtk": 53,
+      "spDef": 62,
+      "speed": 100
+    },
     "abilities": [
       "zero-to-hero"
     ]
   },
   "orthworm": {
     "id": 968,
-    "speed": 65,
+    "types": [
+      "steel"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 145,
+      "spAtk": 60,
+      "spDef": 55,
+      "speed": 65
+    },
     "abilities": [
       "earth-eater",
       "sand-veil"
@@ -1900,7 +4398,18 @@ const pokemonData = {
   },
   "glimmora": {
     "id": 970,
-    "speed": 86,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 55,
+      "defense": 90,
+      "spAtk": 130,
+      "spDef": 81,
+      "speed": 86
+    },
     "abilities": [
       "toxic-debris",
       "corrosion"
@@ -1908,7 +4417,18 @@ const pokemonData = {
   },
   "farigiraf": {
     "id": 981,
-    "speed": 60,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 90,
+      "defense": 70,
+      "spAtk": 110,
+      "spDef": 70,
+      "speed": 60
+    },
     "abilities": [
       "cud-chew",
       "armor-tail",
@@ -1917,7 +4437,18 @@ const pokemonData = {
   },
   "kingambit": {
     "id": 983,
-    "speed": 50,
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 135,
+      "defense": 120,
+      "spAtk": 60,
+      "spDef": 85,
+      "speed": 50
+    },
     "abilities": [
       "defiant",
       "supreme-overlord",
@@ -1926,7 +4457,18 @@ const pokemonData = {
   },
   "sinistcha": {
     "id": 1013,
-    "speed": 70,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 60,
+      "defense": 106,
+      "spAtk": 121,
+      "spDef": 80,
+      "speed": 70
+    },
     "abilities": [
       "hospitality",
       "heatproof"
@@ -1934,7 +4476,18 @@ const pokemonData = {
   },
   "archaludon": {
     "id": 1018,
-    "speed": 85,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 105,
+      "defense": 130,
+      "spAtk": 125,
+      "spDef": 65,
+      "speed": 85
+    },
     "abilities": [
       "stamina",
       "sturdy",
@@ -1943,7 +4496,18 @@ const pokemonData = {
   },
   "hydrapple": {
     "id": 1019,
-    "speed": 44,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 106,
+      "attack": 80,
+      "defense": 110,
+      "spAtk": 120,
+      "spDef": 80,
+      "speed": 44
+    },
     "abilities": [
       "supersweet-syrup",
       "regenerator",
@@ -1952,14 +4516,36 @@ const pokemonData = {
   },
   "glimmora-mega": {
     "id": 10321,
-    "speed": 101,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 90,
+      "defense": 105,
+      "spAtk": 150,
+      "spDef": 96,
+      "speed": 101
+    },
     "abilities": [
       "adaptability"
     ]
   },
   "wyrdeer": {
     "id": 899,
-    "speed": 65,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 103,
+      "attack": 105,
+      "defense": 72,
+      "spAtk": 105,
+      "spDef": 75,
+      "speed": 65
+    },
     "abilities": [
       "intimidate",
       "frisk",
@@ -1968,7 +4554,18 @@ const pokemonData = {
   },
   "kleavor": {
     "id": 900,
-    "speed": 85,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 135,
+      "defense": 95,
+      "spAtk": 45,
+      "spDef": 70,
+      "speed": 85
+    },
     "abilities": [
       "swarm",
       "sheer-force",
@@ -1977,7 +4574,18 @@ const pokemonData = {
   },
   "basculegion-male": {
     "id": 902,
-    "speed": 78,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 112,
+      "defense": 65,
+      "spAtk": 80,
+      "spDef": 75,
+      "speed": 78
+    },
     "abilities": [
       "swift-swim",
       "adaptability",
@@ -1986,7 +4594,18 @@ const pokemonData = {
   },
   "basculegion-female": {
     "id": 10248,
-    "speed": 78,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 92,
+      "defense": 65,
+      "spAtk": 100,
+      "spDef": 75,
+      "speed": 78
+    },
     "abilities": [
       "swift-swim",
       "adaptability",
@@ -1995,7 +4614,18 @@ const pokemonData = {
   },
   "sneasler": {
     "id": 903,
-    "speed": 120,
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 130,
+      "defense": 60,
+      "spAtk": 40,
+      "spDef": 80,
+      "speed": 120
+    },
     "abilities": [
       "pressure",
       "unburden",
@@ -2004,14 +4634,36 @@ const pokemonData = {
   },
   "raichu-alola": {
     "id": 10100,
-    "speed": 110,
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 50,
+      "spAtk": 95,
+      "spDef": 85,
+      "speed": 110
+    },
     "abilities": [
       "surge-surfer"
     ]
   },
   "ninetales-alola": {
     "id": 10104,
-    "speed": 109,
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 67,
+      "defense": 75,
+      "spAtk": 81,
+      "spDef": 100,
+      "speed": 109
+    },
     "abilities": [
       "snow-cloak",
       "snow-warning"
@@ -2019,7 +4671,18 @@ const pokemonData = {
   },
   "arcanine-hisui": {
     "id": 10230,
-    "speed": 90,
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 80,
+      "spAtk": 95,
+      "spDef": 80,
+      "speed": 90
+    },
     "abilities": [
       "intimidate",
       "flash-fire",
@@ -2028,7 +4691,18 @@ const pokemonData = {
   },
   "slowbro-galar": {
     "id": 10165,
-    "speed": 30,
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 95,
+      "spAtk": 100,
+      "spDef": 70,
+      "speed": 30
+    },
     "abilities": [
       "quick-draw",
       "own-tempo",
@@ -2037,7 +4711,17 @@ const pokemonData = {
   },
   "tauros-paldea-combat-breed": {
     "id": 10250,
-    "speed": 100,
+    "types": [
+      "fighting"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "speed": 100
+    },
     "abilities": [
       "intimidate",
       "anger-point",
@@ -2046,7 +4730,18 @@ const pokemonData = {
   },
   "typhlosion-hisui": {
     "id": 10233,
-    "speed": 95,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 84,
+      "defense": 78,
+      "spAtk": 119,
+      "spDef": 85,
+      "speed": 95
+    },
     "abilities": [
       "blaze",
       "frisk"
@@ -2054,42 +4749,108 @@ const pokemonData = {
   },
   "rotom-heat": {
     "id": 10008,
-    "speed": 86,
+    "types": [
+      "electric",
+      "fire"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAtk": 105,
+      "spDef": 107,
+      "speed": 86
+    },
     "abilities": [
       "levitate"
     ]
   },
   "rotom-wash": {
     "id": 10009,
-    "speed": 86,
+    "types": [
+      "electric",
+      "water"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAtk": 105,
+      "spDef": 107,
+      "speed": 86
+    },
     "abilities": [
       "levitate"
     ]
   },
   "rotom-frost": {
     "id": 10010,
-    "speed": 86,
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAtk": 105,
+      "spDef": 107,
+      "speed": 86
+    },
     "abilities": [
       "levitate"
     ]
   },
   "rotom-fan": {
     "id": 10011,
-    "speed": 86,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAtk": 105,
+      "spDef": 107,
+      "speed": 86
+    },
     "abilities": [
       "levitate"
     ]
   },
   "rotom-mow": {
     "id": 10012,
-    "speed": 86,
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "spAtk": 105,
+      "spDef": 107,
+      "speed": 86
+    },
     "abilities": [
       "levitate"
     ]
   },
   "samurott-hisui": {
     "id": 10236,
-    "speed": 85,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 108,
+      "defense": 80,
+      "spAtk": 100,
+      "spDef": 65,
+      "speed": 85
+    },
     "abilities": [
       "torrent",
       "sharpness"
@@ -2097,21 +4858,54 @@ const pokemonData = {
   },
   "zoroark-hisui": {
     "id": 10239,
-    "speed": 110,
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 100,
+      "defense": 60,
+      "spAtk": 125,
+      "spDef": 60,
+      "speed": 110
+    },
     "abilities": [
       "illusion"
     ]
   },
   "stunfisk-galar": {
     "id": 10180,
-    "speed": 32,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "stats": {
+      "hp": 109,
+      "attack": 81,
+      "defense": 99,
+      "spAtk": 66,
+      "spDef": 84,
+      "speed": 32
+    },
     "abilities": [
       "mimicry"
     ]
   },
   "goodra-hisui": {
     "id": 10242,
-    "speed": 60,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 100,
+      "spAtk": 110,
+      "spDef": 150,
+      "speed": 60
+    },
     "abilities": [
       "sap-sipper",
       "shell-armor",
@@ -2120,7 +4914,18 @@ const pokemonData = {
   },
   "avalugg-hisui": {
     "id": 10243,
-    "speed": 38,
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 127,
+      "defense": 184,
+      "spAtk": 34,
+      "spDef": 36,
+      "speed": 38
+    },
     "abilities": [
       "strong-jaw",
       "ice-body",
@@ -2129,7 +4934,18 @@ const pokemonData = {
   },
   "decidueye-hisui": {
     "id": 10244,
-    "speed": 60,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 112,
+      "defense": 80,
+      "spAtk": 95,
+      "spDef": 95,
+      "speed": 60
+    },
     "abilities": [
       "overgrow",
       "scrappy"
@@ -2137,7 +4953,17 @@ const pokemonData = {
   },
   "lycanroc-midnight": {
     "id": 10126,
-    "speed": 82,
+    "types": [
+      "rock"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 115,
+      "defense": 75,
+      "spAtk": 55,
+      "spDef": 75,
+      "speed": 82
+    },
     "abilities": [
       "keen-eye",
       "vital-spirit",
@@ -2146,14 +4972,35 @@ const pokemonData = {
   },
   "lycanroc-dusk": {
     "id": 10152,
-    "speed": 110,
+    "types": [
+      "rock"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 117,
+      "defense": 65,
+      "spAtk": 55,
+      "spDef": 65,
+      "speed": 110
+    },
     "abilities": [
       "tough-claws"
     ]
   },
   "tauros-paldea-blaze-breed": {
     "id": 10251,
-    "speed": 100,
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "speed": 100
+    },
     "abilities": [
       "intimidate",
       "anger-point",
@@ -2162,7 +5009,18 @@ const pokemonData = {
   },
   "tauros-paldea-aqua-breed": {
     "id": 10252,
-    "speed": 100,
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "speed": 100
+    },
     "abilities": [
       "intimidate",
       "anger-point",
