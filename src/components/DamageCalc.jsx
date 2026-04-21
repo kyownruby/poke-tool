@@ -5,6 +5,7 @@ import pokemonMovesList from '../data/pokemonMoves';
 import moveDataMap from '../data/moveData';
 import items from '../data/items';
 import { attackerAbilities, defenderAbilities } from '../data/damageAbilities';
+import abilityNames from '../data/abilityNames';
 import { getTypeName, getTypeColor, TypeBadge } from '../data/typeInfo.jsx';
 import { calculateDamage } from '../utils/damageCalc';
 
@@ -224,8 +225,8 @@ export default function DamageCalc() {
     });
   }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank]);
 
-  const atkAbilityOptions = attacker?.abilities?.filter(a => attackerAbilities[a]) ?? [];
-  const defAbilityOptions = defender?.abilities?.filter(a => defenderAbilities[a]) ?? [];
+  const atkAbilityOptions = attacker?.abilities ?? [];
+  const defAbilityOptions = defender?.abilities ?? [];
 
   return (
     <div className="space-y-4">
@@ -245,15 +246,13 @@ export default function DamageCalc() {
                     {items.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
                   </select>
                 </label>
-                {atkAbilityOptions.length > 0 && (
-                  <label className="flex items-center gap-1">
-                    特性:
-                    <select value={atkAbilityKey} onChange={e => setAtkAbilityKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs">
-                      <option value="">なし</option>
-                      {atkAbilityOptions.map(a => <option key={a} value={a}>{attackerAbilities[a].label}</option>)}
-                    </select>
-                  </label>
-                )}
+                <label className="flex items-center gap-1">
+                  特性:
+                  <select value={atkAbilityKey} onChange={e => setAtkAbilityKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs">
+                    <option value="">なし</option>
+                    {atkAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
+                  </select>
+                </label>
               </div>
             </div>
           )}
@@ -278,15 +277,13 @@ export default function DamageCalc() {
                     {items.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
                   </select>
                 </label>
-                {defAbilityOptions.length > 0 && (
-                  <label className="flex items-center gap-1">
-                    特性:
-                    <select value={defAbilityKey} onChange={e => setDefAbilityKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs">
-                      <option value="">なし</option>
-                      {defAbilityOptions.map(a => <option key={a} value={a}>{defenderAbilities[a].label}</option>)}
-                    </select>
-                  </label>
-                )}
+                <label className="flex items-center gap-1">
+                  特性:
+                  <select value={defAbilityKey} onChange={e => setDefAbilityKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs">
+                    <option value="">なし</option>
+                    {defAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
+                  </select>
+                </label>
               </div>
             </div>
           )}

@@ -102,6 +102,31 @@ export function calculateDamage({
   // Type effectiveness
   let typeEff = getTypeEffectiveness(moveType, defender.types);
 
+  // Defender ability: check mold breaker
+  const atkAbilityMoldBreaker = atkAbility?.effect?.moldBreaker;
+  const defAbility = defAbilities[defAbilityKey];
+
+  if (!atkAbilityMoldBreaker && defAbility) {
+    // Immunity abilities
+    if (defAbility.effect?.immune === moveType) {
+      return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff: 0, stab: 1, moveType, immune: true };
+    }
+    // Wonder Guard
+    if (defAbility.effect?.wonderGuard && typeEff <= 1) {
+      return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff, stab: 1, moveType, immune: true };
+    }
+    // Dry Skin fire weakness
+    if (defAbility.effect?.fireWeakness && moveType === 'fire') {
+      typeEff *= defAbility.effect.fireWeakness;
+    }
+    // Thick Fat / Heatproof
+    if (defAbility.effect?.resistType?.includes(moveType)) {
+      typeEff *= defAbility.effect.mult;
+    }
+  }
+
   // STAB
   let stab = 1.0;
   if (attacker.types.includes(moveType)) {
@@ -129,15 +154,15 @@ export function calculateDamage({
   if (atkItem?.effect?.superEffective && typeEff > 1) itemMult = atkItem.effect.superEffective;
   if (atkItem?.effect?.punchMove && options.punchMove) itemMult = atkItem.effect.punchMove;
 
-  // Defender ability
-  const defAbility = defAbilities[defAbilityKey];
+  // Defender ability: damage modifiers (skip if mold breaker)
   let defAbilityMult = 1.0;
-  if (defAbility?.effect?.physicalHalf && isPhysical) defAbilityMult *= 0.5;
-  if (defAbility?.effect?.specialHalf && !isPhysical) defAbilityMult *= 0.5;
-  if (defAbility?.effect?.superEffectiveReduce && typeEff > 1) defAbilityMult *= defAbility.effect.superEffectiveReduce;
-  if (defAbility?.effect?.fullHpHalf && options.defFullHp) defAbilityMult *= 0.5;
-  if (defAbility?.effect?.contactHalf && options.contactMove) defAbilityMult *= 0.5;
-  if (defAbility?.effect?.fireDouble && moveType === 'fire') defAbilityMult *= 2;
+  const activeDefAbility = atkAbilityMoldBreaker ? null : defAbility;
+  if (activeDefAbility?.effect?.physicalHalf && isPhysical) defAbilityMult *= 0.5;
+  if (activeDefAbility?.effect?.specialHalf && !isPhysical) defAbilityMult *= 0.5;
+  if (activeDefAbility?.effect?.superEffectiveReduce && typeEff > 1) defAbilityMult *= defAbility.effect.superEffectiveReduce;
+  if (activeDefAbility?.effect?.fullHpHalf && options.defFullHp) defAbilityMult *= 0.5;
+  if (activeDefAbility?.effect?.contactHalf && options.contactMove) defAbilityMult *= 0.5;
+  if (activeDefAbility?.effect?.fireDouble && moveType === 'fire') defAbilityMult *= 2;
 
   // Defender item: resist berry
   let defItemMult = 1.0;
