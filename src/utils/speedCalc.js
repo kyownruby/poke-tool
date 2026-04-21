@@ -45,20 +45,19 @@ export function generateMyPatterns(pokemon, params) {
   }];
 }
 
-export function generateOpponentPatterns(pokemon, abilityPoints = 32) {
+export function generateOpponentPatterns(pokemon, { abilityPoints = 32, speedMode = 'fast', showScarf = true } = {}) {
   const isMega = pokemon.englishName?.includes('-mega');
-  const natures = [
-    { mod: 1.1 },
-    { mod: 1.0 },
-    { mod: 0.9 },
-  ];
+  const natures = speedMode === 'fast'
+    ? [{ mod: 1.1 }, { mod: 1.0 }]
+    : [{ mod: 0.9 }, { mod: 1.0 }];
   const baseStats = natures.map(n => ({ ...n, stat: calcSpeedStat(pokemon.speed, abilityPoints, n.mod) }));
   const patterns = [];
   const base = { abilityPoints, abilityMult: null };
+  const canScarf = showScarf && !isMega;
 
   for (const { mod, stat } of baseStats) {
     patterns.push({ ...base, label: '通常', stat, scarf: false, natureMod: mod });
-    if (!isMega) {
+    if (canScarf) {
       patterns.push({ ...base, label: '通常', stat: applyScarf(stat), scarf: true, natureMod: mod });
     }
   }
@@ -74,7 +73,7 @@ export function generateOpponentPatterns(pokemon, abilityPoints = 32) {
         stat: applyAbilityMultiplier(stat, ab.multiplier),
         scarf: false, abilityMult: ab.multiplier,
       });
-      if (!isMega) {
+      if (canScarf) {
         patterns.push({
           ...base, label: `${ab.label}発動`, natureMod: mod,
           stat: applyAbilityMultiplier(applyScarf(stat), ab.multiplier),
@@ -105,7 +104,7 @@ export function buildTimeline(myPokemonList, opponentPokemonList) {
   }
 
   for (const entry of opponentPokemonList) {
-    const patterns = generateOpponentPatterns(entry.pokemon, entry.params?.abilityPoints ?? 32);
+    const patterns = generateOpponentPatterns(entry.pokemon, entry.params);
     for (const p of patterns) {
       const patternId = `opp-${p.pokemonName}-${p.label}-${p.natureMod}-${p.scarf}`;
       allPatterns.push({ ...p, patternId });

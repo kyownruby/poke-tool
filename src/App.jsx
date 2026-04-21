@@ -46,7 +46,11 @@ function App() {
   function addOpponentPokemon(entry) {
     const name = entry.pokemon.displayName;
     const existing = opponentPokemon.find(e => e.pokemon.displayName === name);
-    if (existing && existing.params.abilityPoints === entry.params.abilityPoints) {
+    const sameParams = existing &&
+      existing.params.abilityPoints === entry.params.abilityPoints &&
+      existing.params.speedMode === entry.params.speedMode &&
+      existing.params.showScarf === entry.params.showScarf;
+    if (sameParams) {
       clearOverrides(`opp-${name}-`);
       return;
     }
