@@ -17,6 +17,7 @@ export default function PokemonSearch({ side, onAdd }) {
   const [scarf, setScarf] = useState(false);
   const [speedMode, setSpeedMode] = useState('fast');
   const [showScarf, setShowScarf] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -41,7 +42,23 @@ export default function PokemonSearch({ side, onAdd }) {
     const matches = allEntries
       .filter(([ja, en]) => ja.includes(kata) || en.includes(lower));
     setSuggestions(matches);
+    setSelectedIndex(-1);
     setShowSuggestions(true);
+  }
+
+  function handleKeyDown(e) {
+    if (!showSuggestions || suggestions.length === 0) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedIndex(prev => Math.min(prev + 1, suggestions.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedIndex(prev => Math.max(prev - 1, 0));
+    } else if (e.key === 'Enter' && selectedIndex >= 0) {
+      e.preventDefault();
+      const [ja, en] = suggestions[selectedIndex];
+      handleSelect(ja, en);
+    }
   }
 
   function resolvePokemon(jaName, enName) {
@@ -97,17 +114,18 @@ export default function PokemonSearch({ side, onAdd }) {
           type="text"
           value={query}
           onChange={e => handleInput(e.target.value)}
+          onKeyDown={handleKeyDown}
           onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
           placeholder="ポケモン名を入力（日本語 or 英語）"
           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
         {showSuggestions && suggestions.length > 0 && (
           <ul className="absolute z-10 w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg max-h-64 overflow-y-auto">
-            {suggestions.map(([ja, en]) => (
+            {suggestions.map(([ja, en], idx) => (
               <li
                 key={en}
                 onClick={() => handleSelect(ja, en)}
-                className="flex items-center gap-2 px-3 py-1.5 hover:bg-gray-100 cursor-pointer text-sm"
+                className={`flex items-center gap-2 px-3 py-1.5 cursor-pointer text-sm ${idx === selectedIndex ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
               >
                 <img src={getSpriteUrl(pokemonData[en]?.id)} alt="" className="w-6 h-6" />
                 <span className="font-medium">{ja}</span>
