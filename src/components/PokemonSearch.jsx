@@ -119,28 +119,30 @@ export default function PokemonSearch({ side, onAdd }) {
       </div>
 
       {isMine ? (
-        <div className="flex flex-wrap gap-3 items-center text-sm">
-          <label className="flex items-center gap-1">
-            性格:
-            <select value={nature} onChange={e => setNature(Number(e.target.value))} className="border rounded px-2 py-1">
-              <option value={1.1}>プラス (×1.1)</option>
-              <option value={1.0}>なし (×1.0)</option>
-              <option value={0.9}>マイナス (×0.9)</option>
-            </select>
-          </label>
-          <label className="flex items-center gap-1">
-            能力P:
-            <input
-              type="number" min={0} max={32} value={abilityPoints}
-              onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
-              className="border rounded px-2 py-1 w-16 text-center"
-            />
-          </label>
-          <label className="flex items-center gap-1.5">
+        <>
+          <div className="flex flex-wrap gap-3 items-center text-sm">
+            <label className="flex items-center gap-1">
+              性格:
+              <select value={nature} onChange={e => setNature(Number(e.target.value))} className="border rounded px-2 py-1">
+                <option value={1.1}>プラス (×1.1)</option>
+                <option value={1.0}>なし (×1.0)</option>
+                <option value={0.9}>マイナス (×0.9)</option>
+              </select>
+            </label>
+            <label className="flex items-center gap-1">
+              能力P:
+              <input
+                type="number" min={0} max={32} value={abilityPoints}
+                onChange={e => setAbilityPoints(Math.min(32, Math.max(0, Number(e.target.value))))}
+                className="border rounded px-2 py-1 w-16 text-center"
+              />
+            </label>
+          </div>
+          <label className="flex items-center gap-1.5 text-sm">
             <input type="checkbox" checked={scarf} onChange={e => setScarf(e.target.checked)} />
             こだわりスカーフ
           </label>
-        </div>
+        </>
       ) : (
         <div className="flex flex-wrap gap-3 items-center text-sm">
           <div className="flex items-center">
