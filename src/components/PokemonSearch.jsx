@@ -27,13 +27,17 @@ export default function PokemonSearch({ side, onAdd }) {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  function toKatakana(str) {
+    return str.replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
+  }
+
   function handleInput(value) {
     setQuery(value);
     if (!value.trim()) { setSuggestions([]); return; }
     const lower = value.toLowerCase();
+    const kata = toKatakana(value);
     const matches = allEntries
-      .filter(([ja, en]) => ja.startsWith(value) || ja.includes(value) || en.startsWith(lower) || en.includes(lower))
-      .slice(0, 8);
+      .filter(([ja, en]) => ja.includes(kata) || en.includes(lower));
     setSuggestions(matches);
     setShowSuggestions(true);
   }
@@ -96,7 +100,7 @@ export default function PokemonSearch({ side, onAdd }) {
           className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
         {showSuggestions && suggestions.length > 0 && (
-          <ul className="absolute z-10 w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg max-h-48 overflow-y-auto">
+          <ul className="absolute z-10 w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-lg max-h-64 overflow-y-auto">
             {suggestions.map(([ja, en]) => (
               <li
                 key={en}
