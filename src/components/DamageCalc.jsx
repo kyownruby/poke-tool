@@ -203,7 +203,7 @@ export default function DamageCalc() {
   }
 
   function selectMove(move) {
-    setMoveData({ name: move.name, englishName: move.en, power: move.power, type: move.type, damage_class: move.damageClass, contact: move.contact });
+    setMoveData({ ...move, englishName: move.en, damage_class: move.damageClass });
     setMoveQuery(move.name);
     setShowMoveSuggestions(false);
     setMoveSuggestions([]);
