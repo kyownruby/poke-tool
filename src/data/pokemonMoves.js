@@ -7959,7 +7959,8 @@ const pokemonMoves = {
     "power-up-punch",
     "laser-focus",
     "brutal-swing",
-    "triple-axel"
+    "triple-axel",
+    "fake-out"
   ],
   "spiritomb": [
     "body-slam",
@@ -9555,7 +9556,8 @@ const pokemonMoves = {
     "baby-doll-eyes",
     "power-up-punch",
     "laser-focus",
-    "brutal-swing"
+    "brutal-swing",
+    "fake-out"
   ],
   "garchomp-mega": [
     "swords-dance",
