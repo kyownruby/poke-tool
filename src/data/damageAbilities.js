@@ -14,6 +14,9 @@ export const attackerAbilities = {
   'mold-breaker': { label: 'かたやぶり', effect: { moldBreaker: true } },
   'turboblaze':  { label: 'ターボブレイズ', effect: { moldBreaker: true } },
   'teravolt':    { label: 'テラボルテージ', effect: { moldBreaker: true } },
+  'dragonize':   { label: 'ドラゴンスキン', effect: { typeChange: 'dragon', power: 1.2 } },
+  'mega-sol':    { label: 'メガソーラー', effect: { permanentSun: true } },
+  'piercing-drill': { label: 'かんつうドリル', effect: { protectPierce: true } },
 };
 
 export const defenderAbilities = {

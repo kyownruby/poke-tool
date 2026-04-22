@@ -151,12 +151,13 @@ export function calculateDamage({
     stab = atkAbility?.effect?.stabOverride ?? 1.5;
   }
 
-  // Weather
+  // Weather (mega-sol forces sun)
+  const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
   let weatherMult = 1.0;
-  if (weather === 'sun' && moveType === 'fire') weatherMult = 1.5;
-  if (weather === 'sun' && moveType === 'water') weatherMult = 0.5;
-  if (weather === 'rain' && moveType === 'water') weatherMult = 1.5;
-  if (weather === 'rain' && moveType === 'fire') weatherMult = 0.5;
+  if (effectiveWeather === 'sun' && moveType === 'fire') weatherMult = 1.5;
+  if (effectiveWeather === 'sun' && moveType === 'water') weatherMult = 0.5;
+  if (effectiveWeather === 'rain' && moveType === 'water') weatherMult = 1.5;
+  if (effectiveWeather === 'rain' && moveType === 'fire') weatherMult = 0.5;
 
   // Field
   let fieldMult = 1.0;
@@ -187,9 +188,15 @@ export function calculateDamage({
   if (defItem?.effect?.resistBerry === moveType && typeEff > 1) defItemMult = 0.5;
 
   // Protect: blocks damage
+  // Protect (piercing-drill: contact moves deal ×0.25 through Protect)
+  let protectMult = 1.0;
   if (options.defProtect) {
-    return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
-      hpStat: effectiveHp, koText: 'まもるで無効', typeEff, stab, moveType, immune: true };
+    if (atkAbility?.effect?.protectPierce) {
+      protectMult = 0.25;
+    } else {
+      return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+        hpStat: effectiveHp, koText: 'まもるで無効', typeEff, stab, moveType, immune: true };
+    }
   }
 
   // Reflect / Light Screen
@@ -211,6 +218,7 @@ export function calculateDamage({
     dmg = Math.floor(dmg * defAbilityMult);
     dmg = Math.floor(dmg * defItemMult);
     dmg = Math.floor(dmg * roll / 100);
+    dmg = Math.floor(dmg * protectMult);
     damages.push(dmg);
   }
 
