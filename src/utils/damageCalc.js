@@ -34,9 +34,22 @@ export function calculateDamage({
   const atkBaseStat = isPhysical ? attacker.stats.attack : attacker.stats.spAtk;
   const defBaseStat = isPhysical ? defender.stats.defense : defender.stats.spDef;
 
+  // Roost: remove flying type temporarily
+  const defenderTypes = options.defRoost
+    ? defender.types.filter(t => t !== 'flying')
+    : defender.types;
+
   let atkStat = calcStat(atkBaseStat, atkAP, atkNature);
   let defStat = calcStat(defBaseStat, defAP, defNature);
   const hpStat = calcStat(defender.stats.hp, hpAP, 1.0, true);
+
+  // Stealth Rock: calculate HP after SR damage
+  let effectiveHp = hpStat;
+  if (options.defSR) {
+    const srEff = getTypeEffectiveness('rock', defender.types);
+    const srDamage = Math.floor(hpStat * srEff / 8);
+    effectiveHp = Math.max(1, hpStat - srDamage);
+  }
 
   atkStat = applyRank(atkStat, atkRank);
   const defRank = options.defRank ?? 0;
@@ -44,6 +57,11 @@ export function calculateDamage({
 
   let moveType = move.type;
   let movePower = move.power;
+
+  // Charge: double electric move power
+  if (options.atkCharged && moveType === 'electric') {
+    movePower = movePower * 2;
+  }
 
   // Ability: type-changing skills (Pixilate, etc.)
   const atkAbility = atkAbilities[atkAbilityKey];
@@ -100,7 +118,7 @@ export function calculateDamage({
   const baseDamage = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * movePower * atkStat / defStat) / 50 + 2);
 
   // Type effectiveness
-  let typeEff = getTypeEffectiveness(moveType, defender.types);
+  let typeEff = getTypeEffectiveness(moveType, defenderTypes);
 
   // Defender ability: check mold breaker
   const atkAbilityMoldBreaker = atkAbility?.effect?.moldBreaker;
@@ -168,12 +186,25 @@ export function calculateDamage({
   let defItemMult = 1.0;
   if (defItem?.effect?.resistBerry === moveType && typeEff > 1) defItemMult = 0.5;
 
+  // Protect: blocks damage
+  if (options.defProtect) {
+    return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+      hpStat: effectiveHp, koText: 'まもるで無効', typeEff, stab, moveType, immune: true };
+  }
+
+  // Reflect / Light Screen
+  let screenMult = 1.0;
+  if (options.defScreen) {
+    screenMult = 0.5;
+  }
+
   // Calculate 16 damage rolls
   const damages = [];
   for (let roll = 85; roll <= 100; roll++) {
     let dmg = baseDamage;
     dmg = Math.floor(dmg * weatherMult);
     dmg = Math.floor(dmg * fieldMult);
+    dmg = Math.floor(dmg * screenMult);
     dmg = Math.floor(dmg * stab);
     dmg = Math.floor(dmg * typeEff);
     dmg = Math.floor(dmg * itemMult);
@@ -185,22 +216,22 @@ export function calculateDamage({
 
   const minDmg = Math.min(...damages);
   const maxDmg = Math.max(...damages);
-  const minPct = (minDmg / hpStat * 100).toFixed(1);
-  const maxPct = (maxDmg / hpStat * 100).toFixed(1);
+  const minPct = (minDmg / effectiveHp * 100).toFixed(1);
+  const maxPct = (maxDmg / effectiveHp * 100).toFixed(1);
 
-  // KO calculation
+  // KO calculation (using effectiveHp for SR)
   let koText = '';
-  if (maxDmg >= hpStat) {
-    const koCount = damages.filter(d => d >= hpStat).length;
+  if (maxDmg >= effectiveHp) {
+    const koCount = damages.filter(d => d >= effectiveHp).length;
     if (koCount === 16) koText = '確定1発';
     else koText = `乱数1発 (${(koCount / 16 * 100).toFixed(1)}%)`;
   } else {
-    const hitsNeeded = Math.ceil(hpStat / minDmg);
-    const hitsMax = Math.ceil(hpStat / maxDmg);
+    const hitsNeeded = Math.ceil(effectiveHp / minDmg);
+    const hitsMax = Math.ceil(effectiveHp / maxDmg);
     if (hitsNeeded === hitsMax) {
       koText = `確定${hitsNeeded}発`;
     } else {
-      const koAtMin = damages.filter(d => d * hitsMax >= hpStat).length;
+      const koAtMin = damages.filter(d => d * hitsMax >= effectiveHp).length;
       koText = `乱数${hitsMax}発 (${(koAtMin / 16 * 100).toFixed(1)}%)`;
     }
   }
@@ -209,7 +240,8 @@ export function calculateDamage({
     damages,
     minDmg, maxDmg,
     minPct, maxPct,
-    hpStat,
+    hpStat: effectiveHp,
+    hpMax: hpStat,
     koText,
     typeEff,
     stab,
