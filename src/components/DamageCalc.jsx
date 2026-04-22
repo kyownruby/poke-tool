@@ -179,8 +179,9 @@ export default function DamageCalc() {
   const availableMoves = useMemo(() => {
     if (!attacker?.englishName) return [];
     const baseName = attacker.englishName.replace(/-mega(-[a-z])?$/, '');
-    const ownMoves = pokemonMovesList[attacker.englishName];
-    const moveNames = ownMoves?.length ? ownMoves : pokemonMovesList[baseName] ?? [];
+    const ownMoves = pokemonMovesList[attacker.englishName] ?? [];
+    const baseMoves = baseName !== attacker.englishName ? (pokemonMovesList[baseName] ?? []) : [];
+    const moveNames = [...new Set([...ownMoves, ...baseMoves])];
     return moveNames
       .filter(m => moveDataMap[m])
       .map(m => ({ en: m, ...moveDataMap[m] }))
