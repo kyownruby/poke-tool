@@ -18,6 +18,10 @@ export const attackerAbilities = {
   'mega-sol':    { label: 'メガソーラー', effect: { permanentSun: true } },
   'piercing-drill': { label: 'かんつうドリル', effect: { protectPierce: true } },
   'scrappy':     { label: 'きもったま', effect: { scrappy: true } },
+  'blaze':       { label: 'もうか', effect: { lowHpTypeBoost: 'fire', power: 1.5 } },
+  'torrent':     { label: 'げきりゅう', effect: { lowHpTypeBoost: 'water', power: 1.5 } },
+  'overgrow':    { label: 'しんりょく', effect: { lowHpTypeBoost: 'grass', power: 1.5 } },
+  'swarm':       { label: 'むしのしらせ', effect: { lowHpTypeBoost: 'bug', power: 1.5 } },
 };
 
 export const defenderAbilities = {

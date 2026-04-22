@@ -115,6 +115,9 @@ export function calculateDamage({
   if (atkAbility?.effect?.condition === 'recoil' && options.recoilMove) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
+  if (atkAbility?.effect?.lowHpTypeBoost === moveType && options.atkLowHp) {
+    movePower = Math.floor(movePower * atkAbility.effect.power);
+  }
 
   // Item: stat boosts
   if (atkItem?.effect?.stat === 'attack' && isPhysical) {
