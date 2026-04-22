@@ -251,23 +251,6 @@ export function calculateDamage({
   const minPct = (minDmg / effectiveHp * 100).toFixed(1);
   const maxPct = (maxDmg / effectiveHp * 100).toFixed(1);
 
-  // KO calculation (using effectiveHp for SR)
-  let koText = '';
-  if (maxDmg >= effectiveHp) {
-    const koCount = damages.filter(d => d >= effectiveHp).length;
-    if (koCount === 16) koText = '確定1発';
-    else koText = `乱数1発 (${(koCount / 16 * 100).toFixed(1)}%)`;
-  } else {
-    const hitsNeeded = Math.ceil(effectiveHp / minDmg);
-    const hitsMax = Math.ceil(effectiveHp / maxDmg);
-    if (hitsNeeded === hitsMax) {
-      koText = `確定${hitsNeeded}発`;
-    } else {
-      const koAtMin = damages.filter(d => d * hitsMax >= effectiveHp).length;
-      koText = `乱数${hitsMax}発 (${(koAtMin / 16 * 100).toFixed(1)}%)`;
-    }
-  }
-
   // Multi-hit: compute per-hit damage without Multiscale for 2nd+ hits
   const defAbilityMultNoMS = hasMultiscale ? defAbilityMult / 0.5 : defAbilityMult;
   function calcHitDamage(power, abilityMult) {
@@ -328,6 +311,26 @@ export function calculateDamage({
       totalMinPct: (totalMin / effectiveHp * 100).toFixed(1),
       totalMaxPct: (totalMax / effectiveHp * 100).toFixed(1),
     };
+  }
+
+  // KO calculation (use multi-hit total if applicable)
+  const koMinDmg = multiHit ? multiHit.totalMin : minDmg;
+  const koMaxDmg = multiHit ? multiHit.totalMax : maxDmg;
+  let koText = '';
+  if (koMaxDmg >= effectiveHp) {
+    if (koMinDmg >= effectiveHp) {
+      koText = '確定1発';
+    } else {
+      koText = '乱数1発';
+    }
+  } else {
+    const turnsNeeded = Math.ceil(effectiveHp / koMinDmg);
+    const turnsMax = Math.ceil(effectiveHp / koMaxDmg);
+    if (turnsNeeded === turnsMax) {
+      koText = `確定${turnsNeeded}発`;
+    } else {
+      koText = `乱数${turnsMax}〜${turnsNeeded}発`;
+    }
   }
 
   return {
