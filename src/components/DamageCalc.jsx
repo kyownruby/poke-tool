@@ -146,6 +146,12 @@ export default function DamageCalc() {
   const [defAbilityKey, setDefAbilityKey] = useState(saved?.defAbilityKey ?? '');
   const [weather, setWeather] = useState(saved?.weather ?? 'none');
   const [field, setField] = useState(saved?.field ?? 'none');
+  const [atkBurned, setAtkBurned] = useState(saved?.atkBurned ?? false);
+  const [atkCharged, setAtkCharged] = useState(saved?.atkCharged ?? false);
+  const [defProtect, setDefProtect] = useState(saved?.defProtect ?? false);
+  const [defScreen, setDefScreen] = useState(saved?.defScreen ?? false);
+  const [defRoost, setDefRoost] = useState(saved?.defRoost ?? false);
+  const [defSR, setDefSR] = useState(saved?.defSR ?? false);
   const [moveQuery, setMoveQuery] = useState('');
   const [moveData, setMoveData] = useState(saved?.moveData ?? null);
   const [moveSuggestions, setMoveSuggestions] = useState([]);
@@ -165,9 +171,10 @@ export default function DamageCalc() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
+        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR]);
 
   const availableMoves = useMemo(() => {
     if (!attacker?.englishName) return [];
@@ -221,9 +228,12 @@ export default function DamageCalc() {
       atkAbilityKey, defAbilityKey,
       atkAbilities: attackerAbilities,
       defAbilities: defenderAbilities,
-      options: { defRank: moveData?.damage_class === 'special' ? spDefRank : defRank },
+      options: {
+        defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
+        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR,
+      },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -252,6 +262,16 @@ export default function DamageCalc() {
                     <option value="">なし</option>
                     {atkAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
                   </select>
+                </label>
+              </div>
+              <div className="flex flex-wrap gap-3 text-xs">
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={atkBurned} onChange={e => setAtkBurned(e.target.checked)} />
+                  やけど
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={atkCharged} onChange={e => setAtkCharged(e.target.checked)} />
+                  じゅうでん
                 </label>
               </div>
             </div>
@@ -284,6 +304,24 @@ export default function DamageCalc() {
                     <option value="">なし</option>
                     {defAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
                   </select>
+                </label>
+              </div>
+              <div className="flex flex-wrap gap-3 text-xs">
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={defProtect} onChange={e => setDefProtect(e.target.checked)} />
+                  まもる
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={defScreen} onChange={e => setDefScreen(e.target.checked)} />
+                  壁
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={defRoost} onChange={e => setDefRoost(e.target.checked)} />
+                  はねやすめ
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={defSR} onChange={e => setDefSR(e.target.checked)} />
+                  ステロ
                 </label>
               </div>
             </div>
