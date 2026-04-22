@@ -321,7 +321,7 @@ export function calculateDamage({
     if (koMinDmg >= effectiveHp) {
       koText = '確定1発';
     } else {
-      koText = '乱数1発';
+      koText = '確定2発、乱数1発';
     }
   } else {
     const turnsNeeded = Math.ceil(effectiveHp / koMinDmg);
@@ -329,7 +329,7 @@ export function calculateDamage({
     if (turnsNeeded === turnsMax) {
       koText = `確定${turnsNeeded}発`;
     } else {
-      koText = `乱数${turnsMax}〜${turnsNeeded}発`;
+      koText = `確定${turnsNeeded}発、乱数${turnsMax}発`;
     }
   }
 
