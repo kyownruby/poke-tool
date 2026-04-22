@@ -202,7 +202,8 @@ export function calculateDamage({
   if (activeDefAbility?.effect?.physicalHalf && isPhysical) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.specialHalf && !isPhysical) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.superEffectiveReduce && typeEff > 1) defAbilityMult *= defAbility.effect.superEffectiveReduce;
-  if (activeDefAbility?.effect?.fullHpHalf && options.defFullHp) defAbilityMult *= 0.5;
+  const hasMultiscale = activeDefAbility?.effect?.fullHpHalf && options.defFullHp;
+  if (hasMultiscale) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.contactHalf && options.contactMove) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.fireDouble && moveType === 'fire') defAbilityMult *= 2;
 
@@ -267,32 +268,36 @@ export function calculateDamage({
     }
   }
 
-  // Multi-hit moves
+  // Multi-hit: compute per-hit damage without Multiscale for 2nd+ hits
+  const defAbilityMultNoMS = hasMultiscale ? defAbilityMult / 0.5 : defAbilityMult;
+  function calcHitDamage(power, abilityMult) {
+    const bd = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * power * atkStat / defStat) / 50 + 2);
+    const dmgs = [];
+    for (let roll = 85; roll <= 100; roll++) {
+      let dmg = bd;
+      dmg = Math.floor(dmg * weatherMult);
+      dmg = Math.floor(dmg * fieldMult);
+      dmg = Math.floor(dmg * screenMult);
+      dmg = Math.floor(dmg * stab);
+      dmg = Math.floor(dmg * typeEff);
+      dmg = Math.floor(dmg * itemMult);
+      dmg = Math.floor(dmg * abilityMult);
+      dmg = Math.floor(dmg * defItemMult);
+      dmg = Math.floor(dmg * roll / 100);
+      dmg = Math.floor(dmg * protectMult);
+      dmgs.push(dmg);
+    }
+    return dmgs;
+  }
+
   let multiHit = null;
   const minHits = move.minHits;
   const maxHits = move.maxHits;
 
   if (move.escalating) {
-    // Escalating power moves (Triple Axel: 20,40,60)
-    const escalatingDamages = move.escalating.map(power => {
-      const bd = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * power * atkStat / defStat) / 50 + 2);
-      const dmgs = [];
-      for (let roll = 85; roll <= 100; roll++) {
-        let dmg = bd;
-        dmg = Math.floor(dmg * weatherMult);
-        dmg = Math.floor(dmg * fieldMult);
-        dmg = Math.floor(dmg * screenMult);
-        dmg = Math.floor(dmg * stab);
-        dmg = Math.floor(dmg * typeEff);
-        dmg = Math.floor(dmg * itemMult);
-        dmg = Math.floor(dmg * defAbilityMult);
-        dmg = Math.floor(dmg * defItemMult);
-        dmg = Math.floor(dmg * roll / 100);
-        dmg = Math.floor(dmg * protectMult);
-        dmgs.push(dmg);
-      }
-      return dmgs;
-    });
+    const escalatingDamages = move.escalating.map((power, i) =>
+      calcHitDamage(power, i === 0 ? defAbilityMult : defAbilityMultNoMS)
+    );
     const totalMin = escalatingDamages.reduce((sum, d) => sum + Math.min(...d), 0);
     const totalMax = escalatingDamages.reduce((sum, d) => sum + Math.max(...d), 0);
     multiHit = {
@@ -308,15 +313,20 @@ export function calculateDamage({
       escalating: true,
     };
   } else if (minHits && maxHits) {
+    const noMSdmgs = hasMultiscale ? calcHitDamage(movePower, defAbilityMultNoMS) : null;
+    const noMSmin = noMSdmgs ? Math.min(...noMSdmgs) : minDmg;
+    const noMSmax = noMSdmgs ? Math.max(...noMSdmgs) : maxDmg;
+    const totalMin = minDmg + noMSmin * (minHits - 1);
+    const totalMax = maxDmg + noMSmax * (maxHits - 1);
     multiHit = {
       minHits,
       maxHits,
       perHitMin: minDmg,
       perHitMax: maxDmg,
-      totalMin: minDmg * minHits,
-      totalMax: maxDmg * maxHits,
-      totalMinPct: (minDmg * minHits / effectiveHp * 100).toFixed(1),
-      totalMaxPct: (maxDmg * maxHits / effectiveHp * 100).toFixed(1),
+      totalMin,
+      totalMax,
+      totalMinPct: (totalMin / effectiveHp * 100).toFixed(1),
+      totalMaxPct: (totalMax / effectiveHp * 100).toFixed(1),
     };
   }
 
