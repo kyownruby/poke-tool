@@ -14,11 +14,32 @@ async function fetchMoveData(name) {
   const jaName = data.names?.find(n => n.language.name === 'ja-Hrkt')?.name
     || data.names?.find(n => n.language.name === 'ja')?.name
     || data.name;
+  const isPhysical = data.damage_class.name === 'physical';
+  const nonContactPhysical = new Set([
+    'earthquake','magnitude','bulldoze','bone-rush','bonemerang',
+    'rock-slide','stone-edge','rock-tomb','rock-blast','rock-throw','rock-wrecker',
+    'avalanche','icicle-spear','icicle-crash',
+    'bullet-seed','razor-leaf','seed-bomb','petal-blizzard',
+    'pin-missile','fell-stinger',
+    'dragon-darts','scale-shot','poltergeist',
+    'thousand-arrows','precipice-blades',
+    'explosion','self-destruct','sacred-fire',
+    'attack-order','aura-sphere',
+    'metal-burst','foul-play',
+  ]);
+  const contactSpecial = new Set([
+    'draining-kiss','petal-dance','grass-knot','infestation',
+  ]);
+  let contact;
+  if (nonContactPhysical.has(data.name)) contact = false;
+  else if (contactSpecial.has(data.name)) contact = true;
+  else contact = isPhysical;
   return {
     name: jaName,
     power: data.power,
     type: data.type.name,
     damageClass: data.damage_class.name,
+    contact,
   };
 }
 

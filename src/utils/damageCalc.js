@@ -201,7 +201,7 @@ export function calculateDamage({
   // Protect (piercing-drill: contact moves deal ×0.25 through Protect)
   let protectMult = 1.0;
   if (options.defProtect) {
-    if (atkAbility?.effect?.protectPierce) {
+    if (atkAbility?.effect?.protectPierce && move.contact) {
       protectMult = 0.25;
     } else {
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
