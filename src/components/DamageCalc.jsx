@@ -423,6 +423,20 @@ export default function DamageCalc() {
               </span>
             </div>
           )}
+          {result.multiHit && (
+            <div className="text-xs text-gray-500 bg-gray-50 rounded p-2 space-y-0.5">
+              <div>1発: {result.multiHit.perHitMin}〜{result.multiHit.perHitMax}</div>
+              <div className="font-bold text-gray-700">
+                ×{result.multiHit.minHits === result.multiHit.maxHits
+                  ? `${result.multiHit.minHits}回`
+                  : `${result.multiHit.minHits}〜${result.multiHit.maxHits}回`}
+                合計: {result.multiHit.totalMin}〜{result.multiHit.totalMax}
+                <span className="font-normal text-gray-500 ml-1">
+                  ({result.multiHit.totalMinPct}%〜{result.multiHit.totalMaxPct}%)
+                </span>
+              </div>
+            </div>
+          )}
           <div className={`text-sm font-bold ${result.koText.includes('確定1発') ? 'text-red-600' : 'text-gray-700'}`}>
             {result.koText}
           </div>
