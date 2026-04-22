@@ -144,6 +144,7 @@ export default function DamageCalc() {
   const [defItemKey, setDefItemKey] = useState(saved?.defItemKey ?? 'none');
   const [atkAbilityKey, setAtkAbilityKey] = useState(saved?.atkAbilityKey ?? '');
   const [defAbilityKey, setDefAbilityKey] = useState(saved?.defAbilityKey ?? '');
+  const [defFullHp, setDefFullHp] = useState(saved?.defFullHp ?? true);
   const [weather, setWeather] = useState(saved?.weather ?? 'none');
   const [field, setField] = useState(saved?.field ?? 'none');
   const [atkBurned, setAtkBurned] = useState(saved?.atkBurned ?? false);
@@ -171,10 +172,10 @@ export default function DamageCalc() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
-        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR,
+        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp]);
 
   const availableMoves = useMemo(() => {
     if (!attacker?.englishName) return [];
@@ -233,10 +234,10 @@ export default function DamageCalc() {
       defAbilities: defenderAbilities,
       options: {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
-        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR,
+        atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -283,7 +284,7 @@ export default function DamageCalc() {
 
         {/* Defender */}
         <div className="space-y-2">
-          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); setDefAbilityKey(p.abilities?.[0] ?? ''); setDefItemKey(p.englishName?.includes('-mega') ? 'none' : defItemKey); }} />
+          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefItemKey(p.englishName?.includes('-mega') ? 'none' : defItemKey); }} />
           {defender && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label="HP" value={hpAP} onChange={setHpAP} />
@@ -303,11 +304,17 @@ export default function DamageCalc() {
                 </label>
                 <label className="flex items-center gap-1">
                   特性:
-                  <select value={defAbilityKey} onChange={e => setDefAbilityKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs">
+                  <select value={defAbilityKey} onChange={e => { setDefAbilityKey(e.target.value); if (e.target.value === 'multiscale') setDefFullHp(true); }} className="border rounded px-1 py-0.5 text-xs">
                     <option value="">なし</option>
                     {defAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
                   </select>
                 </label>
+                {defAbilityKey === 'multiscale' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defFullHp} onChange={e => setDefFullHp(e.target.checked)} />
+                    HP満タン
+                  </label>
+                )}
               </div>
               <div className="flex flex-wrap gap-3 text-xs">
                 <label className="flex items-center gap-1.5">
