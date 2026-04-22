@@ -58,13 +58,24 @@ export function calculateDamage({
   let moveType = move.type;
   let movePower = move.power;
 
+  // Ability: type-changing skills (Pixilate, etc.)
+  const atkAbility = atkAbilities[atkAbilityKey];
+
+  // Effective weather (mega-sol forces sun)
+  const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
+
+  // Weather Ball: type and power change based on weather
+  if (move.englishName === 'weather-ball' && effectiveWeather !== 'none') {
+    movePower = 100;
+    const weatherTypeMap = { sun: 'fire', rain: 'water', sand: 'rock', snow: 'ice' };
+    moveType = weatherTypeMap[effectiveWeather] || moveType;
+  }
+
   // Charge: double electric move power
   if (options.atkCharged && moveType === 'electric') {
     movePower = movePower * 2;
   }
 
-  // Ability: type-changing skills (Pixilate, etc.)
-  const atkAbility = atkAbilities[atkAbilityKey];
   if (atkAbility?.effect?.typeChange && moveType === 'normal') {
     moveType = atkAbility.effect.typeChange;
     movePower = Math.floor(movePower * atkAbility.effect.power);
@@ -151,8 +162,7 @@ export function calculateDamage({
     stab = atkAbility?.effect?.stabOverride ?? 1.5;
   }
 
-  // Weather (mega-sol forces sun)
-  const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
+  // Weather
   let weatherMult = 1.0;
   if (effectiveWeather === 'sun' && moveType === 'fire') weatherMult = 1.5;
   if (effectiveWeather === 'sun' && moveType === 'water') weatherMult = 0.5;
