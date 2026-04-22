@@ -246,7 +246,7 @@ export default function DamageCalc() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Attacker */}
         <div className="space-y-2">
-          <PokemonSelector label="🔵 攻撃側" color="blue" pokemon={attacker} onChange={p => { setAttacker(p); setAtkAbilityKey(p.abilities?.[0] ?? ''); setMoveData(null); setMoveQuery(''); }} />
+          <PokemonSelector label="🔵 攻撃側" color="blue" pokemon={attacker} onChange={p => { setAttacker(p); setAtkAbilityKey(p.abilities?.[0] ?? ''); setAtkItemKey(p.englishName?.includes('-mega') ? 'none' : atkItemKey); setMoveData(null); setMoveQuery(''); }} />
           {attacker && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label={moveData?.damage_class === 'special' ? '特攻' : '攻撃'}
@@ -283,7 +283,7 @@ export default function DamageCalc() {
 
         {/* Defender */}
         <div className="space-y-2">
-          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); setDefAbilityKey(p.abilities?.[0] ?? ''); }} />
+          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); setDefAbilityKey(p.abilities?.[0] ?? ''); setDefItemKey(p.englishName?.includes('-mega') ? 'none' : defItemKey); }} />
           {defender && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label="HP" value={hpAP} onChange={setHpAP} />
