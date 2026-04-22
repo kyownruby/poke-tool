@@ -459,7 +459,9 @@ const moveData = {
     "power": 25,
     "type": "grass",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "block": {
     "name": "とおせんぼう",
@@ -830,7 +832,9 @@ const moveData = {
     "power": 18,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "rock-slide": {
     "name": "いわなだれ",
@@ -921,7 +925,9 @@ const moveData = {
     "power": null,
     "type": "dark",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 6,
+    "maxHits": 6
   },
   "heat-wave": {
     "name": "ねっぷう",
@@ -1201,14 +1207,18 @@ const moveData = {
     "power": 25,
     "type": "dragon",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "dual-wingbeat": {
     "name": "ダブルウイング",
     "power": 40,
     "type": "flying",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 2
   },
   "scorching-sands": {
     "name": "ねっさのだいち",
@@ -1600,7 +1610,9 @@ const moveData = {
     "power": 15,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "poison-sting": {
     "name": "どくばり",
@@ -1614,14 +1626,18 @@ const moveData = {
     "power": 25,
     "type": "bug",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 2
   },
   "pin-missile": {
     "name": "ミサイルばり",
     "power": 25,
     "type": "bug",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "peck": {
     "name": "つつく",
@@ -1999,7 +2015,9 @@ const moveData = {
     "power": 30,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 2
   },
   "thunder-shock": {
     "name": "でんきショック",
@@ -2265,7 +2283,9 @@ const moveData = {
     "power": 15,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "sing": {
     "name": "うたう",
@@ -2727,7 +2747,9 @@ const moveData = {
     "power": 25,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "burning-jealousy": {
     "name": "しっとのほのお",
@@ -2839,7 +2861,9 @@ const moveData = {
     "power": 25,
     "type": "rock",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "wake-up-slap": {
     "name": "めざましビンタ",
@@ -2881,7 +2905,9 @@ const moveData = {
     "power": 35,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 2
   },
   "wide-guard": {
     "name": "ワイドガード",
@@ -2909,7 +2935,9 @@ const moveData = {
     "power": 40,
     "type": "dragon",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 2
   },
   "darkest-lariat": {
     "name": "ＤＤラリアット",
@@ -3112,7 +3140,9 @@ const moveData = {
     "power": 18,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "dizzy-punch": {
     "name": "ピヨピヨパンチ",
@@ -3567,7 +3597,9 @@ const moveData = {
     "power": 15,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "drill-peck": {
     "name": "ドリルくちばし",
@@ -3651,7 +3683,14 @@ const moveData = {
     "power": 20,
     "type": "ice",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 3,
+    "maxHits": 3,
+    "escalating": [
+      20,
+      40,
+      60
+    ]
   },
   "metal-burst": {
     "name": "メタルバースト",
@@ -3791,7 +3830,9 @@ const moveData = {
     "power": 25,
     "type": "ice",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "ice-shard": {
     "name": "こおりのつぶて",
@@ -3910,7 +3951,9 @@ const moveData = {
     "power": 25,
     "type": "ground",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "quick-guard": {
     "name": "ファストガード",
@@ -4106,7 +4149,9 @@ const moveData = {
     "power": 15,
     "type": "water",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 5
   },
   "powder": {
     "name": "ふんじん",
@@ -4274,7 +4319,9 @@ const moveData = {
     "power": 20,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "minHits": 2,
+    "maxHits": 5
   },
   "baneful-bunker": {
     "name": "トーチカ",
@@ -4393,7 +4440,9 @@ const moveData = {
     "power": 50,
     "type": "dragon",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "minHits": 2,
+    "maxHits": 2
   },
   "flower-trick": {
     "name": "トリックフラワー",

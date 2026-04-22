@@ -267,6 +267,59 @@ export function calculateDamage({
     }
   }
 
+  // Multi-hit moves
+  let multiHit = null;
+  const minHits = move.minHits;
+  const maxHits = move.maxHits;
+
+  if (move.escalating) {
+    // Escalating power moves (Triple Axel: 20,40,60)
+    const escalatingDamages = move.escalating.map(power => {
+      const bd = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * power * atkStat / defStat) / 50 + 2);
+      const dmgs = [];
+      for (let roll = 85; roll <= 100; roll++) {
+        let dmg = bd;
+        dmg = Math.floor(dmg * weatherMult);
+        dmg = Math.floor(dmg * fieldMult);
+        dmg = Math.floor(dmg * screenMult);
+        dmg = Math.floor(dmg * stab);
+        dmg = Math.floor(dmg * typeEff);
+        dmg = Math.floor(dmg * itemMult);
+        dmg = Math.floor(dmg * defAbilityMult);
+        dmg = Math.floor(dmg * defItemMult);
+        dmg = Math.floor(dmg * roll / 100);
+        dmg = Math.floor(dmg * protectMult);
+        dmgs.push(dmg);
+      }
+      return dmgs;
+    });
+    const totalMin = escalatingDamages.reduce((sum, d) => sum + Math.min(...d), 0);
+    const totalMax = escalatingDamages.reduce((sum, d) => sum + Math.max(...d), 0);
+    multiHit = {
+      hits: move.escalating.length,
+      minHits: move.escalating.length,
+      maxHits: move.escalating.length,
+      perHitMin: minDmg,
+      perHitMax: maxDmg,
+      totalMin,
+      totalMax,
+      totalMinPct: (totalMin / effectiveHp * 100).toFixed(1),
+      totalMaxPct: (totalMax / effectiveHp * 100).toFixed(1),
+      escalating: true,
+    };
+  } else if (minHits && maxHits) {
+    multiHit = {
+      minHits,
+      maxHits,
+      perHitMin: minDmg,
+      perHitMax: maxDmg,
+      totalMin: minDmg * minHits,
+      totalMax: maxDmg * maxHits,
+      totalMinPct: (minDmg * minHits / effectiveHp * 100).toFixed(1),
+      totalMaxPct: (maxDmg * maxHits / effectiveHp * 100).toFixed(1),
+    };
+  }
+
   return {
     damages,
     minDmg, maxDmg,
@@ -274,6 +327,7 @@ export function calculateDamage({
     hpStat: effectiveHp,
     hpMax: hpStat,
     srDamage,
+    multiHit,
     koText,
     typeEff,
     stab,
