@@ -45,9 +45,10 @@ export function calculateDamage({
 
   // Stealth Rock: calculate HP after SR damage
   let effectiveHp = hpStat;
+  let srDamage = 0;
   if (options.defSR) {
     const srEff = getTypeEffectiveness('rock', defender.types);
-    const srDamage = Math.floor(hpStat * srEff / 8);
+    srDamage = Math.floor(hpStat * srEff / 8);
     effectiveHp = Math.max(1, hpStat - srDamage);
   }
 
@@ -260,6 +261,7 @@ export function calculateDamage({
     minPct, maxPct,
     hpStat: effectiveHp,
     hpMax: hpStat,
+    srDamage,
     koText,
     typeEff,
     stab,

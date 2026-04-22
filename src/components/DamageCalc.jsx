@@ -403,12 +403,25 @@ export default function DamageCalc() {
           <div className="text-xs text-gray-500">
             <span className="flex items-center gap-1">タイプ相性: ×{result.typeEff} <TypeBadge type={result.moveType} /> {result.stab > 1 ? '/ タイプ一致' : ''}</span>
           </div>
-          <div className="text-lg font-bold text-gray-800">
-            ダメージ: {result.minDmg}〜{result.maxDmg}
-            <span className="text-sm font-normal text-gray-500 ml-2">
-              ({result.minPct}%〜{result.maxPct}%)
-            </span>
-          </div>
+          {result.srDamage > 0 && (
+            <div className="text-xs text-gray-500 bg-gray-50 rounded p-2 space-y-0.5">
+              <div>ステロダメージ: {result.srDamage} ({(result.srDamage / result.hpMax * 100).toFixed(1)}%)</div>
+              <div>技ダメージ: {result.minDmg}〜{result.maxDmg}</div>
+              <div className="font-bold text-gray-700">合計: {result.srDamage + result.minDmg}〜{result.srDamage + result.maxDmg}
+                <span className="font-normal text-gray-500 ml-1">
+                  ({((result.srDamage + result.minDmg) / result.hpMax * 100).toFixed(1)}%〜{((result.srDamage + result.maxDmg) / result.hpMax * 100).toFixed(1)}%)
+                </span>
+              </div>
+            </div>
+          )}
+          {!result.srDamage && (
+            <div className="text-lg font-bold text-gray-800">
+              ダメージ: {result.minDmg}〜{result.maxDmg}
+              <span className="text-sm font-normal text-gray-500 ml-2">
+                ({result.minPct}%〜{result.maxPct}%)
+              </span>
+            </div>
+          )}
           <div className={`text-sm font-bold ${result.koText.includes('確定1発') ? 'text-red-600' : 'text-gray-700'}`}>
             {result.koText}
           </div>
