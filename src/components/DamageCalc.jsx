@@ -354,14 +354,19 @@ export default function DamageCalc() {
               </ul>
             )}
           </div>
-          {moveData && (
-            <div className="flex items-center gap-2 text-xs text-gray-600 mt-1">
-              <span className="font-bold">{moveData.name}</span>
-              <TypeBadge type={moveData.type} />
-              <span>威力: {moveData.power ?? '—'}</span>
-              <span>{moveData.damage_class === 'physical' ? '物理' : moveData.damage_class === 'special' ? '特殊' : '変化'}</span>
-            </div>
-          )}
+          {moveData && (() => {
+            const effType = result?.moveType ?? moveData.type;
+            const effPower = result?.movePower ?? moveData.power;
+            const changed = effType !== moveData.type || effPower !== moveData.power;
+            return (
+              <div className="flex items-center gap-2 text-xs text-gray-600 mt-1">
+                <span className="font-bold">{moveData.name}</span>
+                <TypeBadge type={effType} />
+                <span>威力: {changed ? <><s className="text-gray-300">{moveData.power}</s> → <span className="font-bold text-gray-800">{effPower}</span></> : (moveData.power ?? '—')}</span>
+                <span>{moveData.damage_class === 'physical' ? '物理' : moveData.damage_class === 'special' ? '特殊' : '変化'}</span>
+              </div>
+            );
+          })()}
 
           {/* Weather & Field */}
           <div className="flex flex-wrap gap-3 text-xs">

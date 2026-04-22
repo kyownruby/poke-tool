@@ -139,12 +139,12 @@ export function calculateDamage({
     // Immunity abilities
     if (defAbility.effect?.immune === moveType) {
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
-        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff: 0, stab: 1, moveType, immune: true };
+        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff: 0, stab: 1, moveType, movePower, immune: true };
     }
     // Wonder Guard
     if (defAbility.effect?.wonderGuard && typeEff <= 1) {
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
-        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff, stab: 1, moveType, immune: true };
+        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff, stab: 1, moveType, movePower, immune: true };
     }
     // Dry Skin fire weakness
     if (defAbility.effect?.fireWeakness && moveType === 'fire') {
@@ -205,7 +205,7 @@ export function calculateDamage({
       protectMult = 0.25;
     } else {
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
-        hpStat: effectiveHp, koText: 'まもるで無効', typeEff, stab, moveType, immune: true };
+        hpStat: effectiveHp, koText: 'まもるで無効', typeEff, stab, moveType, movePower, immune: true };
     }
   }
 
@@ -264,5 +264,6 @@ export function calculateDamage({
     typeEff,
     stab,
     moveType,
+    movePower,
   };
 }
