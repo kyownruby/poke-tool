@@ -17,6 +17,7 @@ export const attackerAbilities = {
   'dragonize':   { label: 'ドラゴンスキン', effect: { typeChange: 'dragon', power: 1.2 } },
   'mega-sol':    { label: 'メガソーラー', effect: { permanentSun: true } },
   'piercing-drill': { label: 'かんつうドリル', effect: { protectPierce: true } },
+  'scrappy':     { label: 'きもったま', effect: { scrappy: true } },
 };
 
 export const defenderAbilities = {

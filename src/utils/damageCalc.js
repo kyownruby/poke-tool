@@ -138,6 +138,12 @@ export function calculateDamage({
   // Type effectiveness
   let typeEff = getTypeEffectiveness(moveType, defenderTypes);
 
+  // Scrappy: Normal/Fighting can hit Ghost
+  if (atkAbility?.effect?.scrappy && typeEff === 0 && (moveType === 'normal' || moveType === 'fighting')) {
+    const nonGhostTypes = defenderTypes.filter(t => t !== 'ghost');
+    typeEff = nonGhostTypes.length > 0 ? getTypeEffectiveness(moveType, nonGhostTypes) : 1;
+  }
+
   // Defender ability: check mold breaker
   const atkAbilityMoldBreaker = atkAbility?.effect?.moldBreaker;
   const defAbility = defAbilities[defAbilityKey];
