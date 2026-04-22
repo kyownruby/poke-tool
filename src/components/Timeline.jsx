@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Timeline({ patterns, onHide, onRankChange, onToggleParalysis }) {
+export default function Timeline({ patterns, onHide, onRankChange, onToggleParalysis, onToggleAbility }) {
   const [hiding, setHiding] = useState(new Set());
 
   function handleHide(patternId) {
@@ -72,7 +72,14 @@ export default function Timeline({ patterns, onHide, onRankChange, onToggleParal
                   </span>
                 )}
               </div>
-              <span className="ml-auto flex items-center gap-2">
+              <span className="ml-auto flex items-center gap-1.5">
+                {p.speedAbilities?.length > 0 && onToggleAbility && p.speedAbilities.map(ab => (
+                  <button
+                    key={ab.key}
+                    onClick={() => onToggleAbility(p.patternId, ab.key)}
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${p.activeAbility === ab.key ? 'bg-sky-400 text-white' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}`}
+                  >{ab.label}</button>
+                ))}
                 <button
                   onClick={() => onToggleParalysis(p.patternId)}
                   className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${p.paralysis ? 'bg-yellow-400 text-yellow-900' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}`}

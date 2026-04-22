@@ -31,6 +31,7 @@ export default function SpeedTool() {
   const [hiddenPatterns, setHiddenPatterns] = useState(saved?.hiddenPatterns ?? new Set());
   const [rankOverrides, setRankOverrides] = useState(saved?.rankOverrides ?? {});
   const [paralysisOverrides, setParalysisOverrides] = useState(saved?.paralysisOverrides ?? {});
+  const [abilityOverrides, setAbilityOverrides] = useState(saved?.abilityOverrides ?? {});
 
   function clearOverrides(prefix) {
     setHiddenPatterns(prev => {
@@ -44,6 +45,11 @@ export default function SpeedTool() {
       return next;
     });
     setParalysisOverrides(prev => {
+      const next = { ...prev };
+      for (const key of Object.keys(next)) { if (key.startsWith(prefix)) delete next[key]; }
+      return next;
+    });
+    setAbilityOverrides(prev => {
       const next = { ...prev };
       for (const key of Object.keys(next)) { if (key.startsWith(prefix)) delete next[key]; }
       return next;
@@ -100,6 +106,7 @@ export default function SpeedTool() {
     setHiddenPatterns(new Set());
     setRankOverrides({});
     setParalysisOverrides({});
+    setAbilityOverrides({});
   }
 
   function hidePattern(key) {
@@ -114,18 +121,30 @@ export default function SpeedTool() {
     setParalysisOverrides(prev => ({ ...prev, [patternId]: !prev[patternId] }));
   }
 
+  function toggleAbility(patternId, abilityKey) {
+    setAbilityOverrides(prev => ({
+      ...prev,
+      [patternId]: prev[patternId] === abilityKey ? null : abilityKey,
+    }));
+  }
+
   const timeline = useMemo(() => {
     const all = buildTimeline(myPokemon, opponentPokemon);
     const withMods = all.map(p => {
       const rank = rankOverrides[p.patternId] ?? 0;
       const paralysis = paralysisOverrides[p.patternId] ?? false;
+      const activeAbility = abilityOverrides[p.patternId] ?? null;
       let finalStat = applyRank(p.stat, rank);
+      if (activeAbility) {
+        const ab = p.speedAbilities?.find(a => a.key === activeAbility);
+        if (ab) finalStat = Math.floor(finalStat * ab.multiplier);
+      }
       if (paralysis) finalStat = Math.floor(finalStat * 0.5);
-      return { ...p, rank, paralysis, finalStat };
+      return { ...p, rank, paralysis, activeAbility, finalStat };
     });
     withMods.sort((a, b) => b.finalStat - a.finalStat);
     return withMods.filter(p => !hiddenPatterns.has(p.patternId));
-  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides]);
+  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides, abilityOverrides]);
 
   useEffect(() => {
     if (hiddenPatterns.size === 0) return;
@@ -150,8 +169,8 @@ export default function SpeedTool() {
   }, [hiddenPatterns, myPokemon, opponentPokemon]);
 
   useEffect(() => {
-    saveState({ myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides });
-  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides]);
+    saveState({ myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides, abilityOverrides });
+  }, [myPokemon, opponentPokemon, hiddenPatterns, rankOverrides, paralysisOverrides, abilityOverrides]);
 
   return (
     <div className="space-y-6">
@@ -192,7 +211,7 @@ export default function SpeedTool() {
                 すべて削除
               </button>
             </div>
-            <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} onToggleParalysis={toggleParalysis} />
+            <Timeline patterns={timeline} onHide={hidePattern} onRankChange={setPatternRank} onToggleParalysis={toggleParalysis} onToggleAbility={toggleAbility} />
           </div>
         </div>
       )}

@@ -36,12 +36,15 @@ export function generateMyPatterns(pokemon, params) {
   const isMega = pokemon.englishName?.includes('-mega');
   const base = calcSpeedStat(pokemon.stats.speed, abilityPoints, nature);
   const useScarf = scarf && !isMega;
+  const speedAbilities = (pokemon.abilities || [])
+    .filter(a => SPEED_ABILITIES[a])
+    .map(a => ({ key: a, ...SPEED_ABILITIES[a] }));
   return [{
     pokemonName: pokemon.displayName, sprite: pokemon.sprite,
     baseSpeed: pokemon.stats.speed,
     stat: useScarf ? applyScarf(base) : base,
     label: '通常', side: 'mine', scarf: useScarf,
-    natureMod: nature, abilityPoints,
+    natureMod: nature, abilityPoints, speedAbilities,
   }];
 }
 
