@@ -56,14 +56,20 @@ export function calculateDamage({
   const defRank = options.defRank ?? 0;
   defStat = applyRank(defStat, defRank);
 
+  // Effective weather (mega-sol forces sun)
+  const atkAbility = atkAbilities[atkAbilityKey];
+  const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
+
+  // Weather: defensive stat boosts
+  if (effectiveWeather === 'sand' && !isPhysical && defender.types.includes('rock')) {
+    defStat = Math.floor(defStat * 1.5);
+  }
+  if (effectiveWeather === 'snow' && isPhysical && defender.types.includes('ice')) {
+    defStat = Math.floor(defStat * 1.5);
+  }
+
   let moveType = move.type;
   let movePower = move.power;
-
-  // Ability: type-changing skills (Pixilate, etc.)
-  const atkAbility = atkAbilities[atkAbilityKey];
-
-  // Effective weather (mega-sol forces sun)
-  const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
 
   // Weather Ball: type and power change based on weather
   if (move.englishName === 'weather-ball' && effectiveWeather !== 'none') {
