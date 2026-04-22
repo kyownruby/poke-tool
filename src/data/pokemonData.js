@@ -3185,6 +3185,24 @@ const pokemonData = {
       "stance-change"
     ]
   },
+  "aegislash-blade": {
+    "id": 10026,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 140,
+      "defense": 50,
+      "spAtk": 140,
+      "spDef": 50,
+      "speed": 60
+    },
+    "abilities": [
+      "stance-change"
+    ]
+  },
   "aromatisse": {
     "id": 683,
     "types": [
