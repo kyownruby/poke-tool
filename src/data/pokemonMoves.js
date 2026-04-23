@@ -17610,7 +17610,8 @@ const pokemonMoves = {
     "tera-blast",
     "electro-shot",
     "hard-press",
-    "dragon-cheer"
+    "dragon-cheer",
+    "mighty-cleave"
   ],
   "hydrapple": [
     "body-slam",
