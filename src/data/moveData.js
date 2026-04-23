@@ -4674,6 +4674,62 @@ const moveData = {
     "type": "fighting",
     "damageClass": "physical",
     "contact": true
+  },
+  "make-it-rain": {
+    "name": "ゴールドラッシュ",
+    "power": 120,
+    "type": "steel",
+    "damageClass": "special",
+    "contact": false
+  },
+  "ruination": {
+    "name": "カタストロフィ",
+    "power": 1,
+    "type": "dark",
+    "damageClass": "special",
+    "contact": false
+  },
+  "collision-course": {
+    "name": "アクセルブレイク",
+    "power": 100,
+    "type": "fighting",
+    "damageClass": "physical",
+    "contact": true
+  },
+  "electro-drift": {
+    "name": "イナズマドライブ",
+    "power": 100,
+    "type": "electric",
+    "damageClass": "special",
+    "contact": false
+  },
+  "hyper-drill": {
+    "name": "ハイパードリル",
+    "power": 100,
+    "type": "normal",
+    "damageClass": "physical",
+    "contact": true
+  },
+  "mighty-cleave": {
+    "name": "パワフルエッジ",
+    "power": 95,
+    "type": "rock",
+    "damageClass": "physical",
+    "contact": true
+  },
+  "malignant-chain": {
+    "name": "じゃどくのくさり",
+    "power": 100,
+    "type": "poison",
+    "damageClass": "special",
+    "contact": false
+  },
+  "thunderclap": {
+    "name": "じんらい",
+    "power": 70,
+    "type": "electric",
+    "damageClass": "special",
+    "contact": false
   }
 };
 
