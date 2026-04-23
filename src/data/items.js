@@ -24,7 +24,7 @@ const items = [
   // 防御系
   { key: 'focus-sash', label: 'きあいのタスキ', effect: null },
   { key: 'focus-band', label: 'きあいのハチマキ', effect: null },
-  { key: 'leftovers', label: 'たべのこし', effect: null },
+  { key: 'leftovers', label: 'たべのこし', effect: { leftovers: true } },
   { key: 'shell-bell', label: 'かいがらのすず', effect: null },
   { key: 'mental-herb', label: 'メンタルハーブ', effect: null },
   { key: 'white-herb', label: 'しろいハーブ', effect: null },

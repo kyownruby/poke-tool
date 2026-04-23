@@ -345,9 +345,10 @@ export function calculateDamage({
 
   const healBerry = defItem?.effect?.healBerry;
   const focusSashActive = defItem?.key === 'focus-sash';
+  const hasLeftovers = defItem?.effect?.leftovers;
 
   function simulateKO(firstDmg, restDmg, hp) {
-    // Simulate HP loss turn by turn with berry heal and focus sash
+    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers
     let currentHp = hp;
     let berryUsed = false;
     let sashUsed = false;
@@ -369,6 +370,10 @@ export function calculateDamage({
         const healAmount = healBerry === 'sitrus' ? Math.floor(hp / 4) : 10;
         currentHp = Math.min(hp, currentHp + healAmount);
         berryUsed = true;
+      }
+      // Leftovers: heal 1/16 max HP each turn end
+      if (hasLeftovers) {
+        currentHp = Math.min(hp, currentHp + Math.floor(hp / 16));
       }
     }
     return turns;
