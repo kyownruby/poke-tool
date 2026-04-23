@@ -85,6 +85,13 @@ export function calculateDamage({
     movePower = Math.floor(movePower * 1.5);
   }
 
+  // Poltergeist: fails if defender has no item (Mega always has Mega Stone)
+  if (move.englishName === 'poltergeist' && (!defItem || defItem.key === 'none') && !defIsMega) {
+    return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+      hpStat: effectiveHp, hpMax: hpStat, srDamage: 0, multiHit: null,
+      koText: '失敗（持ち物なし）', typeEff: 0, stab: 1, moveType, movePower, immune: true };
+  }
+
   // Charge: double electric move power
   if (options.atkCharged && moveType === 'electric') {
     movePower = movePower * 2;
