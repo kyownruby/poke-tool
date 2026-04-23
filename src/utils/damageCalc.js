@@ -270,7 +270,9 @@ export function calculateDamage({
 
   // Multi-hit: compute per-hit damage without Multiscale for 2nd+ hits
   const defAbilityMultNoMS = hasMultiscale ? defAbilityMult / 0.5 : defAbilityMult;
-  function calcHitDamage(power, abilityMult) {
+  const hasResistBerry = defItem?.effect?.resistBerry === moveType && typeEff > 1;
+  const defItemMultNoBerry = hasResistBerry ? 1.0 : defItemMult;
+  function calcHitDamage(power, abilityMult, itemM = defItemMult) {
     const bd = Math.floor(Math.floor(Math.floor(2 * 50 / 5 + 2) * power * atkStat / defStat) / 50 + 2);
     const dmgs = [];
     for (let roll = 85; roll <= 100; roll++) {
@@ -282,7 +284,7 @@ export function calculateDamage({
       dmg = Math.floor(dmg * typeEff);
       dmg = Math.floor(dmg * itemMult);
       dmg = Math.floor(dmg * abilityMult);
-      dmg = Math.floor(dmg * defItemMult);
+      dmg = Math.floor(dmg * itemM);
       dmg = Math.floor(dmg * roll / 100);
       dmg = Math.floor(dmg * protectMult);
       dmgs.push(dmg);
@@ -334,13 +336,13 @@ export function calculateDamage({
   const koMinDmg = multiHit ? multiHit.totalMin : minDmg;
   const koMaxDmg = multiHit ? multiHit.totalMax : maxDmg;
 
-  // For Knock Off: 2nd+ hits use normal power (item already gone)
-  let knockOffNormalMin = koMinDmg, knockOffNormalMax = koMaxDmg;
-  if (knockOffBoosted) {
-    const normalPower = move.power;
-    const normalDmgs = calcHitDamage(normalPower, defAbilityMult);
-    knockOffNormalMin = Math.min(...normalDmgs);
-    knockOffNormalMax = Math.max(...normalDmgs);
+  // 2nd+ hits: use normal power for Knock Off + no resist berry (consumed on 1st hit)
+  let restMin = koMinDmg, restMax = koMaxDmg;
+  if (knockOffBoosted || hasResistBerry) {
+    const normalPower = knockOffBoosted ? move.power : movePower;
+    const normalDmgs = calcHitDamage(normalPower, defAbilityMult, defItemMultNoBerry);
+    restMin = Math.min(...normalDmgs);
+    restMax = Math.max(...normalDmgs);
   }
 
   const healBerry = defItem?.effect?.healBerry;
@@ -385,7 +387,7 @@ export function calculateDamage({
     return [turnsMax, turnsMin];
   }
 
-  const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, knockOffNormalMin, knockOffNormalMax, effectiveHp);
+  const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, restMin, restMax, effectiveHp);
   let koText = turnsNeeded === turnsMax
     ? `確定${turnsNeeded}発`
     : `確定${turnsNeeded}発、乱数${turnsMax}発`;
