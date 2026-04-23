@@ -252,8 +252,34 @@ export default function DamageCalc() {
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
 
+  function swapSides() {
+    const prevAtk = attacker, prevDef = defender;
+    const prevAtkItem = atkItemKey, prevDefItem = defItemKey;
+    const prevAtkAbility = atkAbilityKey, prevDefAbility = defAbilityKey;
+    setAttacker(prevDef);
+    setDefender(prevAtk);
+    setAtkItemKey(prevDefItem);
+    setDefItemKey(prevAtkItem);
+    setAtkAbilityKey(prevDefAbility);
+    setDefAbilityKey(prevAtkAbility);
+    setMoveData(null);
+    setMoveQuery('');
+    setAtkNature(1.1); setAtkAP(32); setAtkRank(0);
+    setDefNature(1.0); setDefAP(32); setSpDefNature(1.0); setSpDefAP(32);
+    setHpAP(32); setDefRank(0); setSpDefRank(0);
+    setAtkBurned(false); setAtkCharged(false); setAtkLowHp(false);
+    setDefProtect(false); setDefScreen(false); setDefRoost(false); setDefSR(false); setDefFullHp(true);
+  }
+
   return (
     <div className="space-y-4">
+      {attacker && defender && (
+        <div className="flex justify-center">
+          <button onClick={swapSides} className="bg-gray-200 hover:bg-gray-300 text-gray-600 font-bold px-4 py-1.5 rounded-lg text-xs">
+            ⇄ 攻守交代
+          </button>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Attacker */}
         <div className="space-y-2">
