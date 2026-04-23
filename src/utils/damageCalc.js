@@ -78,6 +78,12 @@ export function calculateDamage({
     moveType = weatherTypeMap[effectiveWeather] || moveType;
   }
 
+  // Knock Off: 1.5x power if defender has an item (not Mega)
+  const defIsMega = defender.englishName?.includes('-mega');
+  if (move.englishName === 'knock-off' && defItem?.key !== 'none' && defItem && !defIsMega) {
+    movePower = Math.floor(movePower * 1.5);
+  }
+
   // Charge: double electric move power
   if (options.atkCharged && moveType === 'electric') {
     movePower = movePower * 2;
