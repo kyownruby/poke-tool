@@ -477,7 +477,7 @@ export default function DamageCalc() {
             </div>
           )}
           <div className="text-xs text-gray-400">
-            HP実数値: {result.hpStat}
+            HP実数値: {result.hpMax}{result.srDamage > 0 && ` (ステロ後: ${result.hpStat})`}
           </div>
         </div>
       )}
