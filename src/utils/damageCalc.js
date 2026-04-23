@@ -80,7 +80,8 @@ export function calculateDamage({
 
   // Knock Off: 1.5x power if defender has an item (not Mega)
   const defIsMega = defender.englishName?.includes('-mega');
-  if (move.englishName === 'knock-off' && defItem?.key !== 'none' && defItem && !defIsMega) {
+  const knockOffBoosted = move.englishName === 'knock-off' && defItem?.key !== 'none' && defItem && !defIsMega;
+  if (knockOffBoosted) {
     movePower = Math.floor(movePower * 1.5);
   }
 
@@ -325,6 +326,30 @@ export function calculateDamage({
   // KO calculation (use multi-hit total if applicable)
   const koMinDmg = multiHit ? multiHit.totalMin : minDmg;
   const koMaxDmg = multiHit ? multiHit.totalMax : maxDmg;
+
+  // For Knock Off: 2nd+ hits use normal power (item already gone)
+  let knockOffNormalMin = koMinDmg, knockOffNormalMax = koMaxDmg;
+  if (knockOffBoosted) {
+    const normalPower = move.power;
+    const normalDmgs = calcHitDamage(normalPower, defAbilityMult);
+    knockOffNormalMin = Math.min(...normalDmgs);
+    knockOffNormalMax = Math.max(...normalDmgs);
+  }
+
+  function countTurnsToKO(firstMin, firstMax, restMin, restMax, hp) {
+    // Returns [turnsMin, turnsMax] to KO
+    let minAccum = 0, maxAccum = 0;
+    let turnsMin = 0, turnsMax = 0;
+    while (minAccum < hp || maxAccum < hp) {
+      const dmgMin = turnsMin === 0 ? firstMin : restMin;
+      const dmgMax = turnsMax === 0 ? firstMax : restMax;
+      if (maxAccum < hp) { maxAccum += dmgMax; turnsMax++; }
+      if (minAccum < hp) { minAccum += dmgMin; turnsMin++; }
+      if (turnsMin > 50) break;
+    }
+    return [turnsMax, turnsMin];
+  }
+
   let koText = '';
   if (koMaxDmg >= effectiveHp) {
     if (koMinDmg >= effectiveHp) {
@@ -333,8 +358,7 @@ export function calculateDamage({
       koText = '確定2発、乱数1発';
     }
   } else {
-    const turnsNeeded = Math.ceil(effectiveHp / koMinDmg);
-    const turnsMax = Math.ceil(effectiveHp / koMaxDmg);
+    const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, knockOffNormalMin, knockOffNormalMax, effectiveHp);
     if (turnsNeeded === turnsMax) {
       koText = `確定${turnsNeeded}発`;
     } else {
