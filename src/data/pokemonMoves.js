@@ -1972,7 +1972,8 @@ const pokemonMoves = {
     "spotlight",
     "expanding-force",
     "meteor-beam",
-    "flip-turn"
+    "flip-turn",
+    "ice-spinner"
   ],
   "pinsir": [
     "vice-grip",
@@ -3500,7 +3501,9 @@ const pokemonMoves = {
     "confide",
     "power-up-punch"
   ],
-  "starmie-mega": [],
+  "starmie-mega": [
+    "ice-spinner"
+  ],
   "pinsir-mega": [
     "vice-grip",
     "guillotine",
