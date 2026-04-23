@@ -92,10 +92,13 @@ function PokemonSelector({ label, color, pokemon, onChange }) {
   );
 }
 
-function StatInput({ label, value, onChange, nature, onNatureChange, rank, onRankChange }) {
+function StatInput({ label, value, onChange, nature, onNatureChange, rank, onRankChange, realStat }) {
   return (
     <div className="flex flex-wrap items-center gap-2 text-xs">
       <span className="font-bold w-12">{label}</span>
+      {realStat != null && (
+        <span className="font-mono font-bold text-gray-700 w-8 text-right">{realStat}</span>
+      )}
       {onNatureChange && (
         <select value={nature} onChange={e => onNatureChange(Number(e.target.value))} className="border rounded px-1 py-0.5 text-xs">
           <option value={1.1}>↑補正</option>
@@ -259,7 +262,8 @@ export default function DamageCalc() {
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label={moveData?.damage_class === 'special' ? '特攻' : '攻撃'}
                 value={atkAP} onChange={setAtkAP} nature={atkNature} onNatureChange={setAtkNature}
-                rank={atkRank} onRankChange={setAtkRank} />
+                rank={atkRank} onRankChange={setAtkRank}
+                realStat={attacker ? calcStat(moveData?.damage_class === 'special' ? attacker.stats.spAtk : attacker.stats.attack, atkAP, atkNature) : null} />
               <div className="flex flex-wrap gap-2 text-xs">
                 <label className="flex items-center gap-1">
                   持ち物:
@@ -300,14 +304,20 @@ export default function DamageCalc() {
           <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefItemKey(p.englishName?.includes('-mega') ? 'none' : defItemKey); }} />
           {defender && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
-              <StatInput label="HP" value={hpAP} onChange={setHpAP} />
+              <StatInput label="HP" value={hpAP} onChange={setHpAP}
+                realStat={defender ? calcStat(defender.stats.hp, hpAP, 1.0, true) : null} />
               <StatInput label={moveData?.damage_class === 'special' ? '特防' : '防御'}
                 value={moveData?.damage_class === 'special' ? spDefAP : defAP}
                 onChange={moveData?.damage_class === 'special' ? setSpDefAP : setDefAP}
                 nature={moveData?.damage_class === 'special' ? spDefNature : defNature}
                 onNatureChange={moveData?.damage_class === 'special' ? setSpDefNature : setDefNature}
                 rank={moveData?.damage_class === 'special' ? spDefRank : defRank}
-                onRankChange={moveData?.damage_class === 'special' ? setSpDefRank : setDefRank} />
+                onRankChange={moveData?.damage_class === 'special' ? setSpDefRank : setDefRank}
+                realStat={defender ? calcStat(
+                  moveData?.damage_class === 'special' ? defender.stats.spDef : defender.stats.defense,
+                  moveData?.damage_class === 'special' ? spDefAP : defAP,
+                  moveData?.damage_class === 'special' ? spDefNature : defNature
+                ) : null} />
               <div className="flex flex-wrap gap-2 text-xs">
                 <label className="flex items-center gap-1">
                   持ち物:
