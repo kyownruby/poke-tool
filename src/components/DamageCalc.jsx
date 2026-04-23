@@ -7,7 +7,7 @@ import items from '../data/items';
 import { attackerAbilities, defenderAbilities } from '../data/damageAbilities';
 import abilityNames from '../data/abilityNames';
 import { getTypeName, getTypeColor, TypeBadge } from '../data/typeInfo.jsx';
-import { calculateDamage } from '../utils/damageCalc';
+import { calculateDamage, calcStat } from '../utils/damageCalc';
 
 const allEntries = Object.entries(pokemonNames);
 
