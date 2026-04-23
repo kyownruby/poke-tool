@@ -159,6 +159,7 @@ export default function DamageCalc() {
   const [moveSuggestions, setMoveSuggestions] = useState([]);
   const [showMoveSuggestions, setShowMoveSuggestions] = useState(false);
   const [moveSelectedIndex, setMoveSelectedIndex] = useState(-1);
+  const [showAllMoves, setShowAllMoves] = useState(false);
   const [showDamages, setShowDamages] = useState(false);
   const moveRef = useRef(null);
 
@@ -179,6 +180,11 @@ export default function DamageCalc() {
   }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, atkLowHp]);
 
   const availableMoves = useMemo(() => {
+    if (showAllMoves) {
+      return Object.entries(moveDataMap)
+        .map(([en, d]) => ({ en, ...d }))
+        .filter(m => m.damageClass !== 'status' && m.power);
+    }
     if (!attacker?.englishName) return [];
     const baseName = attacker.englishName.replace(/-mega(-[a-z])?$/, '');
     const ownMoves = pokemonMovesList[attacker.englishName] ?? [];
@@ -188,7 +194,7 @@ export default function DamageCalc() {
       .filter(m => moveDataMap[m])
       .map(m => ({ en: m, ...moveDataMap[m] }))
       .filter(m => m.damageClass !== 'status' && m.power);
-  }, [attacker]);
+  }, [attacker, showAllMoves]);
 
   function handleMoveInput(value) {
     setMoveQuery(value);
@@ -349,7 +355,13 @@ export default function DamageCalc() {
       {/* Move Input */}
       {attacker && defender && (
         <div ref={moveRef} className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
-          <h3 className="font-bold text-sm">技</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold text-sm">技</h3>
+            <label className="flex items-center gap-1.5 text-xs text-gray-600">
+              <input type="checkbox" checked={showAllMoves} onChange={e => setShowAllMoves(e.target.checked)} />
+              全技から検索
+            </label>
+          </div>
           <div className="relative">
             <input type="text" value={moveQuery}
               onChange={e => handleMoveInput(e.target.value)}
