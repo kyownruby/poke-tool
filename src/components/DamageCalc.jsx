@@ -137,10 +137,10 @@ export default function DamageCalc() {
   const [atkAP, setAtkAP] = useState(saved?.atkAP ?? 32);
   const [atkRank, setAtkRank] = useState(saved?.atkRank ?? 0);
   const [defNature, setDefNature] = useState(saved?.defNature ?? 1.0);
-  const [defAP, setDefAP] = useState(saved?.defAP ?? 32);
+  const [defAP, setDefAP] = useState(saved?.defAP ?? 0);
   const [spDefNature, setSpDefNature] = useState(saved?.spDefNature ?? 1.0);
-  const [spDefAP, setSpDefAP] = useState(saved?.spDefAP ?? 32);
-  const [hpAP, setHpAP] = useState(saved?.hpAP ?? 32);
+  const [spDefAP, setSpDefAP] = useState(saved?.spDefAP ?? 0);
+  const [hpAP, setHpAP] = useState(saved?.hpAP ?? 0);
   const [defRank, setDefRank] = useState(saved?.defRank ?? 0);
   const [spDefRank, setSpDefRank] = useState(saved?.spDefRank ?? 0);
   const [atkItemKey, setAtkItemKey] = useState(saved?.atkItemKey ?? 'none');
@@ -265,8 +265,8 @@ export default function DamageCalc() {
     setMoveData(null);
     setMoveQuery('');
     setAtkNature(1.1); setAtkAP(32); setAtkRank(0);
-    setDefNature(1.0); setDefAP(32); setSpDefNature(1.0); setSpDefAP(32);
-    setHpAP(32); setDefRank(0); setSpDefRank(0);
+    setDefNature(1.0); setDefAP(0); setSpDefNature(1.0); setSpDefAP(0);
+    setHpAP(0); setDefRank(0); setSpDefRank(0);
     setAtkBurned(false); setAtkCharged(false); setAtkLowHp(false);
     setDefProtect(false); setDefScreen(false); setDefRoost(false); setDefSR(false); setDefFullHp(true);
   }
