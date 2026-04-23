@@ -343,41 +343,47 @@ export function calculateDamage({
     knockOffNormalMax = Math.max(...normalDmgs);
   }
 
-  function countTurnsToKO(firstMin, firstMax, restMin, restMax, hp) {
-    // Returns [turnsMin, turnsMax] to KO
-    let minAccum = 0, maxAccum = 0;
-    let turnsMin = 0, turnsMax = 0;
-    while (minAccum < hp || maxAccum < hp) {
-      const dmgMin = turnsMin === 0 ? firstMin : restMin;
-      const dmgMax = turnsMax === 0 ? firstMax : restMax;
-      if (maxAccum < hp) { maxAccum += dmgMax; turnsMax++; }
-      if (minAccum < hp) { minAccum += dmgMin; turnsMin++; }
-      if (turnsMin > 50) break;
+  const healBerry = defItem?.effect?.healBerry;
+  const focusSashActive = defItem?.key === 'focus-sash';
+
+  function simulateKO(firstDmg, restDmg, hp) {
+    // Simulate HP loss turn by turn with berry heal and focus sash
+    let currentHp = hp;
+    let berryUsed = false;
+    let sashUsed = false;
+    let turns = 0;
+    while (currentHp > 0 && turns < 50) {
+      const dmg = turns === 0 ? firstDmg : restDmg;
+      const fullHp = currentHp === hp;
+      let newHp = currentHp - dmg;
+      // Focus Sash: survives one-shot from full HP
+      if (focusSashActive && !sashUsed && fullHp && newHp <= 0) {
+        newHp = 1;
+        sashUsed = true;
+      }
+      currentHp = newHp;
+      turns++;
+      if (currentHp <= 0) break;
+      // Healing berry: triggers when HP ≤ 50%
+      if (healBerry && !berryUsed && currentHp <= Math.floor(hp / 2)) {
+        const healAmount = healBerry === 'sitrus' ? Math.floor(hp / 4) : 10;
+        currentHp = Math.min(hp, currentHp + healAmount);
+        berryUsed = true;
+      }
     }
+    return turns;
+  }
+
+  function countTurnsToKO(firstMin, firstMax, restMin, restMax, hp) {
+    const turnsMax = simulateKO(firstMax, restMax, hp);
+    const turnsMin = simulateKO(firstMin, restMin, hp);
     return [turnsMax, turnsMin];
   }
 
-  let koText = '';
-  if (koMaxDmg >= effectiveHp) {
-    if (koMinDmg >= effectiveHp) {
-      koText = '確定1発';
-    } else {
-      koText = '確定2発、乱数1発';
-    }
-  } else {
-    const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, knockOffNormalMin, knockOffNormalMax, effectiveHp);
-    if (turnsNeeded === turnsMax) {
-      koText = `確定${turnsNeeded}発`;
-    } else {
-      koText = `確定${turnsNeeded}発、乱数${turnsMax}発`;
-    }
-  }
-
-  // Focus Sash: survives any one-shot from full HP
-  const hasFocusSash = defItem?.key === 'focus-sash';
-  if (hasFocusSash && koText.includes('1発')) {
-    koText = '確定2発（きあいのタスキで耐え）';
-  }
+  const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, knockOffNormalMin, knockOffNormalMax, effectiveHp);
+  let koText = turnsNeeded === turnsMax
+    ? `確定${turnsNeeded}発`
+    : `確定${turnsNeeded}発、乱数${turnsMax}発`;
 
   return {
     damages,

@@ -54,8 +54,8 @@ const items = [
   { key: 'roseli-berry', label: 'ロゼルのみ', effect: { resistBerry: 'fairy' } },
   { key: 'chilan-berry', label: 'ホズのみ', effect: { resistBerry: 'normal' } },
   // 回復きのみ
-  { key: 'oran-berry', label: 'オレンのみ', effect: null },
-  { key: 'sitrus-berry', label: 'オボンのみ', effect: null },
+  { key: 'oran-berry', label: 'オレンのみ', effect: { healBerry: 'oran' } },
+  { key: 'sitrus-berry', label: 'オボンのみ', effect: { healBerry: 'sitrus' } },
   { key: 'lum-berry', label: 'ラムのみ', effect: null },
   { key: 'chesto-berry', label: 'カゴのみ', effect: null },
   { key: 'pecha-berry', label: 'モモンのみ', effect: null },
