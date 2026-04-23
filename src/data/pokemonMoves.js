@@ -2849,7 +2849,9 @@ const pokemonMoves = {
     "tera-blast",
     "trailblaze"
   ],
-  "typhlosion": [],
+  "typhlosion": [
+    "poltergeist"
+  ],
   "feraligatr": [
     "mega-punch",
     "ice-punch",
