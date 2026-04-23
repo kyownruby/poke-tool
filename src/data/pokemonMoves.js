@@ -2849,9 +2849,7 @@ const pokemonMoves = {
     "tera-blast",
     "trailblaze"
   ],
-  "typhlosion": [
-    "poltergeist"
-  ],
+  "typhlosion": [],
   "feraligatr": [
     "mega-punch",
     "ice-punch",
@@ -13216,7 +13214,8 @@ const pokemonMoves = {
     "solar-blade",
     "laser-focus",
     "brutal-swing",
-    "steel-beam"
+    "steel-beam",
+    "poltergeist"
   ],
   "aromatisse": [
     "hyper-beam",
@@ -19590,7 +19589,8 @@ const pokemonMoves = {
     "solar-blade",
     "laser-focus",
     "brutal-swing",
-    "steel-beam"
+    "steel-beam",
+    "poltergeist"
   ]
 };
 
