@@ -366,6 +366,12 @@ export function calculateDamage({
     }
   }
 
+  // Focus Sash: survives any one-shot from full HP
+  const hasFocusSash = defItem?.key === 'focus-sash';
+  if (hasFocusSash && koText.includes('1発')) {
+    koText = '確定2発（きあいのタスキで耐え）';
+  }
+
   return {
     damages,
     minDmg, maxDmg,
