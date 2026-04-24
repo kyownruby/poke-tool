@@ -31,6 +31,7 @@ export const attackerAbilities = {
   'sharpness':   { label: 'きれあじ', effect: { condition: 'slicingMove', power: 1.5 } },
   'mega-launcher': { label: 'メガランチャー', effect: { condition: 'pulseMove', power: 1.5 } },
   'punk-rock':   { label: 'パンクロック', effect: { condition: 'soundMove', power: 1.3 } },
+  'sniper':      { label: 'スナイパー', effect: { sniperCrit: true } },
 };
 
 export const defenderAbilities = {
