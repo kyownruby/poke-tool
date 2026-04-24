@@ -28,7 +28,10 @@ export function calculateDamage({
   atkAbilities = {}, defAbilities = {},
   options = {},
 }) {
-  if (!attacker || !defender || !move || !move.power) return null;
+  if (!attacker || !defender || !move) return null;
+  // Allow dynamic-power moves (power computed at runtime from HP/speed)
+  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball'];
+  if (!move.power && !DYNAMIC_POWER_MOVES.includes(move.englishName)) return null;
 
   const isPhysical = move.damage_class === 'physical';
   const atkBaseStat = isPhysical ? attacker.stats.attack : attacker.stats.spAtk;
@@ -106,6 +109,23 @@ export function calculateDamage({
     else if (p <= 16) movePower = 80;
     else if (p <= 32) movePower = 40;
     else movePower = 20;
+  }
+  // Speed-based power: Gyro Ball (slower attacker = higher power)
+  if (move.englishName === 'gyro-ball') {
+    const atkSp = options.atkSpeed || 1;
+    const defSp = options.defSpeed || 1;
+    movePower = Math.min(150, Math.max(1, Math.floor(25 * defSp / atkSp)));
+  }
+  // Speed-based power: Electro Ball (faster attacker = higher power)
+  if (move.englishName === 'electro-ball') {
+    const atkSp = options.atkSpeed || 1;
+    const defSp = options.defSpeed || 1;
+    const ratio = atkSp / defSp;
+    if (ratio >= 4) movePower = 150;
+    else if (ratio >= 3) movePower = 120;
+    else if (ratio >= 2) movePower = 80;
+    else if (ratio >= 1) movePower = 60;
+    else movePower = 40;
   }
 
   // Weather Ball: type and power change based on weather
