@@ -30,7 +30,7 @@ export function calculateDamage({
 }) {
   if (!attacker || !defender || !move) return null;
   // Allow dynamic-power moves (power computed at runtime from HP/speed)
-  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball'];
+  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball', 'low-kick', 'grass-knot', 'heat-crash', 'heavy-slam'];
   if (!move.power && !DYNAMIC_POWER_MOVES.includes(move.englishName)) return null;
 
   const isPhysical = move.damage_class === 'physical';
@@ -125,6 +125,27 @@ export function calculateDamage({
     else if (ratio >= 3) movePower = 120;
     else if (ratio >= 2) movePower = 80;
     else if (ratio >= 1) movePower = 60;
+    else movePower = 40;
+  }
+  // Weight-based power: Low Kick / Grass Knot (based on defender weight in kg)
+  if (['low-kick', 'grass-knot'].includes(move.englishName)) {
+    const w = defender.weight ?? 0;
+    if (w >= 200) movePower = 120;
+    else if (w >= 100) movePower = 100;
+    else if (w >= 50) movePower = 80;
+    else if (w >= 25) movePower = 60;
+    else if (w >= 10) movePower = 40;
+    else movePower = 20;
+  }
+  // Weight-based power: Heat Crash / Heavy Slam (attacker weight / defender weight ratio)
+  if (['heat-crash', 'heavy-slam'].includes(move.englishName)) {
+    const aw = attacker.weight ?? 1;
+    const dw = defender.weight ?? 1;
+    const ratio = aw / Math.max(dw, 0.1);
+    if (ratio >= 5) movePower = 120;
+    else if (ratio >= 4) movePower = 100;
+    else if (ratio >= 3) movePower = 80;
+    else if (ratio >= 2) movePower = 60;
     else movePower = 40;
   }
 

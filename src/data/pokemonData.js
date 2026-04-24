@@ -16,7 +16,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "chlorophyll"
-    ]
+    ],
+    "weight": 100
   },
   "charizard": {
     "id": 6,
@@ -35,7 +36,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "solar-power"
-    ]
+    ],
+    "weight": 90.5
   },
   "blastoise": {
     "id": 9,
@@ -53,7 +55,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "rain-dish"
-    ]
+    ],
+    "weight": 85.5
   },
   "beedrill": {
     "id": 15,
@@ -72,7 +75,8 @@ const pokemonData = {
     "abilities": [
       "swarm",
       "sniper"
-    ]
+    ],
+    "weight": 29.5
   },
   "pidgeot": {
     "id": 18,
@@ -92,7 +96,8 @@ const pokemonData = {
       "keen-eye",
       "tangled-feet",
       "big-pecks"
-    ]
+    ],
+    "weight": 39.5
   },
   "arbok": {
     "id": 24,
@@ -111,7 +116,8 @@ const pokemonData = {
       "intimidate",
       "shed-skin",
       "unnerve"
-    ]
+    ],
+    "weight": 65
   },
   "pikachu": {
     "id": 25,
@@ -129,7 +135,8 @@ const pokemonData = {
     "abilities": [
       "static",
       "lightning-rod"
-    ]
+    ],
+    "weight": 6
   },
   "raichu": {
     "id": 26,
@@ -147,7 +154,8 @@ const pokemonData = {
     "abilities": [
       "static",
       "lightning-rod"
-    ]
+    ],
+    "weight": 30
   },
   "clefable": {
     "id": 36,
@@ -166,7 +174,8 @@ const pokemonData = {
       "cute-charm",
       "magic-guard",
       "unaware"
-    ]
+    ],
+    "weight": 40
   },
   "ninetales": {
     "id": 38,
@@ -184,7 +193,8 @@ const pokemonData = {
     "abilities": [
       "flash-fire",
       "drought"
-    ]
+    ],
+    "weight": 19.9
   },
   "arcanine": {
     "id": 59,
@@ -203,7 +213,8 @@ const pokemonData = {
       "intimidate",
       "flash-fire",
       "justified"
-    ]
+    ],
+    "weight": 155
   },
   "alakazam": {
     "id": 65,
@@ -222,7 +233,8 @@ const pokemonData = {
       "synchronize",
       "inner-focus",
       "magic-guard"
-    ]
+    ],
+    "weight": 48
   },
   "machamp": {
     "id": 68,
@@ -241,7 +253,8 @@ const pokemonData = {
       "guts",
       "no-guard",
       "steadfast"
-    ]
+    ],
+    "weight": 130
   },
   "victreebel": {
     "id": 71,
@@ -260,7 +273,8 @@ const pokemonData = {
     "abilities": [
       "chlorophyll",
       "gluttony"
-    ]
+    ],
+    "weight": 15.5
   },
   "slowbro": {
     "id": 80,
@@ -280,7 +294,8 @@ const pokemonData = {
       "oblivious",
       "own-tempo",
       "regenerator"
-    ]
+    ],
+    "weight": 78.5
   },
   "gengar": {
     "id": 94,
@@ -298,7 +313,8 @@ const pokemonData = {
     },
     "abilities": [
       "cursed-body"
-    ]
+    ],
+    "weight": 40.5
   },
   "kangaskhan": {
     "id": 115,
@@ -317,7 +333,8 @@ const pokemonData = {
       "early-bird",
       "scrappy",
       "inner-focus"
-    ]
+    ],
+    "weight": 80
   },
   "starmie": {
     "id": 121,
@@ -337,7 +354,8 @@ const pokemonData = {
       "illuminate",
       "natural-cure",
       "analytic"
-    ]
+    ],
+    "weight": 80
   },
   "pinsir": {
     "id": 127,
@@ -356,7 +374,8 @@ const pokemonData = {
       "hyper-cutter",
       "mold-breaker",
       "moxie"
-    ]
+    ],
+    "weight": 55
   },
   "tauros": {
     "id": 128,
@@ -375,7 +394,8 @@ const pokemonData = {
       "intimidate",
       "anger-point",
       "sheer-force"
-    ]
+    ],
+    "weight": 88.4
   },
   "gyarados": {
     "id": 130,
@@ -394,7 +414,8 @@ const pokemonData = {
     "abilities": [
       "intimidate",
       "moxie"
-    ]
+    ],
+    "weight": 235
   },
   "ditto": {
     "id": 132,
@@ -412,7 +433,8 @@ const pokemonData = {
     "abilities": [
       "limber",
       "imposter"
-    ]
+    ],
+    "weight": 4
   },
   "vaporeon": {
     "id": 134,
@@ -430,7 +452,8 @@ const pokemonData = {
     "abilities": [
       "water-absorb",
       "hydration"
-    ]
+    ],
+    "weight": 29
   },
   "jolteon": {
     "id": 135,
@@ -448,7 +471,8 @@ const pokemonData = {
     "abilities": [
       "volt-absorb",
       "quick-feet"
-    ]
+    ],
+    "weight": 24.5
   },
   "flareon": {
     "id": 136,
@@ -466,7 +490,8 @@ const pokemonData = {
     "abilities": [
       "flash-fire",
       "guts"
-    ]
+    ],
+    "weight": 25
   },
   "aerodactyl": {
     "id": 142,
@@ -486,7 +511,8 @@ const pokemonData = {
       "rock-head",
       "pressure",
       "unnerve"
-    ]
+    ],
+    "weight": 59
   },
   "snorlax": {
     "id": 143,
@@ -505,7 +531,8 @@ const pokemonData = {
       "immunity",
       "thick-fat",
       "gluttony"
-    ]
+    ],
+    "weight": 460
   },
   "dragonite": {
     "id": 149,
@@ -524,7 +551,8 @@ const pokemonData = {
     "abilities": [
       "inner-focus",
       "multiscale"
-    ]
+    ],
+    "weight": 210
   },
   "venusaur-mega": {
     "id": 10033,
@@ -542,7 +570,8 @@ const pokemonData = {
     },
     "abilities": [
       "thick-fat"
-    ]
+    ],
+    "weight": 155.5
   },
   "charizard-mega-x": {
     "id": 10034,
@@ -560,7 +589,8 @@ const pokemonData = {
     },
     "abilities": [
       "tough-claws"
-    ]
+    ],
+    "weight": 110.5
   },
   "charizard-mega-y": {
     "id": 10035,
@@ -578,7 +608,8 @@ const pokemonData = {
     },
     "abilities": [
       "drought"
-    ]
+    ],
+    "weight": 100.5
   },
   "blastoise-mega": {
     "id": 10036,
@@ -595,7 +626,8 @@ const pokemonData = {
     },
     "abilities": [
       "mega-launcher"
-    ]
+    ],
+    "weight": 101.1
   },
   "beedrill-mega": {
     "id": 10090,
@@ -613,7 +645,8 @@ const pokemonData = {
     },
     "abilities": [
       "adaptability"
-    ]
+    ],
+    "weight": 40.5
   },
   "pidgeot-mega": {
     "id": 10073,
@@ -631,7 +664,8 @@ const pokemonData = {
     },
     "abilities": [
       "no-guard"
-    ]
+    ],
+    "weight": 50.5
   },
   "clefable-mega": {
     "id": 10278,
@@ -649,7 +683,8 @@ const pokemonData = {
     },
     "abilities": [
       "magic-bounce"
-    ]
+    ],
+    "weight": 42.3
   },
   "alakazam-mega": {
     "id": 10037,
@@ -666,7 +701,8 @@ const pokemonData = {
     },
     "abilities": [
       "trace"
-    ]
+    ],
+    "weight": 48
   },
   "victreebel-mega": {
     "id": 10279,
@@ -684,7 +720,8 @@ const pokemonData = {
     },
     "abilities": [
       "innards-out"
-    ]
+    ],
+    "weight": 125.5
   },
   "slowbro-mega": {
     "id": 10071,
@@ -702,7 +739,8 @@ const pokemonData = {
     },
     "abilities": [
       "shell-armor"
-    ]
+    ],
+    "weight": 120
   },
   "gengar-mega": {
     "id": 10038,
@@ -720,7 +758,8 @@ const pokemonData = {
     },
     "abilities": [
       "shadow-tag"
-    ]
+    ],
+    "weight": 40.5
   },
   "kangaskhan-mega": {
     "id": 10039,
@@ -737,7 +776,8 @@ const pokemonData = {
     },
     "abilities": [
       "parental-bond"
-    ]
+    ],
+    "weight": 100
   },
   "starmie-mega": {
     "id": 10280,
@@ -755,7 +795,8 @@ const pokemonData = {
     },
     "abilities": [
       "huge-power"
-    ]
+    ],
+    "weight": 80
   },
   "pinsir-mega": {
     "id": 10040,
@@ -773,7 +814,8 @@ const pokemonData = {
     },
     "abilities": [
       "aerilate"
-    ]
+    ],
+    "weight": 59
   },
   "gyarados-mega": {
     "id": 10041,
@@ -791,7 +833,8 @@ const pokemonData = {
     },
     "abilities": [
       "mold-breaker"
-    ]
+    ],
+    "weight": 305
   },
   "aerodactyl-mega": {
     "id": 10042,
@@ -809,7 +852,8 @@ const pokemonData = {
     },
     "abilities": [
       "tough-claws"
-    ]
+    ],
+    "weight": 79
   },
   "dragonite-mega": {
     "id": 10281,
@@ -827,7 +871,8 @@ const pokemonData = {
     },
     "abilities": [
       "multiscale"
-    ]
+    ],
+    "weight": 290
   },
   "meganium": {
     "id": 154,
@@ -845,7 +890,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "leaf-guard"
-    ]
+    ],
+    "weight": 100.5
   },
   "typhlosion": {
     "id": 157,
@@ -863,7 +909,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "flash-fire"
-    ]
+    ],
+    "weight": 79.5
   },
   "feraligatr": {
     "id": 160,
@@ -881,7 +928,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "sheer-force"
-    ]
+    ],
+    "weight": 88.8
   },
   "ariados": {
     "id": 168,
@@ -901,7 +949,8 @@ const pokemonData = {
       "swarm",
       "insomnia",
       "sniper"
-    ]
+    ],
+    "weight": 33.5
   },
   "ampharos": {
     "id": 181,
@@ -919,7 +968,8 @@ const pokemonData = {
     "abilities": [
       "static",
       "plus"
-    ]
+    ],
+    "weight": 61.5
   },
   "azumarill": {
     "id": 184,
@@ -939,7 +989,8 @@ const pokemonData = {
       "thick-fat",
       "huge-power",
       "sap-sipper"
-    ]
+    ],
+    "weight": 28.5
   },
   "politoed": {
     "id": 186,
@@ -958,7 +1009,8 @@ const pokemonData = {
       "water-absorb",
       "damp",
       "drizzle"
-    ]
+    ],
+    "weight": 33.9
   },
   "espeon": {
     "id": 196,
@@ -976,7 +1028,8 @@ const pokemonData = {
     "abilities": [
       "synchronize",
       "magic-bounce"
-    ]
+    ],
+    "weight": 26.5
   },
   "umbreon": {
     "id": 197,
@@ -994,7 +1047,8 @@ const pokemonData = {
     "abilities": [
       "synchronize",
       "inner-focus"
-    ]
+    ],
+    "weight": 27
   },
   "slowking": {
     "id": 199,
@@ -1014,7 +1068,8 @@ const pokemonData = {
       "oblivious",
       "own-tempo",
       "regenerator"
-    ]
+    ],
+    "weight": 79.5
   },
   "forretress": {
     "id": 205,
@@ -1033,7 +1088,8 @@ const pokemonData = {
     "abilities": [
       "sturdy",
       "overcoat"
-    ]
+    ],
+    "weight": 125.8
   },
   "steelix": {
     "id": 208,
@@ -1053,7 +1109,8 @@ const pokemonData = {
       "rock-head",
       "sturdy",
       "sheer-force"
-    ]
+    ],
+    "weight": 400
   },
   "scizor": {
     "id": 212,
@@ -1073,7 +1130,8 @@ const pokemonData = {
       "swarm",
       "technician",
       "light-metal"
-    ]
+    ],
+    "weight": 118
   },
   "heracross": {
     "id": 214,
@@ -1093,7 +1151,8 @@ const pokemonData = {
       "swarm",
       "guts",
       "moxie"
-    ]
+    ],
+    "weight": 54
   },
   "skarmory": {
     "id": 227,
@@ -1113,7 +1172,8 @@ const pokemonData = {
       "keen-eye",
       "sturdy",
       "weak-armor"
-    ]
+    ],
+    "weight": 50.5
   },
   "houndoom": {
     "id": 229,
@@ -1133,7 +1193,8 @@ const pokemonData = {
       "early-bird",
       "flash-fire",
       "unnerve"
-    ]
+    ],
+    "weight": 35
   },
   "tyranitar": {
     "id": 248,
@@ -1152,7 +1213,8 @@ const pokemonData = {
     "abilities": [
       "sand-stream",
       "unnerve"
-    ]
+    ],
+    "weight": 202
   },
   "meganium-mega": {
     "id": 10282,
@@ -1170,7 +1232,8 @@ const pokemonData = {
     },
     "abilities": [
       "mega-sol"
-    ]
+    ],
+    "weight": 201
   },
   "feraligatr-mega": {
     "id": 10283,
@@ -1188,7 +1251,8 @@ const pokemonData = {
     },
     "abilities": [
       "dragonize"
-    ]
+    ],
+    "weight": 108.8
   },
   "ampharos-mega": {
     "id": 10045,
@@ -1206,7 +1270,8 @@ const pokemonData = {
     },
     "abilities": [
       "mold-breaker"
-    ]
+    ],
+    "weight": 61.5
   },
   "steelix-mega": {
     "id": 10072,
@@ -1224,7 +1289,8 @@ const pokemonData = {
     },
     "abilities": [
       "sand-force"
-    ]
+    ],
+    "weight": 740
   },
   "scizor-mega": {
     "id": 10046,
@@ -1242,7 +1308,8 @@ const pokemonData = {
     },
     "abilities": [
       "technician"
-    ]
+    ],
+    "weight": 125
   },
   "heracross-mega": {
     "id": 10047,
@@ -1260,7 +1327,8 @@ const pokemonData = {
     },
     "abilities": [
       "skill-link"
-    ]
+    ],
+    "weight": 62.5
   },
   "skarmory-mega": {
     "id": 10284,
@@ -1278,7 +1346,8 @@ const pokemonData = {
     },
     "abilities": [
       "stalwart"
-    ]
+    ],
+    "weight": 40.4
   },
   "houndoom-mega": {
     "id": 10048,
@@ -1296,7 +1365,8 @@ const pokemonData = {
     },
     "abilities": [
       "solar-power"
-    ]
+    ],
+    "weight": 49.5
   },
   "tyranitar-mega": {
     "id": 10049,
@@ -1314,7 +1384,8 @@ const pokemonData = {
     },
     "abilities": [
       "sand-stream"
-    ]
+    ],
+    "weight": 255
   },
   "pelipper": {
     "id": 279,
@@ -1334,7 +1405,8 @@ const pokemonData = {
       "keen-eye",
       "drizzle",
       "rain-dish"
-    ]
+    ],
+    "weight": 28
   },
   "gardevoir": {
     "id": 282,
@@ -1354,7 +1426,8 @@ const pokemonData = {
       "synchronize",
       "trace",
       "telepathy"
-    ]
+    ],
+    "weight": 48.4
   },
   "sableye": {
     "id": 302,
@@ -1374,7 +1447,8 @@ const pokemonData = {
       "keen-eye",
       "stall",
       "prankster"
-    ]
+    ],
+    "weight": 11
   },
   "aggron": {
     "id": 306,
@@ -1394,7 +1468,8 @@ const pokemonData = {
       "sturdy",
       "rock-head",
       "heavy-metal"
-    ]
+    ],
+    "weight": 360
   },
   "medicham": {
     "id": 308,
@@ -1413,7 +1488,8 @@ const pokemonData = {
     "abilities": [
       "pure-power",
       "telepathy"
-    ]
+    ],
+    "weight": 31.5
   },
   "manectric": {
     "id": 310,
@@ -1432,7 +1508,8 @@ const pokemonData = {
       "static",
       "lightning-rod",
       "minus"
-    ]
+    ],
+    "weight": 40.2
   },
   "sharpedo": {
     "id": 319,
@@ -1451,7 +1528,8 @@ const pokemonData = {
     "abilities": [
       "rough-skin",
       "speed-boost"
-    ]
+    ],
+    "weight": 88.8
   },
   "camerupt": {
     "id": 323,
@@ -1471,7 +1549,8 @@ const pokemonData = {
       "magma-armor",
       "solid-rock",
       "anger-point"
-    ]
+    ],
+    "weight": 220
   },
   "torkoal": {
     "id": 324,
@@ -1490,7 +1569,8 @@ const pokemonData = {
       "white-smoke",
       "drought",
       "shell-armor"
-    ]
+    ],
+    "weight": 80.4
   },
   "altaria": {
     "id": 334,
@@ -1509,7 +1589,8 @@ const pokemonData = {
     "abilities": [
       "natural-cure",
       "cloud-nine"
-    ]
+    ],
+    "weight": 20.6
   },
   "milotic": {
     "id": 350,
@@ -1528,7 +1609,8 @@ const pokemonData = {
       "marvel-scale",
       "competitive",
       "cute-charm"
-    ]
+    ],
+    "weight": 162
   },
   "castform": {
     "id": 351,
@@ -1545,7 +1627,8 @@ const pokemonData = {
     },
     "abilities": [
       "forecast"
-    ]
+    ],
+    "weight": 0.8
   },
   "banette": {
     "id": 354,
@@ -1564,7 +1647,8 @@ const pokemonData = {
       "insomnia",
       "frisk",
       "cursed-body"
-    ]
+    ],
+    "weight": 12.5
   },
   "chimecho": {
     "id": 358,
@@ -1581,7 +1665,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 1
   },
   "absol": {
     "id": 359,
@@ -1600,7 +1685,8 @@ const pokemonData = {
       "pressure",
       "super-luck",
       "justified"
-    ]
+    ],
+    "weight": 47
   },
   "glalie": {
     "id": 362,
@@ -1619,7 +1705,8 @@ const pokemonData = {
       "inner-focus",
       "ice-body",
       "moody"
-    ]
+    ],
+    "weight": 256.5
   },
   "gardevoir-mega": {
     "id": 10051,
@@ -1637,7 +1724,8 @@ const pokemonData = {
     },
     "abilities": [
       "pixilate"
-    ]
+    ],
+    "weight": 48.4
   },
   "sableye-mega": {
     "id": 10066,
@@ -1655,7 +1743,8 @@ const pokemonData = {
     },
     "abilities": [
       "magic-bounce"
-    ]
+    ],
+    "weight": 161
   },
   "aggron-mega": {
     "id": 10053,
@@ -1672,7 +1761,8 @@ const pokemonData = {
     },
     "abilities": [
       "filter"
-    ]
+    ],
+    "weight": 395
   },
   "medicham-mega": {
     "id": 10054,
@@ -1690,7 +1780,8 @@ const pokemonData = {
     },
     "abilities": [
       "pure-power"
-    ]
+    ],
+    "weight": 31.5
   },
   "manectric-mega": {
     "id": 10055,
@@ -1707,7 +1798,8 @@ const pokemonData = {
     },
     "abilities": [
       "intimidate"
-    ]
+    ],
+    "weight": 44
   },
   "sharpedo-mega": {
     "id": 10070,
@@ -1725,7 +1817,8 @@ const pokemonData = {
     },
     "abilities": [
       "strong-jaw"
-    ]
+    ],
+    "weight": 130.3
   },
   "camerupt-mega": {
     "id": 10087,
@@ -1743,7 +1836,8 @@ const pokemonData = {
     },
     "abilities": [
       "sheer-force"
-    ]
+    ],
+    "weight": 320.5
   },
   "altaria-mega": {
     "id": 10067,
@@ -1761,7 +1855,8 @@ const pokemonData = {
     },
     "abilities": [
       "pixilate"
-    ]
+    ],
+    "weight": 20.6
   },
   "banette-mega": {
     "id": 10056,
@@ -1778,7 +1873,8 @@ const pokemonData = {
     },
     "abilities": [
       "prankster"
-    ]
+    ],
+    "weight": 13
   },
   "chimecho-mega": {
     "id": 10306,
@@ -1796,7 +1892,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 8
   },
   "absol-mega": {
     "id": 10057,
@@ -1813,7 +1910,8 @@ const pokemonData = {
     },
     "abilities": [
       "magic-bounce"
-    ]
+    ],
+    "weight": 49
   },
   "glalie-mega": {
     "id": 10074,
@@ -1830,7 +1928,8 @@ const pokemonData = {
     },
     "abilities": [
       "refrigerate"
-    ]
+    ],
+    "weight": 350.2
   },
   "torterra": {
     "id": 389,
@@ -1849,7 +1948,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "shell-armor"
-    ]
+    ],
+    "weight": 310
   },
   "infernape": {
     "id": 392,
@@ -1868,7 +1968,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "iron-fist"
-    ]
+    ],
+    "weight": 55
   },
   "empoleon": {
     "id": 395,
@@ -1887,7 +1988,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "competitive"
-    ]
+    ],
+    "weight": 84.5
   },
   "luxray": {
     "id": 405,
@@ -1906,7 +2008,8 @@ const pokemonData = {
       "rivalry",
       "intimidate",
       "guts"
-    ]
+    ],
+    "weight": 42
   },
   "roserade": {
     "id": 407,
@@ -1926,7 +2029,8 @@ const pokemonData = {
       "natural-cure",
       "poison-point",
       "technician"
-    ]
+    ],
+    "weight": 14.5
   },
   "rampardos": {
     "id": 409,
@@ -1944,7 +2048,8 @@ const pokemonData = {
     "abilities": [
       "mold-breaker",
       "sheer-force"
-    ]
+    ],
+    "weight": 102.5
   },
   "bastiodon": {
     "id": 411,
@@ -1963,7 +2068,8 @@ const pokemonData = {
     "abilities": [
       "sturdy",
       "soundproof"
-    ]
+    ],
+    "weight": 149.5
   },
   "lopunny": {
     "id": 428,
@@ -1982,7 +2088,8 @@ const pokemonData = {
       "cute-charm",
       "klutz",
       "limber"
-    ]
+    ],
+    "weight": 33.3
   },
   "spiritomb": {
     "id": 442,
@@ -2001,7 +2108,8 @@ const pokemonData = {
     "abilities": [
       "pressure",
       "infiltrator"
-    ]
+    ],
+    "weight": 108
   },
   "garchomp": {
     "id": 445,
@@ -2020,7 +2128,8 @@ const pokemonData = {
     "abilities": [
       "sand-veil",
       "rough-skin"
-    ]
+    ],
+    "weight": 95
   },
   "lucario": {
     "id": 448,
@@ -2040,7 +2149,8 @@ const pokemonData = {
       "steadfast",
       "inner-focus",
       "justified"
-    ]
+    ],
+    "weight": 54
   },
   "hippowdon": {
     "id": 450,
@@ -2058,7 +2168,8 @@ const pokemonData = {
     "abilities": [
       "sand-stream",
       "sand-force"
-    ]
+    ],
+    "weight": 300
   },
   "toxicroak": {
     "id": 454,
@@ -2078,7 +2189,8 @@ const pokemonData = {
       "anticipation",
       "dry-skin",
       "poison-touch"
-    ]
+    ],
+    "weight": 44.4
   },
   "abomasnow": {
     "id": 460,
@@ -2097,7 +2209,8 @@ const pokemonData = {
     "abilities": [
       "snow-warning",
       "soundproof"
-    ]
+    ],
+    "weight": 135.5
   },
   "weavile": {
     "id": 461,
@@ -2116,7 +2229,8 @@ const pokemonData = {
     "abilities": [
       "pressure",
       "pickpocket"
-    ]
+    ],
+    "weight": 34
   },
   "rhyperior": {
     "id": 464,
@@ -2136,7 +2250,8 @@ const pokemonData = {
       "lightning-rod",
       "solid-rock",
       "reckless"
-    ]
+    ],
+    "weight": 282.8
   },
   "leafeon": {
     "id": 470,
@@ -2154,7 +2269,8 @@ const pokemonData = {
     "abilities": [
       "leaf-guard",
       "chlorophyll"
-    ]
+    ],
+    "weight": 25.5
   },
   "glaceon": {
     "id": 471,
@@ -2172,7 +2288,8 @@ const pokemonData = {
     "abilities": [
       "snow-cloak",
       "ice-body"
-    ]
+    ],
+    "weight": 25.9
   },
   "gliscor": {
     "id": 472,
@@ -2192,7 +2309,8 @@ const pokemonData = {
       "hyper-cutter",
       "sand-veil",
       "poison-heal"
-    ]
+    ],
+    "weight": 42.5
   },
   "mamoswine": {
     "id": 473,
@@ -2212,7 +2330,8 @@ const pokemonData = {
       "oblivious",
       "snow-cloak",
       "thick-fat"
-    ]
+    ],
+    "weight": 291
   },
   "gallade": {
     "id": 475,
@@ -2232,7 +2351,8 @@ const pokemonData = {
       "steadfast",
       "sharpness",
       "justified"
-    ]
+    ],
+    "weight": 52
   },
   "froslass": {
     "id": 478,
@@ -2251,7 +2371,8 @@ const pokemonData = {
     "abilities": [
       "snow-cloak",
       "cursed-body"
-    ]
+    ],
+    "weight": 26.6
   },
   "rotom": {
     "id": 479,
@@ -2269,7 +2390,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "lopunny-mega": {
     "id": 10088,
@@ -2287,7 +2409,8 @@ const pokemonData = {
     },
     "abilities": [
       "scrappy"
-    ]
+    ],
+    "weight": 28.3
   },
   "garchomp-mega": {
     "id": 10058,
@@ -2305,7 +2428,8 @@ const pokemonData = {
     },
     "abilities": [
       "sand-force"
-    ]
+    ],
+    "weight": 95
   },
   "lucario-mega": {
     "id": 10059,
@@ -2323,7 +2447,8 @@ const pokemonData = {
     },
     "abilities": [
       "adaptability"
-    ]
+    ],
+    "weight": 57.5
   },
   "abomasnow-mega": {
     "id": 10060,
@@ -2341,7 +2466,8 @@ const pokemonData = {
     },
     "abilities": [
       "snow-warning"
-    ]
+    ],
+    "weight": 185
   },
   "gallade-mega": {
     "id": 10068,
@@ -2359,7 +2485,8 @@ const pokemonData = {
     },
     "abilities": [
       "inner-focus"
-    ]
+    ],
+    "weight": 56.4
   },
   "froslass-mega": {
     "id": 10285,
@@ -2377,7 +2504,8 @@ const pokemonData = {
     },
     "abilities": [
       "snow-warning"
-    ]
+    ],
+    "weight": 29.6
   },
   "serperior": {
     "id": 497,
@@ -2395,7 +2523,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "contrary"
-    ]
+    ],
+    "weight": 63
   },
   "emboar": {
     "id": 500,
@@ -2414,7 +2543,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "reckless"
-    ]
+    ],
+    "weight": 150
   },
   "samurott": {
     "id": 503,
@@ -2432,7 +2562,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "shell-armor"
-    ]
+    ],
+    "weight": 94.6
   },
   "watchog": {
     "id": 505,
@@ -2451,7 +2582,8 @@ const pokemonData = {
       "illuminate",
       "keen-eye",
       "analytic"
-    ]
+    ],
+    "weight": 27
   },
   "liepard": {
     "id": 510,
@@ -2470,7 +2602,8 @@ const pokemonData = {
       "limber",
       "unburden",
       "prankster"
-    ]
+    ],
+    "weight": 37.5
   },
   "simisage": {
     "id": 512,
@@ -2488,7 +2621,8 @@ const pokemonData = {
     "abilities": [
       "gluttony",
       "overgrow"
-    ]
+    ],
+    "weight": 30.5
   },
   "simisear": {
     "id": 514,
@@ -2506,7 +2640,8 @@ const pokemonData = {
     "abilities": [
       "gluttony",
       "blaze"
-    ]
+    ],
+    "weight": 28
   },
   "simipour": {
     "id": 516,
@@ -2524,7 +2659,8 @@ const pokemonData = {
     "abilities": [
       "gluttony",
       "torrent"
-    ]
+    ],
+    "weight": 29
   },
   "excadrill": {
     "id": 530,
@@ -2544,7 +2680,8 @@ const pokemonData = {
       "sand-rush",
       "sand-force",
       "mold-breaker"
-    ]
+    ],
+    "weight": 40.4
   },
   "audino": {
     "id": 531,
@@ -2563,7 +2700,8 @@ const pokemonData = {
       "healer",
       "regenerator",
       "klutz"
-    ]
+    ],
+    "weight": 31
   },
   "conkeldurr": {
     "id": 534,
@@ -2582,7 +2720,8 @@ const pokemonData = {
       "guts",
       "sheer-force",
       "iron-fist"
-    ]
+    ],
+    "weight": 87
   },
   "whimsicott": {
     "id": 547,
@@ -2602,7 +2741,8 @@ const pokemonData = {
       "prankster",
       "infiltrator",
       "chlorophyll"
-    ]
+    ],
+    "weight": 6.6
   },
   "krookodile": {
     "id": 553,
@@ -2622,7 +2762,8 @@ const pokemonData = {
       "intimidate",
       "moxie",
       "anger-point"
-    ]
+    ],
+    "weight": 96.3
   },
   "cofagrigus": {
     "id": 563,
@@ -2639,7 +2780,8 @@ const pokemonData = {
     },
     "abilities": [
       "mummy"
-    ]
+    ],
+    "weight": 76.5
   },
   "garbodor": {
     "id": 569,
@@ -2658,7 +2800,8 @@ const pokemonData = {
       "stench",
       "weak-armor",
       "aftermath"
-    ]
+    ],
+    "weight": 107.3
   },
   "zoroark": {
     "id": 571,
@@ -2675,7 +2818,8 @@ const pokemonData = {
     },
     "abilities": [
       "illusion"
-    ]
+    ],
+    "weight": 81.1
   },
   "reuniclus": {
     "id": 579,
@@ -2694,7 +2838,8 @@ const pokemonData = {
       "overcoat",
       "magic-guard",
       "regenerator"
-    ]
+    ],
+    "weight": 20.1
   },
   "vanilluxe": {
     "id": 584,
@@ -2713,7 +2858,8 @@ const pokemonData = {
       "ice-body",
       "snow-warning",
       "weak-armor"
-    ]
+    ],
+    "weight": 57.5
   },
   "emolga": {
     "id": 587,
@@ -2732,7 +2878,8 @@ const pokemonData = {
     "abilities": [
       "static",
       "motor-drive"
-    ]
+    ],
+    "weight": 5
   },
   "chandelure": {
     "id": 609,
@@ -2752,7 +2899,8 @@ const pokemonData = {
       "flash-fire",
       "flame-body",
       "infiltrator"
-    ]
+    ],
+    "weight": 34.3
   },
   "beartic": {
     "id": 614,
@@ -2771,7 +2919,8 @@ const pokemonData = {
       "snow-cloak",
       "slush-rush",
       "swift-swim"
-    ]
+    ],
+    "weight": 260
   },
   "stunfisk": {
     "id": 618,
@@ -2791,7 +2940,8 @@ const pokemonData = {
       "static",
       "limber",
       "sand-veil"
-    ]
+    ],
+    "weight": 11
   },
   "golurk": {
     "id": 623,
@@ -2811,7 +2961,8 @@ const pokemonData = {
       "iron-fist",
       "klutz",
       "no-guard"
-    ]
+    ],
+    "weight": 330
   },
   "hydreigon": {
     "id": 635,
@@ -2829,7 +2980,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 160
   },
   "volcarona": {
     "id": 637,
@@ -2848,7 +3000,8 @@ const pokemonData = {
     "abilities": [
       "flame-body",
       "swarm"
-    ]
+    ],
+    "weight": 46
   },
   "emboar-mega": {
     "id": 10286,
@@ -2866,7 +3019,8 @@ const pokemonData = {
     },
     "abilities": [
       "mold-breaker"
-    ]
+    ],
+    "weight": 180.3
   },
   "excadrill-mega": {
     "id": 10287,
@@ -2884,7 +3038,8 @@ const pokemonData = {
     },
     "abilities": [
       "piercing-drill"
-    ]
+    ],
+    "weight": 60
   },
   "audino-mega": {
     "id": 10069,
@@ -2902,7 +3057,8 @@ const pokemonData = {
     },
     "abilities": [
       "healer"
-    ]
+    ],
+    "weight": 32
   },
   "chandelure-mega": {
     "id": 10291,
@@ -2920,7 +3076,8 @@ const pokemonData = {
     },
     "abilities": [
       "infiltrator"
-    ]
+    ],
+    "weight": 69.6
   },
   "golurk-mega": {
     "id": 10313,
@@ -2938,7 +3095,8 @@ const pokemonData = {
     },
     "abilities": [
       "unseen-fist"
-    ]
+    ],
+    "weight": 330
   },
   "chesnaught": {
     "id": 652,
@@ -2957,7 +3115,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "bulletproof"
-    ]
+    ],
+    "weight": 90
   },
   "delphox": {
     "id": 655,
@@ -2976,7 +3135,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "magician"
-    ]
+    ],
+    "weight": 39
   },
   "greninja": {
     "id": 658,
@@ -2995,7 +3155,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "protean"
-    ]
+    ],
+    "weight": 40
   },
   "diggersby": {
     "id": 660,
@@ -3015,7 +3176,8 @@ const pokemonData = {
       "pickup",
       "cheek-pouch",
       "huge-power"
-    ]
+    ],
+    "weight": 42.4
   },
   "talonflame": {
     "id": 663,
@@ -3034,7 +3196,8 @@ const pokemonData = {
     "abilities": [
       "flame-body",
       "gale-wings"
-    ]
+    ],
+    "weight": 24.5
   },
   "vivillon": {
     "id": 666,
@@ -3054,7 +3217,8 @@ const pokemonData = {
       "shield-dust",
       "compound-eyes",
       "friend-guard"
-    ]
+    ],
+    "weight": 17
   },
   "floette": {
     "id": 670,
@@ -3072,7 +3236,8 @@ const pokemonData = {
     "abilities": [
       "flower-veil",
       "symbiosis"
-    ]
+    ],
+    "weight": 0.9
   },
   "florges": {
     "id": 671,
@@ -3090,7 +3255,8 @@ const pokemonData = {
     "abilities": [
       "flower-veil",
       "symbiosis"
-    ]
+    ],
+    "weight": 10
   },
   "pangoro": {
     "id": 675,
@@ -3110,7 +3276,8 @@ const pokemonData = {
       "iron-fist",
       "mold-breaker",
       "scrappy"
-    ]
+    ],
+    "weight": 136
   },
   "furfrou": {
     "id": 676,
@@ -3127,7 +3294,8 @@ const pokemonData = {
     },
     "abilities": [
       "fur-coat"
-    ]
+    ],
+    "weight": 28
   },
   "meowstic-male": {
     "id": 678,
@@ -3146,7 +3314,8 @@ const pokemonData = {
       "keen-eye",
       "infiltrator",
       "prankster"
-    ]
+    ],
+    "weight": 8.5
   },
   "meowstic-female": {
     "id": 10025,
@@ -3165,7 +3334,8 @@ const pokemonData = {
       "keen-eye",
       "infiltrator",
       "competitive"
-    ]
+    ],
+    "weight": 8.5
   },
   "aegislash-shield": {
     "id": 681,
@@ -3183,7 +3353,8 @@ const pokemonData = {
     },
     "abilities": [
       "stance-change"
-    ]
+    ],
+    "weight": 53
   },
   "aegislash-blade": {
     "id": 10026,
@@ -3201,7 +3372,8 @@ const pokemonData = {
     },
     "abilities": [
       "stance-change"
-    ]
+    ],
+    "weight": 53
   },
   "aromatisse": {
     "id": 683,
@@ -3219,7 +3391,8 @@ const pokemonData = {
     "abilities": [
       "healer",
       "aroma-veil"
-    ]
+    ],
+    "weight": 15.5
   },
   "slurpuff": {
     "id": 685,
@@ -3237,7 +3410,8 @@ const pokemonData = {
     "abilities": [
       "sweet-veil",
       "unburden"
-    ]
+    ],
+    "weight": 5
   },
   "clawitzer": {
     "id": 693,
@@ -3254,7 +3428,8 @@ const pokemonData = {
     },
     "abilities": [
       "mega-launcher"
-    ]
+    ],
+    "weight": 35.3
   },
   "heliolisk": {
     "id": 695,
@@ -3274,7 +3449,8 @@ const pokemonData = {
       "dry-skin",
       "sand-veil",
       "solar-power"
-    ]
+    ],
+    "weight": 21
   },
   "tyrantrum": {
     "id": 697,
@@ -3293,7 +3469,8 @@ const pokemonData = {
     "abilities": [
       "strong-jaw",
       "rock-head"
-    ]
+    ],
+    "weight": 270
   },
   "aurorus": {
     "id": 699,
@@ -3312,7 +3489,8 @@ const pokemonData = {
     "abilities": [
       "refrigerate",
       "snow-warning"
-    ]
+    ],
+    "weight": 225
   },
   "sylveon": {
     "id": 700,
@@ -3330,7 +3508,8 @@ const pokemonData = {
     "abilities": [
       "cute-charm",
       "pixilate"
-    ]
+    ],
+    "weight": 23.5
   },
   "hawlucha": {
     "id": 701,
@@ -3350,7 +3529,8 @@ const pokemonData = {
       "limber",
       "unburden",
       "mold-breaker"
-    ]
+    ],
+    "weight": 21.5
   },
   "dedenne": {
     "id": 702,
@@ -3370,7 +3550,8 @@ const pokemonData = {
       "cheek-pouch",
       "pickup",
       "plus"
-    ]
+    ],
+    "weight": 2.2
   },
   "goodra": {
     "id": 706,
@@ -3389,7 +3570,8 @@ const pokemonData = {
       "sap-sipper",
       "hydration",
       "gooey"
-    ]
+    ],
+    "weight": 150.5
   },
   "klefki": {
     "id": 707,
@@ -3408,7 +3590,8 @@ const pokemonData = {
     "abilities": [
       "prankster",
       "magician"
-    ]
+    ],
+    "weight": 3
   },
   "trevenant": {
     "id": 709,
@@ -3428,7 +3611,8 @@ const pokemonData = {
       "natural-cure",
       "frisk",
       "harvest"
-    ]
+    ],
+    "weight": 71
   },
   "gourgeist-average": {
     "id": 711,
@@ -3448,7 +3632,8 @@ const pokemonData = {
       "pickup",
       "frisk",
       "insomnia"
-    ]
+    ],
+    "weight": 12.5
   },
   "avalugg": {
     "id": 713,
@@ -3467,7 +3652,8 @@ const pokemonData = {
       "own-tempo",
       "ice-body",
       "sturdy"
-    ]
+    ],
+    "weight": 505
   },
   "noivern": {
     "id": 715,
@@ -3487,7 +3673,8 @@ const pokemonData = {
       "frisk",
       "infiltrator",
       "telepathy"
-    ]
+    ],
+    "weight": 85
   },
   "chesnaught-mega": {
     "id": 10292,
@@ -3505,7 +3692,8 @@ const pokemonData = {
     },
     "abilities": [
       "bulletproof"
-    ]
+    ],
+    "weight": 90
   },
   "delphox-mega": {
     "id": 10293,
@@ -3523,7 +3711,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 39
   },
   "greninja-mega": {
     "id": 10294,
@@ -3541,7 +3730,8 @@ const pokemonData = {
     },
     "abilities": [
       "protean"
-    ]
+    ],
+    "weight": 40
   },
   "floette-mega": {
     "id": 10296,
@@ -3558,7 +3748,8 @@ const pokemonData = {
     },
     "abilities": [
       "fairy-aura"
-    ]
+    ],
+    "weight": 100.8
   },
   "meowstic-mega": {
     "id": 10314,
@@ -3575,7 +3766,8 @@ const pokemonData = {
     },
     "abilities": [
       "trace"
-    ]
+    ],
+    "weight": 10.1
   },
   "hawlucha-mega": {
     "id": 10300,
@@ -3593,7 +3785,8 @@ const pokemonData = {
     },
     "abilities": [
       "no-guard"
-    ]
+    ],
+    "weight": 25
   },
   "decidueye": {
     "id": 724,
@@ -3612,7 +3805,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "long-reach"
-    ]
+    ],
+    "weight": 36.6
   },
   "incineroar": {
     "id": 727,
@@ -3631,7 +3825,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "intimidate"
-    ]
+    ],
+    "weight": 83
   },
   "primarina": {
     "id": 730,
@@ -3650,7 +3845,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "liquid-voice"
-    ]
+    ],
+    "weight": 44
   },
   "toucannon": {
     "id": 733,
@@ -3670,7 +3866,8 @@ const pokemonData = {
       "keen-eye",
       "skill-link",
       "sheer-force"
-    ]
+    ],
+    "weight": 26
   },
   "crabominable": {
     "id": 740,
@@ -3690,7 +3887,8 @@ const pokemonData = {
       "hyper-cutter",
       "iron-fist",
       "anger-point"
-    ]
+    ],
+    "weight": 180
   },
   "toxapex": {
     "id": 748,
@@ -3710,7 +3908,8 @@ const pokemonData = {
       "merciless",
       "limber",
       "regenerator"
-    ]
+    ],
+    "weight": 14.5
   },
   "mudsdale": {
     "id": 750,
@@ -3729,7 +3928,8 @@ const pokemonData = {
       "own-tempo",
       "stamina",
       "inner-focus"
-    ]
+    ],
+    "weight": 920
   },
   "araquanid": {
     "id": 752,
@@ -3748,7 +3948,8 @@ const pokemonData = {
     "abilities": [
       "water-bubble",
       "water-absorb"
-    ]
+    ],
+    "weight": 82
   },
   "salazzle": {
     "id": 758,
@@ -3767,7 +3968,8 @@ const pokemonData = {
     "abilities": [
       "corrosion",
       "oblivious"
-    ]
+    ],
+    "weight": 22.2
   },
   "tsareena": {
     "id": 763,
@@ -3786,7 +3988,8 @@ const pokemonData = {
       "leaf-guard",
       "queenly-majesty",
       "sweet-veil"
-    ]
+    ],
+    "weight": 21.4
   },
   "oranguru": {
     "id": 765,
@@ -3806,7 +4009,8 @@ const pokemonData = {
       "inner-focus",
       "telepathy",
       "symbiosis"
-    ]
+    ],
+    "weight": 76
   },
   "passimian": {
     "id": 766,
@@ -3824,7 +4028,8 @@ const pokemonData = {
     "abilities": [
       "receiver",
       "defiant"
-    ]
+    ],
+    "weight": 82.8
   },
   "mimikyu-disguised": {
     "id": 778,
@@ -3842,7 +4047,8 @@ const pokemonData = {
     },
     "abilities": [
       "disguise"
-    ]
+    ],
+    "weight": 0.7
   },
   "drampa": {
     "id": 780,
@@ -3862,7 +4068,8 @@ const pokemonData = {
       "berserk",
       "sap-sipper",
       "cloud-nine"
-    ]
+    ],
+    "weight": 185
   },
   "kommo-o": {
     "id": 784,
@@ -3882,7 +4089,8 @@ const pokemonData = {
       "bulletproof",
       "soundproof",
       "overcoat"
-    ]
+    ],
+    "weight": 78.2
   },
   "lycanroc-midday": {
     "id": 745,
@@ -3901,7 +4109,8 @@ const pokemonData = {
       "keen-eye",
       "sand-rush",
       "steadfast"
-    ]
+    ],
+    "weight": 25
   },
   "crabominable-mega": {
     "id": 10315,
@@ -3919,7 +4128,8 @@ const pokemonData = {
     },
     "abilities": [
       "iron-fist"
-    ]
+    ],
+    "weight": 252.8
   },
   "drampa-mega": {
     "id": 10302,
@@ -3937,7 +4147,8 @@ const pokemonData = {
     },
     "abilities": [
       "berserk"
-    ]
+    ],
+    "weight": 240.5
   },
   "scovillain-mega": {
     "id": 10320,
@@ -3955,7 +4166,8 @@ const pokemonData = {
     },
     "abilities": [
       "spicy-spray"
-    ]
+    ],
+    "weight": 22
   },
   "corviknight": {
     "id": 823,
@@ -3975,7 +4187,8 @@ const pokemonData = {
       "pressure",
       "unnerve",
       "mirror-armor"
-    ]
+    ],
+    "weight": 75
   },
   "flapple": {
     "id": 841,
@@ -3995,7 +4208,8 @@ const pokemonData = {
       "ripen",
       "gluttony",
       "hustle"
-    ]
+    ],
+    "weight": 1
   },
   "appletun": {
     "id": 842,
@@ -4015,7 +4229,8 @@ const pokemonData = {
       "ripen",
       "gluttony",
       "thick-fat"
-    ]
+    ],
+    "weight": 13
   },
   "sandaconda": {
     "id": 844,
@@ -4034,7 +4249,8 @@ const pokemonData = {
       "sand-spit",
       "shed-skin",
       "sand-veil"
-    ]
+    ],
+    "weight": 65.5
   },
   "polteageist": {
     "id": 855,
@@ -4052,7 +4268,8 @@ const pokemonData = {
     "abilities": [
       "weak-armor",
       "cursed-body"
-    ]
+    ],
+    "weight": 0.4
   },
   "hatterene": {
     "id": 858,
@@ -4072,7 +4289,8 @@ const pokemonData = {
       "healer",
       "anticipation",
       "magic-bounce"
-    ]
+    ],
+    "weight": 5.1
   },
   "mr-rime": {
     "id": 866,
@@ -4092,7 +4310,8 @@ const pokemonData = {
       "tangled-feet",
       "screen-cleaner",
       "ice-body"
-    ]
+    ],
+    "weight": 58.2
   },
   "runerigus": {
     "id": 867,
@@ -4110,7 +4329,8 @@ const pokemonData = {
     },
     "abilities": [
       "wandering-spirit"
-    ]
+    ],
+    "weight": 66.6
   },
   "alcremie": {
     "id": 869,
@@ -4128,7 +4348,8 @@ const pokemonData = {
     "abilities": [
       "sweet-veil",
       "aroma-veil"
-    ]
+    ],
+    "weight": 0.5
   },
   "morpeko-full-belly": {
     "id": 877,
@@ -4146,7 +4367,8 @@ const pokemonData = {
     },
     "abilities": [
       "hunger-switch"
-    ]
+    ],
+    "weight": 3
   },
   "dragapult": {
     "id": 887,
@@ -4166,7 +4388,8 @@ const pokemonData = {
       "clear-body",
       "infiltrator",
       "cursed-body"
-    ]
+    ],
+    "weight": 50
   },
   "meowscarada": {
     "id": 908,
@@ -4185,7 +4408,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "protean"
-    ]
+    ],
+    "weight": 31.2
   },
   "skeledirge": {
     "id": 911,
@@ -4204,7 +4428,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "unaware"
-    ]
+    ],
+    "weight": 326.5
   },
   "quaquaval": {
     "id": 914,
@@ -4223,7 +4448,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "moxie"
-    ]
+    ],
+    "weight": 61.9
   },
   "maushold-family-of-four": {
     "id": 925,
@@ -4242,7 +4468,8 @@ const pokemonData = {
       "friend-guard",
       "cheek-pouch",
       "technician"
-    ]
+    ],
+    "weight": 2.3
   },
   "garganacl": {
     "id": 934,
@@ -4261,7 +4488,8 @@ const pokemonData = {
       "purifying-salt",
       "sturdy",
       "clear-body"
-    ]
+    ],
+    "weight": 240
   },
   "armarouge": {
     "id": 936,
@@ -4280,7 +4508,8 @@ const pokemonData = {
     "abilities": [
       "flash-fire",
       "weak-armor"
-    ]
+    ],
+    "weight": 85
   },
   "ceruledge": {
     "id": 937,
@@ -4299,7 +4528,8 @@ const pokemonData = {
     "abilities": [
       "flash-fire",
       "weak-armor"
-    ]
+    ],
+    "weight": 62
   },
   "bellibolt": {
     "id": 939,
@@ -4318,7 +4548,8 @@ const pokemonData = {
       "electromorphosis",
       "static",
       "damp"
-    ]
+    ],
+    "weight": 113
   },
   "scovillain": {
     "id": 952,
@@ -4338,7 +4569,8 @@ const pokemonData = {
       "chlorophyll",
       "insomnia",
       "moody"
-    ]
+    ],
+    "weight": 15
   },
   "espathra": {
     "id": 956,
@@ -4357,7 +4589,8 @@ const pokemonData = {
       "opportunist",
       "frisk",
       "speed-boost"
-    ]
+    ],
+    "weight": 90
   },
   "tinkaton": {
     "id": 959,
@@ -4377,7 +4610,8 @@ const pokemonData = {
       "mold-breaker",
       "own-tempo",
       "pickpocket"
-    ]
+    ],
+    "weight": 112.8
   },
   "palafin-zero": {
     "id": 964,
@@ -4394,7 +4628,8 @@ const pokemonData = {
     },
     "abilities": [
       "zero-to-hero"
-    ]
+    ],
+    "weight": 60.2
   },
   "orthworm": {
     "id": 968,
@@ -4412,7 +4647,8 @@ const pokemonData = {
     "abilities": [
       "earth-eater",
       "sand-veil"
-    ]
+    ],
+    "weight": 310
   },
   "glimmora": {
     "id": 970,
@@ -4431,7 +4667,8 @@ const pokemonData = {
     "abilities": [
       "toxic-debris",
       "corrosion"
-    ]
+    ],
+    "weight": 45
   },
   "farigiraf": {
     "id": 981,
@@ -4451,7 +4688,8 @@ const pokemonData = {
       "cud-chew",
       "armor-tail",
       "sap-sipper"
-    ]
+    ],
+    "weight": 160
   },
   "kingambit": {
     "id": 983,
@@ -4471,7 +4709,8 @@ const pokemonData = {
       "defiant",
       "supreme-overlord",
       "pressure"
-    ]
+    ],
+    "weight": 120
   },
   "sinistcha": {
     "id": 1013,
@@ -4490,7 +4729,8 @@ const pokemonData = {
     "abilities": [
       "hospitality",
       "heatproof"
-    ]
+    ],
+    "weight": 2.2
   },
   "archaludon": {
     "id": 1018,
@@ -4510,7 +4750,8 @@ const pokemonData = {
       "stamina",
       "sturdy",
       "stalwart"
-    ]
+    ],
+    "weight": 60
   },
   "hydrapple": {
     "id": 1019,
@@ -4530,7 +4771,8 @@ const pokemonData = {
       "supersweet-syrup",
       "regenerator",
       "sticky-hold"
-    ]
+    ],
+    "weight": 93
   },
   "glimmora-mega": {
     "id": 10321,
@@ -4548,7 +4790,8 @@ const pokemonData = {
     },
     "abilities": [
       "adaptability"
-    ]
+    ],
+    "weight": 77
   },
   "wyrdeer": {
     "id": 899,
@@ -4568,7 +4811,8 @@ const pokemonData = {
       "intimidate",
       "frisk",
       "sap-sipper"
-    ]
+    ],
+    "weight": 95.1
   },
   "kleavor": {
     "id": 900,
@@ -4588,7 +4832,8 @@ const pokemonData = {
       "swarm",
       "sheer-force",
       "sharpness"
-    ]
+    ],
+    "weight": 89
   },
   "basculegion-male": {
     "id": 902,
@@ -4608,7 +4853,8 @@ const pokemonData = {
       "swift-swim",
       "adaptability",
       "mold-breaker"
-    ]
+    ],
+    "weight": 110
   },
   "basculegion-female": {
     "id": 10248,
@@ -4628,7 +4874,8 @@ const pokemonData = {
       "swift-swim",
       "adaptability",
       "mold-breaker"
-    ]
+    ],
+    "weight": 110
   },
   "sneasler": {
     "id": 903,
@@ -4648,7 +4895,8 @@ const pokemonData = {
       "pressure",
       "unburden",
       "poison-touch"
-    ]
+    ],
+    "weight": 43
   },
   "raichu-alola": {
     "id": 10100,
@@ -4666,7 +4914,8 @@ const pokemonData = {
     },
     "abilities": [
       "surge-surfer"
-    ]
+    ],
+    "weight": 21
   },
   "ninetales-alola": {
     "id": 10104,
@@ -4685,7 +4934,8 @@ const pokemonData = {
     "abilities": [
       "snow-cloak",
       "snow-warning"
-    ]
+    ],
+    "weight": 19.9
   },
   "arcanine-hisui": {
     "id": 10230,
@@ -4705,7 +4955,8 @@ const pokemonData = {
       "intimidate",
       "flash-fire",
       "rock-head"
-    ]
+    ],
+    "weight": 168
   },
   "slowbro-galar": {
     "id": 10165,
@@ -4725,7 +4976,8 @@ const pokemonData = {
       "quick-draw",
       "own-tempo",
       "regenerator"
-    ]
+    ],
+    "weight": 70.5
   },
   "slowking-galar": {
     "id": 10164,
@@ -4744,7 +4996,8 @@ const pokemonData = {
     "abilities": [
       "own-tempo",
       "regenerator"
-    ]
+    ],
+    "weight": 36
   },
   "tauros-paldea-combat-breed": {
     "id": 10250,
@@ -4763,7 +5016,8 @@ const pokemonData = {
       "intimidate",
       "anger-point",
       "cud-chew"
-    ]
+    ],
+    "weight": 115
   },
   "typhlosion-hisui": {
     "id": 10233,
@@ -4782,7 +5036,8 @@ const pokemonData = {
     "abilities": [
       "blaze",
       "frisk"
-    ]
+    ],
+    "weight": 69.8
   },
   "rotom-heat": {
     "id": 10008,
@@ -4800,7 +5055,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "rotom-wash": {
     "id": 10009,
@@ -4818,7 +5074,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "rotom-frost": {
     "id": 10010,
@@ -4836,7 +5093,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "rotom-fan": {
     "id": 10011,
@@ -4854,7 +5112,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "rotom-mow": {
     "id": 10012,
@@ -4872,7 +5131,8 @@ const pokemonData = {
     },
     "abilities": [
       "levitate"
-    ]
+    ],
+    "weight": 0.3
   },
   "samurott-hisui": {
     "id": 10236,
@@ -4891,7 +5151,8 @@ const pokemonData = {
     "abilities": [
       "torrent",
       "sharpness"
-    ]
+    ],
+    "weight": 58.2
   },
   "zoroark-hisui": {
     "id": 10239,
@@ -4909,7 +5170,8 @@ const pokemonData = {
     },
     "abilities": [
       "illusion"
-    ]
+    ],
+    "weight": 73
   },
   "stunfisk-galar": {
     "id": 10180,
@@ -4927,7 +5189,8 @@ const pokemonData = {
     },
     "abilities": [
       "mimicry"
-    ]
+    ],
+    "weight": 20.5
   },
   "goodra-hisui": {
     "id": 10242,
@@ -4947,7 +5210,8 @@ const pokemonData = {
       "sap-sipper",
       "shell-armor",
       "gooey"
-    ]
+    ],
+    "weight": 334.1
   },
   "avalugg-hisui": {
     "id": 10243,
@@ -4967,7 +5231,8 @@ const pokemonData = {
       "strong-jaw",
       "ice-body",
       "sturdy"
-    ]
+    ],
+    "weight": 262.4
   },
   "decidueye-hisui": {
     "id": 10244,
@@ -4986,7 +5251,8 @@ const pokemonData = {
     "abilities": [
       "overgrow",
       "scrappy"
-    ]
+    ],
+    "weight": 37
   },
   "lycanroc-midnight": {
     "id": 10126,
@@ -5005,7 +5271,8 @@ const pokemonData = {
       "keen-eye",
       "vital-spirit",
       "no-guard"
-    ]
+    ],
+    "weight": 25
   },
   "lycanroc-dusk": {
     "id": 10152,
@@ -5022,7 +5289,8 @@ const pokemonData = {
     },
     "abilities": [
       "tough-claws"
-    ]
+    ],
+    "weight": 25
   },
   "tauros-paldea-blaze-breed": {
     "id": 10251,
@@ -5042,7 +5310,8 @@ const pokemonData = {
       "intimidate",
       "anger-point",
       "cud-chew"
-    ]
+    ],
+    "weight": 85
   },
   "tauros-paldea-aqua-breed": {
     "id": 10252,
@@ -5062,7 +5331,8 @@ const pokemonData = {
       "intimidate",
       "anger-point",
       "cud-chew"
-    ]
+    ],
+    "weight": 110
   }
 };
 
