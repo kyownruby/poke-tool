@@ -277,7 +277,8 @@ const moveData = {
     "power": 90,
     "type": "poison",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "mud-slap": {
     "name": "どろかけ",
@@ -452,7 +453,8 @@ const moveData = {
     "power": 50,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "bullet-seed": {
     "name": "タネマシンガン",
@@ -461,7 +463,8 @@ const moveData = {
     "damageClass": "physical",
     "contact": false,
     "minHits": 2,
-    "maxHits": 5
+    "maxHits": 5,
+    "bomb": true
   },
   "block": {
     "name": "とおせんぼう",
@@ -510,14 +513,16 @@ const moveData = {
     "power": 80,
     "type": "grass",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "energy-ball": {
     "name": "エナジーボール",
     "power": 90,
     "type": "grass",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "earth-power": {
     "name": "だいちのちから",
@@ -580,7 +585,8 @@ const moveData = {
     "power": 40,
     "type": "poison",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "round": {
     "name": "りんしょう",
@@ -1075,7 +1081,8 @@ const moveData = {
     "power": 120,
     "type": "fighting",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "shadow-claw": {
     "name": "シャドークロー",
@@ -1473,7 +1480,8 @@ const moveData = {
     "power": null,
     "type": "steel",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "bomb": true
   },
   "brine": {
     "name": "しおみず",
@@ -1495,7 +1503,8 @@ const moveData = {
     "type": "fighting",
     "damageClass": "special",
     "contact": false,
-    "pulse": true
+    "pulse": true,
+    "bomb": true
   },
   "dark-pulse": {
     "name": "あくのはどう",
@@ -2086,7 +2095,8 @@ const moveData = {
     "power": 120,
     "type": "electric",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "detect": {
     "name": "みきり",
@@ -2198,7 +2208,8 @@ const moveData = {
     "power": null,
     "type": "electric",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "volt-switch": {
     "name": "ボルトチェンジ",
@@ -2424,7 +2435,8 @@ const moveData = {
     "power": 80,
     "type": "ghost",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "future-sight": {
     "name": "みらいよち",
@@ -2878,7 +2890,8 @@ const moveData = {
     "damageClass": "physical",
     "contact": false,
     "minHits": 2,
-    "maxHits": 5
+    "maxHits": 5,
+    "bomb": true
   },
   "wake-up-slap": {
     "name": "めざましビンタ",
@@ -4012,7 +4025,8 @@ const moveData = {
     "power": 150,
     "type": "rock",
     "damageClass": "physical",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "barrier": {
     "name": "バリアー",
@@ -4191,7 +4205,8 @@ const moveData = {
     "power": 90,
     "type": "bug",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "flower-shield": {
     "name": "フラワーガード",
@@ -4331,7 +4346,8 @@ const moveData = {
     "power": 100,
     "type": "flying",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "bomb": true
   },
   "ice-hammer": {
     "name": "アイスハンマー",
@@ -4604,7 +4620,8 @@ const moveData = {
     "power": 60,
     "type": "grass",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "bomb": true
   },
   "fickle-beam": {
     "name": "きまぐレーザー",

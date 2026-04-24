@@ -59,4 +59,5 @@ export const defenderAbilities = {
   'marvel-scale':   { label: 'ふしぎなウロコ', effect: { condition: 'defStatus', stat: 'defense', mult: 1.5 } },
   'water-bubble':   { label: 'すいほう', effect: { resistType: ['fire'], mult: 0.5 } },
   'well-baked-body': { label: 'ちくねつ', effect: { immune: 'fire' } },
+  'bulletproof':    { label: 'ぼうだん', effect: { immuneFlag: 'bomb' } },
 };
