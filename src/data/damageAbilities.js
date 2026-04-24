@@ -31,6 +31,7 @@ export const defenderAbilities = {
   'filter':       { label: 'フィルター', effect: { superEffectiveReduce: 0.75 } },
   'solid-rock':   { label: 'ハードロック', effect: { superEffectiveReduce: 0.75 } },
   'multiscale':   { label: 'マルチスケイル', effect: { fullHpHalf: true } },
+  'disguise':     { label: 'ばけのかわ', effect: { disguise: true } },
   'ice-scales':   { label: 'こおりのりんぷん', effect: { specialHalf: true } },
   // 免疫特性
   'levitate':     { label: 'ふゆう', effect: { immune: 'ground' } },
