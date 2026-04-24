@@ -980,7 +980,8 @@ const moveData = {
     "power": 60,
     "type": "flying",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "slicing": true
   },
   "overheat": {
     "name": "オーバーヒート",
@@ -1001,7 +1002,8 @@ const moveData = {
     "power": 60,
     "type": "flying",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "dragon-claw": {
     "name": "ドラゴンクロー",
@@ -1050,7 +1052,8 @@ const moveData = {
     "power": 75,
     "type": "flying",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "slicing": true
   },
   "dragon-pulse": {
     "name": "りゅうのはどう",
@@ -1740,7 +1743,8 @@ const moveData = {
     "power": 80,
     "type": "bug",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "bug-bite": {
     "name": "むしくい",
@@ -2899,7 +2903,8 @@ const moveData = {
     "power": 70,
     "type": "poison",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "stone-edge": {
     "name": "ストーンエッジ",
@@ -3001,7 +3006,8 @@ const moveData = {
     "power": 75,
     "type": "water",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "psychic-terrain": {
     "name": "サイコフィールド",
@@ -3390,7 +3396,8 @@ const moveData = {
     "power": 125,
     "type": "grass",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "flatter": {
     "name": "おだてる",
@@ -3425,7 +3432,8 @@ const moveData = {
     "power": 70,
     "type": "dark",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "bug-buzz": {
     "name": "むしのさざめき",
@@ -3600,7 +3608,8 @@ const moveData = {
     "power": 70,
     "type": "psychic",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "arm-thrust": {
     "name": "つっぱり",
@@ -3877,7 +3886,8 @@ const moveData = {
     "power": 90,
     "type": "grass",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "wood-hammer": {
     "name": "ウッドハンマー",
@@ -4026,14 +4036,16 @@ const moveData = {
     "power": 90,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "aqua-cutter": {
     "name": "アクアカッター",
     "power": 70,
     "type": "water",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "wring-out": {
     "name": "しぼりとる",
@@ -4480,7 +4492,8 @@ const moveData = {
     "power": 20,
     "type": "normal",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "tidy-up": {
     "name": "おかたづけ",
@@ -4508,7 +4521,8 @@ const moveData = {
     "power": 90,
     "type": "fire",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "spicy-extract": {
     "name": "ハバネロエキス",
@@ -4607,7 +4621,8 @@ const moveData = {
     "power": 65,
     "type": "rock",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "last-respects": {
     "name": "おはかまいり",
@@ -4642,7 +4657,8 @@ const moveData = {
     "power": 65,
     "type": "dark",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "slicing": true
   },
   "bitter-malice": {
     "name": "うらみつらみ",
