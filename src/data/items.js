@@ -23,17 +23,7 @@ const items = [
   { key: 'light-ball', label: 'でんきだま', effect: { pokemon: 'pikachu', stat: 'both', mult: 2.0 } },
   // 防御系
   { key: 'focus-sash', label: 'きあいのタスキ', effect: null },
-  { key: 'focus-band', label: 'きあいのハチマキ', effect: null },
   { key: 'leftovers', label: 'たべのこし', effect: { leftovers: true } },
-  { key: 'shell-bell', label: 'かいがらのすず', effect: null },
-  { key: 'mental-herb', label: 'メンタルハーブ', effect: null },
-  { key: 'white-herb', label: 'しろいハーブ', effect: null },
-  // その他
-  { key: 'kings-rock', label: 'おうじゃのしるし', effect: null },
-  { key: 'quick-claw', label: 'せんせいのツメ', effect: null },
-  { key: 'bright-powder', label: 'ひかりのこな', effect: null },
-  { key: 'scope-lens', label: 'ピントレンズ', effect: null },
-  { key: 'choice-scarf', label: 'こだわりスカーフ', effect: null },
   // 半減きのみ
   { key: 'occa-berry', label: 'オッカのみ', effect: { resistBerry: 'fire' } },
   { key: 'passho-berry', label: 'イトケのみ', effect: { resistBerry: 'water' } },
@@ -56,14 +46,6 @@ const items = [
   // 回復きのみ
   { key: 'oran-berry', label: 'オレンのみ', effect: { healBerry: 'oran' } },
   { key: 'sitrus-berry', label: 'オボンのみ', effect: { healBerry: 'sitrus' } },
-  { key: 'lum-berry', label: 'ラムのみ', effect: null },
-  { key: 'chesto-berry', label: 'カゴのみ', effect: null },
-  { key: 'pecha-berry', label: 'モモンのみ', effect: null },
-  { key: 'rawst-berry', label: 'チーゴのみ', effect: null },
-  { key: 'aspear-berry', label: 'ナナシのみ', effect: null },
-  { key: 'leppa-berry', label: 'ヒメリのみ', effect: null },
-  { key: 'persim-berry', label: 'キーのみ', effect: null },
-  { key: 'cheri-berry', label: 'クラボのみ', effect: null },
 ];
 
 export default items;

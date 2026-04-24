@@ -141,7 +141,10 @@ export function calculateDamage({
     atkStat = Math.floor(atkStat * atkItem.effect.mult);
   }
   if (atkItem?.effect?.stat === 'both') {
-    atkStat = Math.floor(atkStat * atkItem.effect.mult);
+    const pokemonMatch = !atkItem.effect.pokemon || attacker.englishName === atkItem.effect.pokemon;
+    if (pokemonMatch) {
+      atkStat = Math.floor(atkStat * atkItem.effect.mult);
+    }
   }
 
   // Burn
