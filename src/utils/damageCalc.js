@@ -296,11 +296,12 @@ export function calculateDamage({
   }
 
   let multiHit = null;
+  let escalatingDamages = null;
   const minHits = move.minHits;
   const maxHits = move.maxHits;
 
   if (move.escalating) {
-    const escalatingDamages = move.escalating.map((power, i) =>
+    escalatingDamages = move.escalating.map((power, i) =>
       calcHitDamage(power, i === 0 ? defAbilityMult : defAbilityMultNoMS)
     );
     const totalMin = escalatingDamages.reduce((sum, d) => sum + Math.min(...d), 0);
@@ -397,7 +398,24 @@ export function calculateDamage({
     return [turnsMax, turnsMin];
   }
 
-  const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, restMin, restMax, effectiveHp);
+  // Disguise: 1st sub-hit blocked, remaining sub-hits deal damage, Mimikyu takes 1/8 HP self damage
+  let firstMin = koMinDmg;
+  let firstMax = koMaxDmg;
+  if (disguiseActive) {
+    const selfDmg = Math.floor(effectiveHp / 8);
+    if (move.escalating && escalatingDamages) {
+      firstMin = koMinDmg - Math.min(...escalatingDamages[0]) + selfDmg;
+      firstMax = koMaxDmg - Math.max(...escalatingDamages[0]) + selfDmg;
+    } else if (multiHit) {
+      firstMin = koMinDmg - multiHit.perHitMin + selfDmg;
+      firstMax = koMaxDmg - multiHit.perHitMax + selfDmg;
+    } else {
+      firstMin = selfDmg;
+      firstMax = selfDmg;
+    }
+  }
+
+  const [turnsMax, turnsNeeded] = countTurnsToKO(firstMin, firstMax, restMin, restMax, effectiveHp);
   let koText = turnsNeeded === turnsMax
     ? `確定${turnsNeeded}発`
     : `確定${turnsNeeded}発、乱数${turnsMax}発`;
