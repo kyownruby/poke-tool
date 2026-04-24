@@ -355,19 +355,13 @@ export function calculateDamage({
   const disguiseActive = !atkAbilityMoldBreaker && defAbility?.effect?.disguise && options.defDisguise;
 
   function simulateKO(firstDmg, restDmg, hp) {
-    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers, disguise
+    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers
     let currentHp = hp;
     let berryUsed = false;
     let sashUsed = false;
-    let disguiseIntact = disguiseActive;
     let turns = 0;
     while (currentHp > 0 && turns < 50) {
-      let dmg = turns === 0 ? firstDmg : restDmg;
-      // Disguise: first hit blocked, Mimikyu takes 1/8 max HP self damage
-      if (disguiseIntact) {
-        dmg = Math.floor(hp / 8);
-        disguiseIntact = false;
-      }
+      const dmg = turns === 0 ? firstDmg : restDmg;
       const fullHp = currentHp === hp;
       let newHp = currentHp - dmg;
       // Focus Sash: survives one-shot from full HP
