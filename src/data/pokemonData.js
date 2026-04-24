@@ -4727,6 +4727,25 @@ const pokemonData = {
       "regenerator"
     ]
   },
+  "slowking-galar": {
+    "id": 10164,
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 80,
+      "spAtk": 110,
+      "spDef": 110,
+      "speed": 30
+    },
+    "abilities": [
+      "own-tempo",
+      "regenerator"
+    ]
+  },
   "tauros-paldea-combat-breed": {
     "id": 10250,
     "types": [

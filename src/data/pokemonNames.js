@@ -251,6 +251,7 @@ const pokemonNames = {
   "アローラキュウコン": "ninetales-alola",
   "ヒスイウインディ": "arcanine-hisui",
   "ガラルヤドラン": "slowbro-galar",
+  "ガラルヤドキング": "slowking-galar",
   "パルデアケンタロス": "tauros-paldea-combat-breed",
   "ヒスイバクフーン": "typhlosion-hisui",
   "ヒートロトム": "rotom-heat",
