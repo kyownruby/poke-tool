@@ -215,6 +215,7 @@ export default function DamageCalc() {
   const [atkBurned, setAtkBurned] = useState(saved?.atkBurned ?? false);
   const [atkLowHp, setAtkLowHp] = useState(saved?.atkLowHp ?? false);
   const [atkCharged, setAtkCharged] = useState(saved?.atkCharged ?? false);
+  const [atkCrit, setAtkCrit] = useState(saved?.atkCrit ?? false);
   const [defProtect, setDefProtect] = useState(saved?.defProtect ?? false);
   const [defScreen, setDefScreen] = useState(saved?.defScreen ?? false);
   const [defRoost, setDefRoost] = useState(saved?.defRoost ?? false);
@@ -239,10 +240,10 @@ export default function DamageCalc() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
-        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        atkBurned, atkCharged, atkCrit, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
 
   const availableMoves = useMemo(() => {
     if (showAllMoves) {
@@ -306,10 +307,10 @@ export default function DamageCalc() {
       defAbilities: defenderAbilities,
       options: {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
-        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        atkBurned, atkCharged, atkCrit, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -379,6 +380,10 @@ export default function DamageCalc() {
                 <label className="flex items-center gap-1.5">
                   <input type="checkbox" checked={atkCharged} onChange={e => setAtkCharged(e.target.checked)} />
                   じゅうでん
+                </label>
+                <label className="flex items-center gap-1.5">
+                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} />
+                  急所
                 </label>
               </div>
             </div>

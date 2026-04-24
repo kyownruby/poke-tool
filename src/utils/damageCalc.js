@@ -58,11 +58,19 @@ export function calculateDamage({
   const defAbility = defAbilities[defAbilityKey];
   const defUnaware = !atkAbilityMoldBreaker && defAbility?.effect?.unaware;
 
+  // Critical hit: ignore attacker's negative ranks, defender's positive ranks, and screens
+  const atkCrit = options.atkCrit;
+
   // Unaware: ignore attacker's offensive rank changes
-  const effectiveAtkRank = defUnaware ? 0 : atkRank;
+  // Crit: ignore attacker's negative ranks
+  const effectiveAtkRank = defUnaware
+    ? 0
+    : (atkCrit && atkRank < 0 ? 0 : atkRank);
   atkStat = applyRank(atkStat, effectiveAtkRank);
   const defRank = options.defRank ?? 0;
-  defStat = applyRank(defStat, defRank);
+  // Crit: ignore defender's positive ranks
+  const effectiveDefRank = atkCrit && defRank > 0 ? 0 : defRank;
+  defStat = applyRank(defStat, effectiveDefRank);
 
   // Marvel Scale: +50% defense when statused (physical only, mold breaker bypasses)
   if (!atkAbilityMoldBreaker && isPhysical && defAbility?.effect?.stat === 'defense'
@@ -285,11 +293,16 @@ export function calculateDamage({
     }
   }
 
-  // Reflect / Light Screen
+  // Reflect / Light Screen (ignored on crit)
   let screenMult = 1.0;
-  if (options.defScreen) {
+  if (options.defScreen && !atkCrit) {
     screenMult = 0.5;
   }
+
+  // Critical hit multiplier (Sniper: 2.25x instead of 1.5x)
+  const critMult = atkCrit
+    ? (atkAbility?.effect?.sniperCrit ? 2.25 : 1.5)
+    : 1.0;
 
   // Calculate 16 damage rolls
   const damages = [];
@@ -304,6 +317,7 @@ export function calculateDamage({
     dmg = Math.floor(dmg * defAbilityMult);
     dmg = Math.floor(dmg * defItemMult);
     dmg = Math.floor(dmg * roll / 100);
+    dmg = Math.floor(dmg * critMult);
     dmg = Math.floor(dmg * protectMult);
     damages.push(dmg);
   }
@@ -331,6 +345,7 @@ export function calculateDamage({
       dmg = Math.floor(dmg * abilityMult);
       dmg = Math.floor(dmg * itemM);
       dmg = Math.floor(dmg * roll / 100);
+      dmg = Math.floor(dmg * critMult);
       dmg = Math.floor(dmg * protectMult);
       dmgs.push(dmg);
     }
