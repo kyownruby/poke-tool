@@ -11,6 +11,23 @@ import { calculateDamage, calcStat } from '../utils/damageCalc';
 
 const allEntries = Object.entries(pokemonNames);
 
+function ItemOptions() {
+  const topLevel = items.filter(i => !i.category);
+  const typeBoost = items.filter(i => i.category === 'typeBoost');
+  const resistBerry = items.filter(i => i.category === 'resistBerry');
+  return (
+    <>
+      {topLevel.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
+      <optgroup label="タイプ強化（ダメージ×1.2）">
+        {typeBoost.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
+      </optgroup>
+      <optgroup label="半減きのみ">
+        {resistBerry.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
+      </optgroup>
+    </>
+  );
+}
+
 function toKatakana(str) {
   return str.replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
 }
@@ -283,7 +300,7 @@ export default function DamageCalc() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Attacker */}
         <div className="space-y-2">
-          <PokemonSelector label="🔵 攻撃側" color="blue" pokemon={attacker} onChange={p => { setAttacker(p); setAtkAbilityKey(p.abilities?.[0] ?? ''); setAtkItemKey(p.englishName?.includes('-mega') ? 'none' : atkItemKey); setMoveData(null); setMoveQuery(''); }} />
+          <PokemonSelector label="🔵 攻撃側" color="blue" pokemon={attacker} onChange={p => { setAttacker(p); setAtkAbilityKey(p.abilities?.[0] ?? ''); setAtkItemKey(p.englishName?.includes('-mega') ? 'mega-stone' : atkItemKey); setMoveData(null); setMoveQuery(''); }} />
           {attacker && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label={moveData?.damage_class === 'special' ? '特攻' : '攻撃'}
@@ -294,7 +311,7 @@ export default function DamageCalc() {
                 <label className="flex items-center gap-1">
                   持ち物:
                   <select value={atkItemKey} onChange={e => setAtkItemKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs max-w-[140px]">
-                    {items.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
+                    <ItemOptions />
                   </select>
                 </label>
                 <label className="flex items-center gap-1">
@@ -327,7 +344,7 @@ export default function DamageCalc() {
 
         {/* Defender */}
         <div className="space-y-2">
-          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefItemKey(p.englishName?.includes('-mega') ? 'none' : defItemKey); }} />
+          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefItemKey(p.englishName?.includes('-mega') ? 'mega-stone' : defItemKey); }} />
           {defender && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label="HP" value={hpAP} onChange={setHpAP}
@@ -348,7 +365,7 @@ export default function DamageCalc() {
                 <label className="flex items-center gap-1">
                   持ち物:
                   <select value={defItemKey} onChange={e => setDefItemKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs max-w-[140px]">
-                    {items.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
+                    <ItemOptions />
                   </select>
                 </label>
                 <label className="flex items-center gap-1">
