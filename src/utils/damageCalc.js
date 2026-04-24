@@ -351,15 +351,22 @@ export function calculateDamage({
   const healBerry = defItem?.effect?.healBerry;
   const focusSashActive = defItem?.key === 'focus-sash';
   const hasLeftovers = defItem?.effect?.leftovers;
+  const disguiseActive = !atkAbilityMoldBreaker && defAbility?.effect?.disguise && options.defDisguise;
 
   function simulateKO(firstDmg, restDmg, hp) {
-    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers
+    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers, disguise
     let currentHp = hp;
     let berryUsed = false;
     let sashUsed = false;
+    let disguiseIntact = disguiseActive;
     let turns = 0;
     while (currentHp > 0 && turns < 50) {
-      const dmg = turns === 0 ? firstDmg : restDmg;
+      let dmg = turns === 0 ? firstDmg : restDmg;
+      // Disguise: first hit blocked, Mimikyu takes 1/8 max HP self damage
+      if (disguiseIntact) {
+        dmg = Math.floor(hp / 8);
+        disguiseIntact = false;
+      }
       const fullHp = currentHp === hp;
       let newHp = currentHp - dmg;
       // Focus Sash: survives one-shot from full HP
@@ -408,5 +415,6 @@ export function calculateDamage({
     stab,
     moveType,
     movePower,
+    disguiseActive,
   };
 }

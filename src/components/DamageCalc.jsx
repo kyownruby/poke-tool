@@ -208,6 +208,7 @@ export default function DamageCalc() {
   const [atkAbilityKey, setAtkAbilityKey] = useState(saved?.atkAbilityKey ?? '');
   const [defAbilityKey, setDefAbilityKey] = useState(saved?.defAbilityKey ?? '');
   const [defFullHp, setDefFullHp] = useState(saved?.defFullHp ?? true);
+  const [defDisguise, setDefDisguise] = useState(saved?.defDisguise ?? true);
   const [weather, setWeather] = useState(saved?.weather ?? 'none');
   const [field, setField] = useState(saved?.field ?? 'none');
   const [atkBurned, setAtkBurned] = useState(saved?.atkBurned ?? false);
@@ -237,10 +238,10 @@ export default function DamageCalc() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
-        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp,
+        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, atkLowHp]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, atkLowHp]);
 
   const availableMoves = useMemo(() => {
     if (showAllMoves) {
@@ -304,10 +305,10 @@ export default function DamageCalc() {
       defAbilities: defenderAbilities,
       options: {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
-        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp,
+        atkBurned, atkCharged, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, atkLowHp]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, atkLowHp]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -385,7 +386,7 @@ export default function DamageCalc() {
 
         {/* Defender */}
         <div className="space-y-2">
-          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefItemKey(p.englishName?.includes('-mega') ? 'mega-stone' : defItemKey); }} />
+          <PokemonSelector label="🔴 防御側" color="red" pokemon={defender} onChange={p => { setDefender(p); const ab = p.abilities?.[0] ?? ''; setDefAbilityKey(ab); setDefFullHp(ab === 'multiscale'); setDefDisguise(ab === 'disguise'); setDefItemKey(p.englishName?.includes('-mega') ? 'mega-stone' : defItemKey); }} />
           {defender && (
             <div className="bg-white rounded-xl border border-gray-200 p-3 space-y-2">
               <StatInput label="HP" value={hpAP} onChange={setHpAP}
@@ -409,7 +410,7 @@ export default function DamageCalc() {
                 </label>
                 <label className="flex items-center gap-1">
                   特性:
-                  <select value={defAbilityKey} onChange={e => { setDefAbilityKey(e.target.value); if (e.target.value === 'multiscale') setDefFullHp(true); }} className="border rounded px-1 py-0.5 text-xs">
+                  <select value={defAbilityKey} onChange={e => { setDefAbilityKey(e.target.value); if (e.target.value === 'multiscale') setDefFullHp(true); if (e.target.value === 'disguise') setDefDisguise(true); }} className="border rounded px-1 py-0.5 text-xs">
                     <option value="">なし</option>
                     {defAbilityOptions.map(a => <option key={a} value={a}>{abilityNames[a] ?? a}</option>)}
                   </select>
@@ -418,6 +419,12 @@ export default function DamageCalc() {
                   <label className="flex items-center gap-1.5">
                     <input type="checkbox" checked={defFullHp} onChange={e => setDefFullHp(e.target.checked)} />
                     HP満タン
+                  </label>
+                )}
+                {defAbilityKey === 'disguise' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defDisguise} onChange={e => setDefDisguise(e.target.checked)} />
+                    ばけのかわ残
                   </label>
                 )}
               </div>
@@ -558,6 +565,9 @@ export default function DamageCalc() {
           <div className={`text-sm font-bold ${result.koText.includes('確定1発') ? 'text-red-600' : 'text-gray-700'}`}>
             {result.koText}
           </div>
+          {result.disguiseActive && (
+            <div className="text-xs text-gray-500">ばけのかわ: 1発目無効＋1/8 HP損失を加味</div>
+          )}
           <div className="text-right">
             <button onClick={() => setShowDamages(!showDamages)} className="text-xs text-gray-400 hover:text-gray-600 underline">
               {showDamages ? '乱数を閉じる' : '全16通りを表示'}
