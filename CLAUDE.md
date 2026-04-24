@@ -117,14 +117,35 @@ PRの説明には必ず以下を含める：
 ## 現在の作業状況
 
 ### アクティブなプロジェクト
-- [ ] プロジェクト名: 
-  - 今やってること: 
-  - 次にやること: 
-  - 注意点・メモ: 
-  - 関連ファイル: 
+- [ ] プロジェクト名: ポケモンチャンピオンズ対戦ツール
+  - 今やってること: ダメージ計算ツールの機能改善・バグ修正
+  - 次にやること: ユーザーからの次の要望待ち
+  - 注意点・メモ:
+    - ブランチ: claude/pokemon-speed-comparison-5iWlv
+    - タブ構成: 素早さ比較(SpeedTool.jsx) / ダメージ計算(DamageCalc.jsx)
+    - pokemonData.jsは全種族値+タイプ対応済み（268匹）
+    - moveData.jsに662技、pokemonMoves.jsに各ポケモンの技リスト
+    - PokeAPIのデータ不足でチャンピオンズ独自技/特性は手動対応
+    - selectMoveではスプレッド構文 {...move} で全フィールドを渡す（個別列挙は漏れが起きやすい）
+    - メガシンカの技はbaseフォルムとマージして表示
+    - 防御側デフォルトAP=0、攻撃側デフォルトAP=32
+  - 関連ファイル:
+    - src/App.jsx（タブ切り替え）
+    - src/components/SpeedTool.jsx（素早さ比較）
+    - src/components/DamageCalc.jsx（ダメージ計算メイン）
+    - src/utils/damageCalc.js（ダメージ計算ロジック）
+    - src/utils/speedCalc.js（素早さ計算ロジック）
+    - src/data/pokemonData.js, pokemonNames.js, pokemonMoves.js, moveData.js
+    - src/data/typeChart.js, typeInfo.jsx, items.js, damageAbilities.js, abilityNames.js
 
 ### 直近の決定事項
-- 
+- 攻守交代ボタン追加済み（ポケモン/持ち物/特性を入れ替え、技はリセット）
+- 半減きのみ/はたきおとす/マルチスケイルは1発目のみ適用、2発目以降は通常計算
+- きあいのタスキ/オボンのみ/たべのこしはturn-by-turnシミュレーションでKO判定
+- 連続技は合計ダメージでKO判定
+- KO表記: 確定○発 or 確定○発、乱数○発
+- 技検索に「全技から検索」トグルあり
+- Champions独自特性: メガソーラー/ドラゴンスキン/かんつうドリル/とびだすハバネロ/かんろなミツ
 
 ### 未解決の問題
--
+- 技データはPokeAPIベースなのでチャンピオンズ固有の技差分がある（不足分はユーザー報告ベースで手動追加）
