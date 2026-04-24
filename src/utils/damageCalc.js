@@ -199,6 +199,11 @@ export function calculateDamage({
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
         hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff: 0, stab: 1, moveType, movePower, immune: true };
     }
+    // Flag-based immunity (Bulletproof: bomb moves, etc.)
+    if (defAbility.effect?.immuneFlag && move[defAbility.effect.immuneFlag]) {
+      return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+        hpStat: calcStat(defender.stats.hp, hpAP, 1.0, true), koText: '無効', typeEff: 0, stab: 1, moveType, movePower, immune: true };
+    }
     // Wonder Guard
     if (defAbility.effect?.wonderGuard && typeEff <= 1) {
       return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
