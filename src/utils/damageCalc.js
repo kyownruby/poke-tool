@@ -296,11 +296,12 @@ export function calculateDamage({
   }
 
   let multiHit = null;
+  let escalatingDamages = null;
   const minHits = move.minHits;
   const maxHits = move.maxHits;
 
   if (move.escalating) {
-    const escalatingDamages = move.escalating.map((power, i) =>
+    escalatingDamages = move.escalating.map((power, i) =>
       calcHitDamage(power, i === 0 ? defAbilityMult : defAbilityMultNoMS)
     );
     const totalMin = escalatingDamages.reduce((sum, d) => sum + Math.min(...d), 0);
@@ -354,19 +355,13 @@ export function calculateDamage({
   const disguiseActive = !atkAbilityMoldBreaker && defAbility?.effect?.disguise && options.defDisguise;
 
   function simulateKO(firstDmg, restDmg, hp) {
-    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers, disguise
+    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers
     let currentHp = hp;
     let berryUsed = false;
     let sashUsed = false;
-    let disguiseIntact = disguiseActive;
     let turns = 0;
     while (currentHp > 0 && turns < 50) {
-      let dmg = turns === 0 ? firstDmg : restDmg;
-      // Disguise: first hit blocked, Mimikyu takes 1/8 max HP self damage
-      if (disguiseIntact) {
-        dmg = Math.floor(hp / 8);
-        disguiseIntact = false;
-      }
+      const dmg = turns === 0 ? firstDmg : restDmg;
       const fullHp = currentHp === hp;
       let newHp = currentHp - dmg;
       // Focus Sash: survives one-shot from full HP
@@ -397,7 +392,24 @@ export function calculateDamage({
     return [turnsMax, turnsMin];
   }
 
-  const [turnsMax, turnsNeeded] = countTurnsToKO(koMinDmg, koMaxDmg, restMin, restMax, effectiveHp);
+  // Disguise: 1st sub-hit blocked, remaining sub-hits deal damage, Mimikyu takes 1/8 HP self damage
+  let firstMin = koMinDmg;
+  let firstMax = koMaxDmg;
+  if (disguiseActive) {
+    const selfDmg = Math.floor(effectiveHp / 8);
+    if (move.escalating && escalatingDamages) {
+      firstMin = koMinDmg - Math.min(...escalatingDamages[0]) + selfDmg;
+      firstMax = koMaxDmg - Math.max(...escalatingDamages[0]) + selfDmg;
+    } else if (multiHit) {
+      firstMin = koMinDmg - multiHit.perHitMin + selfDmg;
+      firstMax = koMaxDmg - multiHit.perHitMax + selfDmg;
+    } else {
+      firstMin = selfDmg;
+      firstMax = selfDmg;
+    }
+  }
+
+  const [turnsMax, turnsNeeded] = countTurnsToKO(firstMin, firstMax, restMin, restMax, effectiveHp);
   let koText = turnsNeeded === turnsMax
     ? `確定${turnsNeeded}発`
     : `確定${turnsNeeded}発、乱数${turnsMax}発`;
