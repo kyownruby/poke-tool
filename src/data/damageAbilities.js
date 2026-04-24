@@ -27,6 +27,7 @@ export const attackerAbilities = {
   'solar-power': { label: 'サンパワー', effect: { stat: 'spAtk', condition: 'sun', mult: 1.5 } },
   'tinted-lens': { label: 'いろめがね', effect: { notVeryEffectiveDouble: true } },
   'tough-claws': { label: 'かたいツメ', effect: { condition: 'contactMove', power: 1.3 } },
+  'iron-fist':   { label: 'てつのこぶし', effect: { condition: 'punchMove', power: 1.2 } },
 };
 
 export const defenderAbilities = {

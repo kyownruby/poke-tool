@@ -685,14 +685,16 @@ const moveData = {
     "power": 75,
     "type": "fire",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "thunder-punch": {
     "name": "かみなりパンチ",
     "power": 75,
     "type": "electric",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "scratch": {
     "name": "ひっかく",
@@ -876,7 +878,8 @@ const moveData = {
     "power": 100,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "dragon-breath": {
     "name": "りゅうのいぶき",
@@ -948,7 +951,8 @@ const moveData = {
     "power": 150,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "brick-break": {
     "name": "かわらわり",
@@ -1246,7 +1250,8 @@ const moveData = {
     "power": 75,
     "type": "ice",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "tail-whip": {
     "name": "しっぽをふる",
@@ -2544,7 +2549,8 @@ const moveData = {
     "power": 75,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "stealth-rock": {
     "name": "ステルスロック",
@@ -2819,7 +2825,8 @@ const moveData = {
     "power": 40,
     "type": "fighting",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "foresight": {
     "name": "みやぶる",
@@ -2884,7 +2891,8 @@ const moveData = {
     "power": 40,
     "type": "steel",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "cross-poison": {
     "name": "クロスポイズン",
@@ -3098,7 +3106,8 @@ const moveData = {
     "power": 60,
     "type": "ghost",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "embargo": {
     "name": "さしおさえ",
@@ -3142,7 +3151,8 @@ const moveData = {
     "damageClass": "physical",
     "contact": true,
     "minHits": 2,
-    "maxHits": 5
+    "maxHits": 5,
+    "punch": true
   },
   "dizzy-punch": {
     "name": "ピヨピヨパンチ",
@@ -4526,7 +4536,8 @@ const moveData = {
     "power": 60,
     "type": "water",
     "damageClass": "physical",
-    "contact": true
+    "contact": true,
+    "punch": true
   },
   "shed-tail": {
     "name": "しっぽきり",
