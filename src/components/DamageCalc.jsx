@@ -217,6 +217,8 @@ export default function DamageCalc() {
   const [atkCharged, setAtkCharged] = useState(saved?.atkCharged ?? false);
   const [atkCrit, setAtkCrit] = useState(saved?.atkCrit ?? false);
   const [atkHpPct, setAtkHpPct] = useState(saved?.atkHpPct ?? 100);
+  const [atkSpeed, setAtkSpeed] = useState(saved?.atkSpeed ?? 100);
+  const [defSpeed, setDefSpeed] = useState(saved?.defSpeed ?? 100);
   const [defProtect, setDefProtect] = useState(saved?.defProtect ?? false);
   const [defScreen, setDefScreen] = useState(saved?.defScreen ?? false);
   const [defRoost, setDefRoost] = useState(saved?.defRoost ?? false);
@@ -236,15 +238,23 @@ export default function DamageCalc() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  // Auto-compute default speed when attacker/defender changes (neutral nature, 0 AP)
+  useEffect(() => {
+    if (attacker?.stats?.speed != null) setAtkSpeed(calcStat(attacker.stats.speed, 0, 1.0));
+  }, [attacker]);
+  useEffect(() => {
+    if (defender?.stats?.speed != null) setDefSpeed(calcStat(defender.stats.speed, 0, 1.0));
+  }, [defender]);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
-        atkBurned, atkCharged, atkCrit, atkHpPct, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
 
   const availableMoves = useMemo(() => {
     if (showAllMoves) {
@@ -308,10 +318,10 @@ export default function DamageCalc() {
       defAbilities: defenderAbilities,
       options: {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
-        atkBurned, atkCharged, atkCrit, atkHpPct, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -393,6 +403,20 @@ export default function DamageCalc() {
                       className="w-20" />
                     <span className="font-mono w-10 text-right">{atkHpPct}%</span>
                   </label>
+                )}
+                {['gyro-ball','electro-ball'].includes(moveData?.englishName) && (
+                  <>
+                    <label className="flex items-center gap-1.5">
+                      攻速:
+                      <input type="number" min={1} value={atkSpeed} onChange={e => setAtkSpeed(Math.max(1, Number(e.target.value)))}
+                        className="border rounded px-1 py-0.5 w-14 text-center text-xs" />
+                    </label>
+                    <label className="flex items-center gap-1.5">
+                      守速:
+                      <input type="number" min={1} value={defSpeed} onChange={e => setDefSpeed(Math.max(1, Number(e.target.value)))}
+                        className="border rounded px-1 py-0.5 w-14 text-center text-xs" />
+                    </label>
+                  </>
                 )}
               </div>
             </div>
