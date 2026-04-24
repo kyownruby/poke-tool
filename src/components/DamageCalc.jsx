@@ -11,20 +11,63 @@ import { calculateDamage, calcStat } from '../utils/damageCalc';
 
 const allEntries = Object.entries(pokemonNames);
 
-function ItemOptions() {
+function ItemSelector({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const current = items.find(i => i.key === value) ?? items[0];
+
+  useEffect(() => {
+    function handleClick(e) { if (ref.current && !ref.current.contains(e.target)) setOpen(false); }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
   const topLevel = items.filter(i => !i.category);
   const typeBoost = items.filter(i => i.category === 'typeBoost');
   const resistBerry = items.filter(i => i.category === 'resistBerry');
+
+  function pick(key) { onChange(key); setOpen(false); }
+
   return (
-    <>
-      {topLevel.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
-      <optgroup label="タイプ強化（ダメージ×1.2）">
-        {typeBoost.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
-      </optgroup>
-      <optgroup label="半減きのみ">
-        {resistBerry.map(i => <option key={i.key} value={i.key}>{i.label}</option>)}
-      </optgroup>
-    </>
+    <div ref={ref} className="relative inline-block">
+      <button type="button" onClick={() => setOpen(o => !o)}
+        className="border border-gray-300 rounded px-2 py-0.5 text-xs w-[140px] text-left flex items-center justify-between gap-1 bg-white hover:bg-gray-50">
+        <span className="truncate">{current.label}</span>
+        <span className="text-gray-400 text-[10px]">▼</span>
+      </button>
+      {open && (
+        <ul className="absolute z-20 bg-white border border-gray-200 rounded-lg mt-1 shadow-lg max-h-72 overflow-y-auto min-w-[220px]">
+          {topLevel.map(i => (
+            <li key={i.key} onClick={() => pick(i.key)}
+              className={`px-3 py-1 cursor-pointer text-xs hover:bg-gray-100 ${i.key === value ? 'bg-blue-50' : ''}`}>
+              {i.label}
+            </li>
+          ))}
+          <li className="px-3 py-0.5 text-[10px] text-gray-500 bg-gray-100 font-semibold">タイプ強化（ダメージ×1.2）</li>
+          {typeBoost.map(i => (
+            <li key={i.key} onClick={() => pick(i.key)}
+              className={`px-3 py-1 cursor-pointer text-xs hover:bg-gray-100 flex items-center justify-between gap-2 ${i.key === value ? 'bg-blue-50' : ''}`}>
+              <span>{i.label}</span>
+              <span className="flex items-center gap-1 text-gray-500">
+                <TypeBadge type={i.effect.typeBoost} />
+                <span>×1.2</span>
+              </span>
+            </li>
+          ))}
+          <li className="px-3 py-0.5 text-[10px] text-gray-500 bg-gray-100 font-semibold">半減きのみ</li>
+          {resistBerry.map(i => (
+            <li key={i.key} onClick={() => pick(i.key)}
+              className={`px-3 py-1 cursor-pointer text-xs hover:bg-gray-100 flex items-center justify-between gap-2 ${i.key === value ? 'bg-blue-50' : ''}`}>
+              <span>{i.label}</span>
+              <span className="flex items-center gap-1 text-gray-500">
+                <TypeBadge type={i.effect.resistBerry} />
+                <span>半減</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
@@ -310,9 +353,7 @@ export default function DamageCalc() {
               <div className="flex flex-wrap gap-2 text-xs">
                 <label className="flex items-center gap-1">
                   持ち物:
-                  <select value={atkItemKey} onChange={e => setAtkItemKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs max-w-[140px]">
-                    <ItemOptions />
-                  </select>
+                  <ItemSelector value={atkItemKey} onChange={setAtkItemKey} />
                 </label>
                 <label className="flex items-center gap-1">
                   特性:
@@ -364,9 +405,7 @@ export default function DamageCalc() {
               <div className="flex flex-wrap gap-2 text-xs">
                 <label className="flex items-center gap-1">
                   持ち物:
-                  <select value={defItemKey} onChange={e => setDefItemKey(e.target.value)} className="border rounded px-1 py-0.5 text-xs max-w-[140px]">
-                    <ItemOptions />
-                  </select>
+                  <ItemSelector value={defItemKey} onChange={setDefItemKey} />
                 </label>
                 <label className="flex items-center gap-1">
                   特性:
