@@ -29,6 +29,7 @@ export const attackerAbilities = {
   'tough-claws': { label: 'かたいツメ', effect: { condition: 'contactMove', power: 1.3 } },
   'iron-fist':   { label: 'てつのこぶし', effect: { condition: 'punchMove', power: 1.2 } },
   'sharpness':   { label: 'きれあじ', effect: { condition: 'slicingMove', power: 1.5 } },
+  'mega-launcher': { label: 'メガランチャー', effect: { condition: 'pulseMove', power: 1.5 } },
 };
 
 export const defenderAbilities = {
