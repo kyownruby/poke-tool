@@ -135,6 +135,9 @@ export function calculateDamage({
   if (atkAbility?.effect?.condition === 'contactMove' && move.contact) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
+  if (atkAbility?.effect?.condition === 'punchMove' && move.punch) {
+    movePower = Math.floor(movePower * atkAbility.effect.power);
+  }
   if (atkAbility?.effect?.lowHpTypeBoost === moveType && options.atkLowHp) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
