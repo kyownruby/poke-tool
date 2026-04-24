@@ -52,12 +52,25 @@ export function calculateDamage({
     effectiveHp = Math.max(1, hpStat - srDamage);
   }
 
-  atkStat = applyRank(atkStat, atkRank);
+  // Resolve abilities early (needed for unaware/sturdy/marvel-scale/mold breaker checks)
+  const atkAbility = atkAbilities[atkAbilityKey];
+  const atkAbilityMoldBreaker = atkAbility?.effect?.moldBreaker;
+  const defAbility = defAbilities[defAbilityKey];
+  const defUnaware = !atkAbilityMoldBreaker && defAbility?.effect?.unaware;
+
+  // Unaware: ignore attacker's offensive rank changes
+  const effectiveAtkRank = defUnaware ? 0 : atkRank;
+  atkStat = applyRank(atkStat, effectiveAtkRank);
   const defRank = options.defRank ?? 0;
   defStat = applyRank(defStat, defRank);
 
+  // Marvel Scale: +50% defense when statused (physical only, mold breaker bypasses)
+  if (!atkAbilityMoldBreaker && isPhysical && defAbility?.effect?.stat === 'defense'
+      && defAbility.effect.condition === 'defStatus' && options.defStatus) {
+    defStat = Math.floor(defStat * defAbility.effect.mult);
+  }
+
   // Effective weather (mega-sol forces sun)
-  const atkAbility = atkAbilities[atkAbilityKey];
   const effectiveWeather = atkAbility?.effect?.permanentSun ? 'sun' : weather;
 
   // Weather: defensive stat boosts
@@ -179,10 +192,7 @@ export function calculateDamage({
     typeEff = nonGhostTypes.length > 0 ? getTypeEffectiveness(moveType, nonGhostTypes) : 1;
   }
 
-  // Defender ability: check mold breaker
-  const atkAbilityMoldBreaker = atkAbility?.effect?.moldBreaker;
-  const defAbility = defAbilities[defAbilityKey];
-
+  // Defender ability: check mold breaker (already resolved above)
   if (!atkAbilityMoldBreaker && defAbility) {
     // Immunity abilities
     if (defAbility.effect?.immune === moveType) {
@@ -373,12 +383,14 @@ export function calculateDamage({
   const focusSashActive = defItem?.key === 'focus-sash';
   const hasLeftovers = defItem?.effect?.leftovers;
   const disguiseActive = !atkAbilityMoldBreaker && defAbility?.effect?.disguise && options.defDisguise;
+  const sturdyActive = !atkAbilityMoldBreaker && defAbility?.effect?.sturdy;
 
   function simulateKO(firstDmg, restDmg, hp) {
-    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers
+    // Simulate HP loss turn by turn with berry heal, focus sash, leftovers, sturdy
     let currentHp = hp;
     let berryUsed = false;
     let sashUsed = false;
+    let sturdyUsed = false;
     let turns = 0;
     while (currentHp > 0 && turns < 50) {
       const dmg = turns === 0 ? firstDmg : restDmg;
@@ -388,6 +400,11 @@ export function calculateDamage({
       if (focusSashActive && !sashUsed && fullHp && newHp <= 0) {
         newHp = 1;
         sashUsed = true;
+      }
+      // Sturdy: survives one-shot from full HP (once per battle)
+      if (sturdyActive && !sturdyUsed && fullHp && newHp <= 0) {
+        newHp = 1;
+        sturdyUsed = true;
       }
       currentHp = newHp;
       turns++;
