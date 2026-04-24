@@ -92,6 +92,22 @@ export function calculateDamage({
   let moveType = move.type;
   let movePower = move.power;
 
+  // HP-based power: Eruption / Water Spout (scales with attacker's HP%)
+  const atkHpPct = options.atkHpPct ?? 100;
+  if (['eruption', 'water-spout'].includes(move.englishName)) {
+    movePower = Math.max(1, Math.floor(150 * atkHpPct / 100));
+  }
+  // HP-based power: Reversal / Flail (inverse scaling with HP%)
+  if (['reversal', 'flail'].includes(move.englishName)) {
+    const p = Math.floor(atkHpPct * 48 / 100);
+    if (p <= 1) movePower = 200;
+    else if (p <= 4) movePower = 150;
+    else if (p <= 9) movePower = 100;
+    else if (p <= 16) movePower = 80;
+    else if (p <= 32) movePower = 40;
+    else movePower = 20;
+  }
+
   // Weather Ball: type and power change based on weather
   if (move.englishName === 'weather-ball' && effectiveWeather !== 'none') {
     movePower = 100;
