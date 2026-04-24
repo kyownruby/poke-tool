@@ -141,6 +141,9 @@ export function calculateDamage({
   if (atkAbility?.effect?.condition === 'slicingMove' && move.slicing) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
+  if (atkAbility?.effect?.condition === 'pulseMove' && move.pulse) {
+    movePower = Math.floor(movePower * atkAbility.effect.power);
+  }
   if (atkAbility?.effect?.lowHpTypeBoost === moveType && options.atkLowHp) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }

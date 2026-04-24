@@ -1060,7 +1060,8 @@ const moveData = {
     "power": 85,
     "type": "dragon",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "pulse": true
   },
   "dragon-rush": {
     "name": "ドラゴンダイブ",
@@ -1464,7 +1465,8 @@ const moveData = {
     "power": 60,
     "type": "water",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "pulse": true
   },
   "gyro-ball": {
     "name": "ジャイロボール",
@@ -1492,14 +1494,16 @@ const moveData = {
     "power": 80,
     "type": "fighting",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "pulse": true
   },
   "dark-pulse": {
     "name": "あくのはどう",
     "power": 80,
     "type": "dark",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "pulse": true
   },
   "aqua-tail": {
     "name": "アクアテール",
