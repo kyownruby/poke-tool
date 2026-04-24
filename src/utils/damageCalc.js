@@ -157,6 +157,9 @@ export function calculateDamage({
   if (atkAbility?.effect?.condition === 'pulseMove' && move.pulse) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
+  if (atkAbility?.effect?.condition === 'soundMove' && move.sound) {
+    movePower = Math.floor(movePower * atkAbility.effect.power);
+  }
   if (atkAbility?.effect?.lowHpTypeBoost === moveType && options.atkLowHp) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
@@ -261,6 +264,10 @@ export function calculateDamage({
   if (hasMultiscale) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.contactHalf && options.contactMove) defAbilityMult *= 0.5;
   if (activeDefAbility?.effect?.fireDouble && moveType === 'fire') defAbilityMult *= 2;
+  // Flag-based resistance (Punk Rock: sound moves, etc.)
+  if (activeDefAbility?.effect?.resistFlag && move[activeDefAbility.effect.resistFlag]) {
+    defAbilityMult *= activeDefAbility.effect.mult;
+  }
 
   // Defender item: resist berry
   let defItemMult = 1.0;

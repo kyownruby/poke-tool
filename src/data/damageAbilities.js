@@ -30,6 +30,7 @@ export const attackerAbilities = {
   'iron-fist':   { label: 'てつのこぶし', effect: { condition: 'punchMove', power: 1.2 } },
   'sharpness':   { label: 'きれあじ', effect: { condition: 'slicingMove', power: 1.5 } },
   'mega-launcher': { label: 'メガランチャー', effect: { condition: 'pulseMove', power: 1.5 } },
+  'punk-rock':   { label: 'パンクロック', effect: { condition: 'soundMove', power: 1.3 } },
 };
 
 export const defenderAbilities = {
@@ -60,4 +61,6 @@ export const defenderAbilities = {
   'water-bubble':   { label: 'すいほう', effect: { resistType: ['fire'], mult: 0.5 } },
   'well-baked-body': { label: 'ちくねつ', effect: { immune: 'fire' } },
   'bulletproof':    { label: 'ぼうだん', effect: { immuneFlag: 'bomb' } },
+  'soundproof':     { label: 'ぼうおん', effect: { immuneFlag: 'sound' } },
+  'punk-rock':      { label: 'パンクロック', effect: { resistFlag: 'sound', mult: 0.5 } },
 };

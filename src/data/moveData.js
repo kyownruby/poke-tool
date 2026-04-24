@@ -249,7 +249,8 @@ const moveData = {
     "power": 50,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "curse": {
     "name": "のろい",
@@ -593,7 +594,8 @@ const moveData = {
     "power": 60,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "echoed-voice": {
     "name": "エコーボイス",
@@ -1995,7 +1997,8 @@ const moveData = {
     "power": 55,
     "type": "dark",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "belch": {
     "name": "ゲップ",
@@ -2124,7 +2127,8 @@ const moveData = {
     "power": 90,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "charge": {
     "name": "じゅうでん",
@@ -2286,7 +2290,8 @@ const moveData = {
     "power": 80,
     "type": "fairy",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "upper-hand": {
     "name": "はやてがえし",
@@ -2506,7 +2511,8 @@ const moveData = {
     "power": 90,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "meteor-mash": {
     "name": "コメットパンチ",
@@ -3052,7 +3058,16 @@ const moveData = {
     "power": 75,
     "type": "psychic",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
+  },
+  "eerie-spell": {
+    "name": "ぶきみなじゅもん",
+    "power": 80,
+    "type": "psychic",
+    "damageClass": "special",
+    "contact": false,
+    "sound": true
   },
   "self-destruct": {
     "name": "じばく",
@@ -3457,7 +3472,8 @@ const moveData = {
     "power": 90,
     "type": "bug",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "shadow-sneak": {
     "name": "かげうち",
@@ -4325,7 +4341,8 @@ const moveData = {
     "power": 140,
     "type": "normal",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "spirit-shackle": {
     "name": "かげぬい",
@@ -4339,7 +4356,8 @@ const moveData = {
     "power": 90,
     "type": "water",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "beak-blast": {
     "name": "くちばしキャノン",
@@ -4412,7 +4430,8 @@ const moveData = {
     "power": 110,
     "type": "dragon",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "clangorous-soul": {
     "name": "ソウルビート",
@@ -4498,7 +4517,8 @@ const moveData = {
     "power": 80,
     "type": "fire",
     "damageClass": "special",
-    "contact": false
+    "contact": false,
+    "sound": true
   },
   "aqua-step": {
     "name": "アクアステップ",
