@@ -22,6 +22,11 @@ export const attackerAbilities = {
   'torrent':     { label: 'げきりゅう', effect: { lowHpTypeBoost: 'water', power: 1.5 } },
   'overgrow':    { label: 'しんりょく', effect: { lowHpTypeBoost: 'grass', power: 1.5 } },
   'swarm':       { label: 'むしのしらせ', effect: { lowHpTypeBoost: 'bug', power: 1.5 } },
+  'huge-power':  { label: 'ちからもち', effect: { stat: 'attack', mult: 2.0 } },
+  'pure-power':  { label: 'ヨガパワー', effect: { stat: 'attack', mult: 2.0 } },
+  'solar-power': { label: 'サンパワー', effect: { stat: 'spAtk', condition: 'sun', mult: 1.5 } },
+  'tinted-lens': { label: 'いろめがね', effect: { notVeryEffectiveDouble: true } },
+  'tough-claws': { label: 'かたいツメ', effect: { condition: 'contactMove', power: 1.3 } },
 };
 
 export const defenderAbilities = {

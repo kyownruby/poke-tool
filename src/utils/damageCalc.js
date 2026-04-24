@@ -115,6 +115,9 @@ export function calculateDamage({
   if (atkAbility?.effect?.stat === 'spAtk' && !isPhysical && atkAbility.effect.condition === 'burned' && options.atkBurned) {
     atkStat = Math.floor(atkStat * atkAbility.effect.mult);
   }
+  if (atkAbility?.effect?.stat === 'spAtk' && !isPhysical && atkAbility.effect.condition === 'sun' && effectiveWeather === 'sun') {
+    atkStat = Math.floor(atkStat * atkAbility.effect.mult);
+  }
 
   // Ability: power boosts
   if (atkAbility?.effect?.condition === 'lowPower' && movePower <= 60) {
@@ -127,6 +130,9 @@ export function calculateDamage({
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
   if (atkAbility?.effect?.condition === 'recoil' && options.recoilMove) {
+    movePower = Math.floor(movePower * atkAbility.effect.power);
+  }
+  if (atkAbility?.effect?.condition === 'contactMove' && move.contact) {
     movePower = Math.floor(movePower * atkAbility.effect.power);
   }
   if (atkAbility?.effect?.lowHpTypeBoost === moveType && options.atkLowHp) {
@@ -187,6 +193,11 @@ export function calculateDamage({
     if (defAbility.effect?.resistType?.includes(moveType)) {
       typeEff *= defAbility.effect.mult;
     }
+  }
+
+  // Tinted Lens: double damage for not-very-effective moves
+  if (atkAbility?.effect?.notVeryEffectiveDouble && typeEff > 0 && typeEff < 1) {
+    typeEff *= 2;
   }
 
   // STAB
