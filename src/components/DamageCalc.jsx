@@ -254,8 +254,9 @@ export default function DamageCalc() {
     if (defender?.stats?.speed != null) setDefSpeed(calcStat(defender.stats.speed, 0, 1.0));
   }, [defender]);
 
-  // Flower Trick: always crits (unless defender has Shell Armor)
-  const flowerTrickCrit = moveData?.englishName === 'flower-trick' && defAbilityKey !== 'shell-armor';
+  // Flower Trick: always crits (unless defender has Shell Armor or Battle Armor)
+  const flowerTrickCrit = moveData?.englishName === 'flower-trick'
+    && defAbilityKey !== 'shell-armor' && defAbilityKey !== 'battle-armor';
   useEffect(() => {
     if (flowerTrickCrit) setAtkCrit(true);
   }, [flowerTrickCrit]);
