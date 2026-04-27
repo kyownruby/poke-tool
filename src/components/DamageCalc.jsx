@@ -254,6 +254,12 @@ export default function DamageCalc() {
     if (defender?.stats?.speed != null) setDefSpeed(calcStat(defender.stats.speed, 0, 1.0));
   }, [defender]);
 
+  // Flower Trick: always crits (unless defender has Shell Armor)
+  const flowerTrickCrit = moveData?.englishName === 'flower-trick' && defAbilityKey !== 'shell-armor';
+  useEffect(() => {
+    if (flowerTrickCrit) setAtkCrit(true);
+  }, [flowerTrickCrit]);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
@@ -405,7 +411,7 @@ export default function DamageCalc() {
                   じゅうでん
                 </label>
                 <label className="flex items-center gap-1.5">
-                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} />
+                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} disabled={flowerTrickCrit} />
                   急所
                 </label>
                 {['revenge','avalanche'].includes(moveData?.englishName) && (
