@@ -223,6 +223,14 @@ export default function DamageCalc() {
   const [defScreen, setDefScreen] = useState(saved?.defScreen ?? false);
   const [defRoost, setDefRoost] = useState(saved?.defRoost ?? false);
   const [defSR, setDefSR] = useState(saved?.defSR ?? false);
+  const [wasHit, setWasHit] = useState(saved?.wasHit ?? false);
+  const [atkSecond, setAtkSecond] = useState(saved?.atkSecond ?? false);
+  const [defDamaged, setDefDamaged] = useState(saved?.defDamaged ?? false);
+  const [atkStatusBPM, setAtkStatusBPM] = useState(saved?.atkStatusBPM ?? false);
+  const [faintedAllies, setFaintedAllies] = useState(saved?.faintedAllies ?? 0);
+  const [defHpHalf, setDefHpHalf] = useState(saved?.defHpHalf ?? false);
+  const [defPoisoned, setDefPoisoned] = useState(saved?.defPoisoned ?? false);
+  const [defAsleep, setDefAsleep] = useState(saved?.defAsleep ?? false);
   const [moveQuery, setMoveQuery] = useState('');
   const [moveData, setMoveData] = useState(saved?.moveData ?? null);
   const [moveSuggestions, setMoveSuggestions] = useState([]);
@@ -246,15 +254,23 @@ export default function DamageCalc() {
     if (defender?.stats?.speed != null) setDefSpeed(calcStat(defender.stats.speed, 0, 1.0));
   }, [defender]);
 
+  // Flower Trick: always crits (unless defender has Shell Armor or Battle Armor)
+  const flowerTrickCrit = moveData?.englishName === 'flower-trick'
+    && defAbilityKey !== 'shell-armor' && defAbilityKey !== 'battle-armor';
+  useEffect(() => {
+    if (flowerTrickCrit) setAtkCrit(true);
+  }, [flowerTrickCrit]);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank,
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
         atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep]);
 
   const availableMoves = useMemo(() => {
     if (showAllMoves) {
@@ -319,9 +335,10 @@ export default function DamageCalc() {
       options: {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
         atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
+        wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -343,6 +360,8 @@ export default function DamageCalc() {
     setHpAP(0); setDefRank(0); setSpDefRank(0);
     setAtkBurned(false); setAtkCharged(false); setAtkLowHp(false);
     setDefProtect(false); setDefScreen(false); setDefRoost(false); setDefSR(false); setDefFullHp(true);
+    setWasHit(false); setAtkSecond(false); setDefDamaged(false); setAtkStatusBPM(false); setFaintedAllies(0);
+    setDefHpHalf(false); setDefPoisoned(false); setDefAsleep(false);
   }
 
   return (
@@ -393,9 +412,44 @@ export default function DamageCalc() {
                   じゅうでん
                 </label>
                 <label className="flex items-center gap-1.5">
-                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} />
+                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} disabled={flowerTrickCrit} />
                   急所
                 </label>
+                {['revenge','avalanche'].includes(moveData?.englishName) && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={wasHit} onChange={e => setWasHit(e.target.checked)} />
+                    被弾後
+                  </label>
+                )}
+                {moveData?.englishName === 'payback' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={atkSecond} onChange={e => setAtkSecond(e.target.checked)} />
+                    後攻
+                  </label>
+                )}
+                {moveData?.englishName === 'assurance' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defDamaged} onChange={e => setDefDamaged(e.target.checked)} />
+                    相手ダメ済
+                  </label>
+                )}
+                {moveData?.englishName === 'facade' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={atkStatusBPM} onChange={e => setAtkStatusBPM(e.target.checked)} />
+                    やけど/まひ/どく
+                  </label>
+                )}
+                {moveData?.englishName === 'last-respects' && (
+                  <label className="flex items-center gap-1.5">
+                    ひんし数:
+                    <select value={faintedAllies} onChange={e => setFaintedAllies(Number(e.target.value))}
+                      className="border rounded px-1 py-0.5 text-xs">
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                    </select>
+                  </label>
+                )}
                 {['eruption','water-spout','reversal','flail'].includes(moveData?.englishName) && (
                   <label className="flex items-center gap-1.5">
                     HP:
@@ -490,6 +544,24 @@ export default function DamageCalc() {
                   <input type="checkbox" checked={defSR} onChange={e => setDefSR(e.target.checked)} />
                   ステロ
                 </label>
+                {moveData?.englishName === 'brine' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defHpHalf} onChange={e => setDefHpHalf(e.target.checked)} />
+                    HP半分以下
+                  </label>
+                )}
+                {moveData?.englishName === 'venoshock' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defPoisoned} onChange={e => setDefPoisoned(e.target.checked)} />
+                    どく状態
+                  </label>
+                )}
+                {moveData?.englishName === 'dream-eater' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defAsleep} onChange={e => setDefAsleep(e.target.checked)} />
+                    眠り中
+                  </label>
+                )}
               </div>
             </div>
           )}

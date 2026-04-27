@@ -30,7 +30,7 @@ export function calculateDamage({
 }) {
   if (!attacker || !defender || !move) return null;
   // Allow dynamic-power moves (power computed at runtime from HP/speed)
-  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball', 'low-kick', 'grass-knot', 'heat-crash', 'heavy-slam'];
+  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball', 'low-kick', 'grass-knot', 'heat-crash', 'heavy-slam', 'last-respects'];
   if (!move.power && !DYNAMIC_POWER_MOVES.includes(move.englishName)) return null;
 
   const isPhysical = move.damage_class === 'physical';
@@ -170,6 +170,39 @@ export function calculateDamage({
       koText: '失敗（持ち物なし）', typeEff: 0, stab: 1, moveType, movePower, immune: true };
   }
 
+  // Dream Eater: fails if defender is not asleep
+  if (move.englishName === 'dream-eater' && !options.defAsleep) {
+    return { damages: [0], minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0',
+      hpStat: effectiveHp, hpMax: hpStat, srDamage: 0, multiHit: null,
+      koText: '失敗（相手が眠っていない）', typeEff: 0, stab: 1, moveType, movePower, immune: true };
+  }
+
+  // Last Respects: power = 50 + 50 * fainted allies (max 2 in singles, capped at 150)
+  if (move.englishName === 'last-respects') {
+    const fainted = Math.min(2, Math.max(0, options.faintedAllies ?? 0));
+    movePower = 50 + 50 * fainted;
+  }
+
+  // Conditional 2x power moves
+  if ((move.englishName === 'revenge' || move.englishName === 'avalanche') && options.wasHit) {
+    movePower = movePower * 2;
+  }
+  if (move.englishName === 'payback' && options.atkSecond) {
+    movePower = movePower * 2;
+  }
+  if (move.englishName === 'assurance' && options.defDamaged) {
+    movePower = movePower * 2;
+  }
+  if (move.englishName === 'facade' && options.atkStatusBPM) {
+    movePower = movePower * 2;
+  }
+  if (move.englishName === 'brine' && options.defHpHalf) {
+    movePower = movePower * 2;
+  }
+  if (move.englishName === 'venoshock' && options.defPoisoned) {
+    movePower = movePower * 2;
+  }
+
   // Charge: double electric move power
   if (options.atkCharged && moveType === 'electric') {
     movePower = movePower * 2;
@@ -243,8 +276,8 @@ export function calculateDamage({
     }
   }
 
-  // Burn
-  if (isPhysical && options.atkBurned && atkAbilityKey !== 'guts') {
+  // Burn (Facade ignores burn's attack halving)
+  if (isPhysical && options.atkBurned && atkAbilityKey !== 'guts' && move.englishName !== 'facade') {
     atkStat = Math.floor(atkStat * 0.5);
   }
 
