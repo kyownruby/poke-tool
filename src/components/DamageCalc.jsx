@@ -408,31 +408,41 @@ export default function DamageCalc() {
                   <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} />
                   急所
                 </label>
-                <label className="flex items-center gap-1.5" title="リベンジ・ゆきなだれ">
-                  <input type="checkbox" checked={wasHit} onChange={e => setWasHit(e.target.checked)} />
-                  被弾後
-                </label>
-                <label className="flex items-center gap-1.5" title="しっぺがえし">
-                  <input type="checkbox" checked={atkSecond} onChange={e => setAtkSecond(e.target.checked)} />
-                  後攻
-                </label>
-                <label className="flex items-center gap-1.5" title="ダメおし">
-                  <input type="checkbox" checked={defDamaged} onChange={e => setDefDamaged(e.target.checked)} />
-                  相手ダメ済
-                </label>
-                <label className="flex items-center gap-1.5" title="からげんき">
-                  <input type="checkbox" checked={atkStatusBPM} onChange={e => setAtkStatusBPM(e.target.checked)} />
-                  やけど/まひ/どく
-                </label>
-                <label className="flex items-center gap-1.5" title="おはかまいり">
-                  ひんし数:
-                  <select value={faintedAllies} onChange={e => setFaintedAllies(Number(e.target.value))}
-                    className="border rounded px-1 py-0.5 text-xs">
-                    <option value={0}>0</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                  </select>
-                </label>
+                {['revenge','avalanche'].includes(moveData?.englishName) && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={wasHit} onChange={e => setWasHit(e.target.checked)} />
+                    被弾後
+                  </label>
+                )}
+                {moveData?.englishName === 'payback' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={atkSecond} onChange={e => setAtkSecond(e.target.checked)} />
+                    後攻
+                  </label>
+                )}
+                {moveData?.englishName === 'assurance' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defDamaged} onChange={e => setDefDamaged(e.target.checked)} />
+                    相手ダメ済
+                  </label>
+                )}
+                {moveData?.englishName === 'facade' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={atkStatusBPM} onChange={e => setAtkStatusBPM(e.target.checked)} />
+                    やけど/まひ/どく
+                  </label>
+                )}
+                {moveData?.englishName === 'last-respects' && (
+                  <label className="flex items-center gap-1.5">
+                    ひんし数:
+                    <select value={faintedAllies} onChange={e => setFaintedAllies(Number(e.target.value))}
+                      className="border rounded px-1 py-0.5 text-xs">
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                    </select>
+                  </label>
+                )}
                 {['eruption','water-spout','reversal','flail'].includes(moveData?.englishName) && (
                   <label className="flex items-center gap-1.5">
                     HP:
@@ -527,18 +537,24 @@ export default function DamageCalc() {
                   <input type="checkbox" checked={defSR} onChange={e => setDefSR(e.target.checked)} />
                   ステロ
                 </label>
-                <label className="flex items-center gap-1.5" title="しおみず">
-                  <input type="checkbox" checked={defHpHalf} onChange={e => setDefHpHalf(e.target.checked)} />
-                  HP半分以下
-                </label>
-                <label className="flex items-center gap-1.5" title="ベノムショック">
-                  <input type="checkbox" checked={defPoisoned} onChange={e => setDefPoisoned(e.target.checked)} />
-                  どく状態
-                </label>
-                <label className="flex items-center gap-1.5" title="ゆめくい">
-                  <input type="checkbox" checked={defAsleep} onChange={e => setDefAsleep(e.target.checked)} />
-                  眠り中
-                </label>
+                {moveData?.englishName === 'brine' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defHpHalf} onChange={e => setDefHpHalf(e.target.checked)} />
+                    HP半分以下
+                  </label>
+                )}
+                {moveData?.englishName === 'venoshock' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defPoisoned} onChange={e => setDefPoisoned(e.target.checked)} />
+                    どく状態
+                  </label>
+                )}
+                {moveData?.englishName === 'dream-eater' && (
+                  <label className="flex items-center gap-1.5">
+                    <input type="checkbox" checked={defAsleep} onChange={e => setDefAsleep(e.target.checked)} />
+                    眠り中
+                  </label>
+                )}
               </div>
             </div>
           )}
