@@ -231,6 +231,8 @@ export default function DamageCalc() {
   const [defHpHalf, setDefHpHalf] = useState(saved?.defHpHalf ?? false);
   const [defPoisoned, setDefPoisoned] = useState(saved?.defPoisoned ?? false);
   const [defAsleep, setDefAsleep] = useState(saved?.defAsleep ?? false);
+  const [atkRanksUp, setAtkRanksUp] = useState(saved?.atkRanksUp ?? 0);
+  const [defRanksUp, setDefRanksUp] = useState(saved?.defRanksUp ?? 0);
   const [moveQuery, setMoveQuery] = useState('');
   const [moveData, setMoveData] = useState(saved?.moveData ?? null);
   const [moveSuggestions, setMoveSuggestions] = useState([]);
@@ -271,9 +273,10 @@ export default function DamageCalc() {
         atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData,
         atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
         wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep,
+        atkRanksUp, defRanksUp,
       }));
     } catch {}
-  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep]);
+  }, [attacker, defender, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, defRank, spDefRank, atkItemKey, defItemKey, atkAbilityKey, defAbilityKey, weather, field, moveData, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep, atkRanksUp, defRanksUp]);
 
   const availableMoves = useMemo(() => {
     if (showAllMoves) {
@@ -339,9 +342,10 @@ export default function DamageCalc() {
         defRank: moveData?.damage_class === 'special' ? spDefRank : defRank,
         atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, atkLowHp, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus,
         wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep,
+        atkRanksUp, defRanksUp,
       },
     });
-  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep]);
+  }, [attacker, defender, moveData, atkNature, atkAP, atkRank, defNature, defAP, spDefNature, spDefAP, hpAP, weather, field, atkItem, defItem, atkAbilityKey, defAbilityKey, defRank, spDefRank, atkBurned, atkCharged, atkCrit, atkHpPct, atkSpeed, defSpeed, defProtect, defScreen, defRoost, defSR, defFullHp, defDisguise, defStatus, atkLowHp, wasHit, atkSecond, defDamaged, atkStatusBPM, faintedAllies, defHpHalf, defPoisoned, defAsleep, atkRanksUp, defRanksUp]);
 
   const atkAbilityOptions = attacker?.abilities ?? [];
   const defAbilityOptions = defender?.abilities ?? [];
@@ -451,6 +455,14 @@ export default function DamageCalc() {
                       <option value={1}>1</option>
                       <option value={2}>2</option>
                     </select>
+                  </label>
+                )}
+                {['power-trip','stored-power'].includes(moveData?.englishName) && (
+                  <label className="flex items-center gap-1.5">
+                    上昇ランク合計:
+                    <input type="range" min={0} max={42} value={atkRanksUp} onChange={e => setAtkRanksUp(Number(e.target.value))}
+                      className="w-20" />
+                    <span className="font-mono w-8 text-right">+{atkRanksUp}</span>
                   </label>
                 )}
                 {['eruption','water-spout','reversal','flail'].includes(moveData?.englishName) && (
@@ -563,6 +575,14 @@ export default function DamageCalc() {
                   <label className="flex items-center gap-1.5">
                     <input type="checkbox" checked={defAsleep} onChange={e => setDefAsleep(e.target.checked)} />
                     眠り中
+                  </label>
+                )}
+                {moveData?.englishName === 'punishment' && (
+                  <label className="flex items-center gap-1.5">
+                    上昇ランク合計:
+                    <input type="range" min={0} max={42} value={defRanksUp} onChange={e => setDefRanksUp(Number(e.target.value))}
+                      className="w-20" />
+                    <span className="font-mono w-8 text-right">+{defRanksUp}</span>
                   </label>
                 )}
               </div>

@@ -30,7 +30,7 @@ export function calculateDamage({
 }) {
   if (!attacker || !defender || !move) return null;
   // Allow dynamic-power moves (power computed at runtime from HP/speed)
-  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball', 'low-kick', 'grass-knot', 'heat-crash', 'heavy-slam', 'last-respects'];
+  const DYNAMIC_POWER_MOVES = ['eruption', 'water-spout', 'reversal', 'flail', 'gyro-ball', 'electro-ball', 'low-kick', 'grass-knot', 'heat-crash', 'heavy-slam', 'last-respects', 'punishment'];
   if (!move.power && !DYNAMIC_POWER_MOVES.includes(move.englishName)) return null;
 
   const isPhysical = move.damage_class === 'physical';
@@ -181,6 +181,38 @@ export function calculateDamage({
   if (move.englishName === 'last-respects') {
     const fainted = Math.min(2, Math.max(0, options.faintedAllies ?? 0));
     movePower = 50 + 50 * fainted;
+  }
+
+  // Power Trip / Stored Power: 20 + 20 * attacker's stat boost total (no cap)
+  if (['power-trip', 'stored-power'].includes(move.englishName)) {
+    const ranks = Math.max(0, options.atkRanksUp ?? 0);
+    movePower = 20 + 20 * ranks;
+  }
+  // Punishment: 60 + 20 * defender's stat boost total (capped at 200)
+  if (move.englishName === 'punishment') {
+    const ranks = Math.max(0, options.defRanksUp ?? 0);
+    movePower = Math.min(200, 60 + 20 * ranks);
+  }
+  // Acrobatics: 110 if attacker has no item, otherwise 55 (base)
+  if (move.englishName === 'acrobatics' && (!atkItem || atkItem.key === 'none')) {
+    movePower = 110;
+  }
+  // Solar Beam / Solar Blade: halved in rain / sand / snow
+  if (['solar-beam', 'solar-blade'].includes(move.englishName)
+      && ['rain', 'sand', 'snow'].includes(effectiveWeather)) {
+    movePower = Math.floor(movePower / 2);
+  }
+  // Rising Voltage: 2x on Electric Terrain
+  if (move.englishName === 'rising-voltage' && field === 'electric') {
+    movePower = movePower * 2;
+  }
+  // Expanding Force: 1.5x on Psychic Terrain
+  if (move.englishName === 'expanding-force' && field === 'psychic') {
+    movePower = Math.floor(movePower * 1.5);
+  }
+  // Misty Explosion: 1.5x on Misty Terrain
+  if (move.englishName === 'misty-explosion' && field === 'misty') {
+    movePower = Math.floor(movePower * 1.5);
   }
 
   // Conditional 2x power moves
