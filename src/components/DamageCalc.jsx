@@ -254,12 +254,15 @@ export default function DamageCalc() {
     if (defender?.stats?.speed != null) setDefSpeed(calcStat(defender.stats.speed, 0, 1.0));
   }, [defender]);
 
-  // Flower Trick: always crits (unless defender has Shell Armor or Battle Armor)
-  const flowerTrickCrit = moveData?.englishName === 'flower-trick'
-    && defAbilityKey !== 'shell-armor' && defAbilityKey !== 'battle-armor';
+  // Flower Trick: auto-toggle crit based on defender's ability
+  // - 防御側が shell-armor / battle-armor 以外 → 急所ON
+  // - 防御側が shell-armor / battle-armor → 急所OFF
   useEffect(() => {
-    if (flowerTrickCrit) setAtkCrit(true);
-  }, [flowerTrickCrit]);
+    if (moveData?.englishName === 'flower-trick') {
+      const isArmor = defAbilityKey === 'shell-armor' || defAbilityKey === 'battle-armor';
+      setAtkCrit(!isArmor);
+    }
+  }, [moveData?.englishName, defAbilityKey]);
 
   useEffect(() => {
     try {
@@ -412,7 +415,7 @@ export default function DamageCalc() {
                   じゅうでん
                 </label>
                 <label className="flex items-center gap-1.5">
-                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} disabled={flowerTrickCrit} />
+                  <input type="checkbox" checked={atkCrit} onChange={e => setAtkCrit(e.target.checked)} />
                   急所
                 </label>
                 {['revenge','avalanche'].includes(moveData?.englishName) && (
